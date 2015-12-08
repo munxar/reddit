@@ -1,0 +1,23 @@
+{
+  "name": "reddit",
+  "version": "1.0.0",
+  "description": "simplified reddit clone build with the MEAN stack.",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/munxar/reddit.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/munxar/reddit/issues"
+  },
+  "homepage": "https://github.com/munxar/reddit#readme"
+}
