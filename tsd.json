@@ -13,6 +13,21 @@
     },
     "mocha/mocha.d.ts": {
       "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "serve-static/serve-static.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "express/express.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "node/node.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "mime/mime.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "mongoose/mongoose.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
     }
   }
 }

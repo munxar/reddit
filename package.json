@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "simplified reddit clone build with the MEAN stack.",
   "main": "gulpfile.js",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.13.3",
+    "mongoose": "^4.2.9"
+  },
   "devDependencies": {
     "chai": "^3.4.1",
     "gulp": "^3.9.0",
