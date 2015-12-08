@@ -41,7 +41,7 @@ describe("api", () => {
                 })
         });
 
-        it("user can't register with username that is already given", done => {
+        it("user can't register with username that is already taken", done => {
             request(app)
                 .post("/api/account/register")
                 .send({username: "hans", password: "1234"})
@@ -126,6 +126,7 @@ describe("api", () => {
 
                         done(err);
                     });
+
             }, done);
         });
 
@@ -143,6 +144,43 @@ describe("api", () => {
                 .expect("content-type", /json/)
                 .expect(404, done);
         });
+
+        it("change password", done => {
+            // create an account
+            Account.create({username: "fritz", password: "abcd"}).then(account => {
+                // update password
+                request(app)
+                    .put("/api/account")
+                    .set(tokenService.header(account))
+                    .send({password:"abcd", newPassword: "1234"})
+                    .expect("content-type", /json/)
+                    .expect(200)
+                    .end((err, res) => {
+                        // check if new password is in db
+                        Account.findById(res.body.account._id).exec()
+                            .then(acc => {
+                                acc.comparePasswords("1234").then(isValid => {
+                                    if(!isValid) return done("password wrong");
+                                    done(err);
+                                })
+                            }, done);
+                    });
+            }, done);
+        });
+
+        it("change password with wrong password will fail", done => {
+            // create an account
+            Account.create({username: "fritz", password: "abcd"}).then(account => {
+                // update password
+                request(app)
+                    .put("/api/account")
+                    .set(tokenService.header(account))
+                    .send({password:"abcx", newPassword: "1234"})
+                    .expect("content-type", /json/)
+                    .expect(401, done);
+            }, done);
+        });
+
     });
 
     it("test 404 forward", done => {

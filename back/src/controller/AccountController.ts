@@ -24,7 +24,9 @@ export class AccountController {
     };
 
     update = (req, res, next) => {
-        res.json();
+        this.accountService
+            .update(req.user._id, req.body.password, req.body.newPassword)
+            .then(account => res.json({account}), next)
     };
 
     remove = (req, res, next) => {

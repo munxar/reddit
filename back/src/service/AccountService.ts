@@ -51,11 +51,33 @@ export class AccountService {
      * @param id account id
      * @returns Promise<IAccount>
      */
-    getAccount(id) {
+    getAccount(id): Promise<IAccount> {
         return Account.findById(id).exec()
             .then(account => {
                 if(account == null) throw new WebError("account not found", 404);
                 return account;
             });
+    }
+
+    /**
+     * update the password
+     * @param id account id
+     * @param password current password
+     * @param newPassword new password
+     */
+    update(id, password: string, newPassword: string) {
+        var account;
+        return this.getAccount(id)
+            .then(acc => {
+                account = acc;
+                return acc.comparePasswords(password);
+            })
+            .then(isValid => {
+                if(!isValid) {
+                    throw new WebError("password invalid", 401);
+                }
+                account.password = newPassword;
+                return account.save();
+            })
     }
 }
