@@ -45,4 +45,17 @@ export class AccountService {
                 })
             });
     }
+
+    /**
+     * get one account by id
+     * @param id account id
+     * @returns Promise<IAccount>
+     */
+    getAccount(id) {
+        return Account.findById(id).exec()
+            .then(account => {
+                if(account == null) throw new WebError("account not found", 404);
+                return account;
+            });
+    }
 }

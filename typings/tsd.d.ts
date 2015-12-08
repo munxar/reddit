@@ -10,3 +10,6 @@
 /// <reference path="supertest/supertest.d.ts" />
 /// <reference path="body-parser/body-parser.d.ts" />
 /// <reference path="bcrypt/bcrypt.d.ts" />
+/// <reference path="express-jwt/express-jwt.d.ts" />
+/// <reference path="express-unless/express-unless.d.ts" />
+/// <reference path="jsonwebtoken/jsonwebtoken.d.ts" />

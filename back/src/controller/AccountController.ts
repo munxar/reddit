@@ -6,7 +6,9 @@ export class AccountController {
     }
 
     getAccount = (req, res, next) => {
-        res.json({});
+        this.accountService
+            .getAccount(req.user._id)
+            .then(account => res.json(account), next);
     };
 
     register = (req, res, next) => {

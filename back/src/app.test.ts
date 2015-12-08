@@ -5,8 +5,10 @@ import {connect, connection} from "mongoose";
 import {app} from "./app";
 import {config} from "./config";
 import {Account} from "./model/Account";
+import {TokenService} from "./service/TokenService";
 
 var expect = chai.expect;
+var tokenService = new TokenService();
 
 describe("api", () => {
 
@@ -99,7 +101,6 @@ describe("api", () => {
         });
 
         it("invalid username can't login", done => {
-
             request(app)
                 .post("/api/account/login")
                 .send({username: "yada", password: "1234"})
@@ -110,6 +111,37 @@ describe("api", () => {
 
                     done(err);
                 })
+        });
+
+        it("access user account with valid token", done => {
+            Account.create({username: "hans", password: "1234"}).then(account => {
+
+                request(app)
+                    .get("/api/account")
+                    .set(tokenService.header(account))
+                    .expect("content-type", /json/)
+                    .expect(200)
+                    .end((err, res) => {
+                        expect(res.body.username).eql("hans");
+
+                        done(err);
+                    });
+            }, done);
+        });
+
+        it("access user account without token", done => {
+            request(app)
+                .get("/api/account")
+                .expect("content-type", /json/)
+                .expect(401, done);
+        });
+
+        it("access user account with invalid token", done => {
+            request(app)
+                .get("/api/account")
+                .set(tokenService.header(new Account({username: "jabbathehut"})))
+                .expect("content-type", /json/)
+                .expect(404, done);
         });
     });
 
