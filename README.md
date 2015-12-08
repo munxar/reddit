@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/munxar/reddit.svg?branch=master)](https://travis-ci.org/munxar/reddit)
+
 # reddit
 simplified reddit clone build with the MEAN stack.
 
