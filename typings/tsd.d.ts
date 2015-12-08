@@ -9,3 +9,4 @@
 /// <reference path="superagent/superagent.d.ts" />
 /// <reference path="supertest/supertest.d.ts" />
 /// <reference path="body-parser/body-parser.d.ts" />
+/// <reference path="bcrypt/bcrypt.d.ts" />

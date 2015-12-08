@@ -1,7 +1,7 @@
 ///<reference path="../../../typings/tsd.d.ts"/>
 import * as express from "express";
-import {auth} from "./auth";
+import {account} from "./account";
 
 export var api = express.Router();
 
-api.use("/auth", auth);
+api.use("/account", account);

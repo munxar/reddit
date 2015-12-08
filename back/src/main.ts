@@ -3,9 +3,10 @@ import * as express from "express";
 import {join} from "path";
 import {connect} from "mongoose";
 import {app} from "./app";
+import {config} from "./config";
 
 // connect to database
-connect("localhost/reddit", err => {
+connect(config.db, err => {
 
     // on error stop here
     if(err) throw err;
@@ -14,5 +15,5 @@ connect("localhost/reddit", err => {
     app.use(express.static(join(__dirname,"../../front")));
 
     // start web service
-    app.listen(3000);
+    app.listen(config.port);
 });

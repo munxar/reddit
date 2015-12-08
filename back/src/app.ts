@@ -1,6 +1,7 @@
 ///<reference path="../../typings/tsd.d.ts"/>
 import * as express from "express";
 import * as bodyParser from "body-parser";
+import {Account} from "./model/Account";
 import {api} from "./api/api";
 import {onError, notFound} from "./util/error";
 

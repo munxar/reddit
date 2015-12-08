@@ -24,7 +24,16 @@ gulp.task(config.back.build, function () {
 gulp.task(config.back.test, [config.back.build], function () {
     return gulp.src(config.back.testFiles, {read: false})
         .pipe(mocha(config.back.testConfig))
+        .on("error", handleError);
 });
+
+// error handler for watching with gulp-mocha
+function handleError(err) {
+    // report error
+    console.error(err.toString());
+    // emit end to make gulp.watch work
+    this.emit("end");
+}
 
 gulp.task(config.back.watch, [config.back.test], function() {
     gulp.watch(config.back.tsFiles, [config.back.test]);

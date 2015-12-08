@@ -37,6 +37,9 @@
     },
     "body-parser/body-parser.d.ts": {
       "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "bcrypt/bcrypt.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
     }
   }
 }
