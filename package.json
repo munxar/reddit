@@ -4,6 +4,7 @@
   "description": "simplified reddit clone build with the MEAN stack.",
   "main": "gulpfile.js",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "mongoose": "^4.2.9"
   },

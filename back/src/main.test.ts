@@ -19,11 +19,7 @@ describe("test", () => {
         connection.close(done);
     });
 
-    it("wuxel 1", () => {
-        expect(1).eql(1);
-    });
-
-    it("user has username ans password", () => {
+    it("user has username and password", () => {
         var user = new User({username: "Hans", password: "1234"});
 
         expect(user.username).eql("Hans");

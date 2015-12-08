@@ -1,14 +1,21 @@
 ///<reference path="../../typings/tsd.d.ts"/>
 import * as express from "express";
-import {join} from "path";
+import * as bodyParser from "body-parser";
 import {api} from "./api/api";
+import {onError, notFound} from "./util/error";
 
-// create express app
+// create a express app
 export var app = express();
 
-// server static files
-app.use(express.static(join(__dirname,"../../front")));
+// parse json bodies
+app.use(bodyParser.json());
 
-// mount api endpoints
+// mount api endpoint
 app.use("/api", api);
+
+// if we come here, nothing was found
+app.use(notFound);
+
+// generic error handler
+app.use(onError);
 
