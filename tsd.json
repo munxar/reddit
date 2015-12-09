@@ -52,6 +52,18 @@
     },
     "es6-promise/es6-promise.d.ts": {
       "commit": "220716d99a77df1654fb4f6cd760dc134ffa8e89"
+    },
+    "angular-material/angular-material.d.ts": {
+      "commit": "3e36ee3d77a06c8c540be4c55cfbcf10100db1ae"
+    },
+    "angularjs/angular.d.ts": {
+      "commit": "3e36ee3d77a06c8c540be4c55cfbcf10100db1ae"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "3e36ee3d77a06c8c540be4c55cfbcf10100db1ae"
+    },
+    "angular-ui-router/angular-ui-router.d.ts": {
+      "commit": "3e36ee3d77a06c8c540be4c55cfbcf10100db1ae"
     }
   }
 }

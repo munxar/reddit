@@ -38,7 +38,11 @@
       "baseURL": "front",
       "packages": "front/lib"
     },
-    "dependencies": {},
+    "dependencies": {
+      "angular": "github:angular/bower-angular@^1.4.8",
+      "angular-material": "github:angular/bower-material@^0.11.4",
+      "angular-ui-router": "github:angular-ui/ui-router@^0.2.15"
+    },
     "devDependencies": {}
   }
 }
