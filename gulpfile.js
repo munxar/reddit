@@ -2,6 +2,8 @@ var gulp = require("gulp");
 var ts = require("gulp-typescript");
 var mocha = require("gulp-mocha");
 var istanbul = require("gulp-istanbul");
+var nodemon = require("gulp-nodemon");
+var browserSync = require("browser-sync").create();
 
 var config = {
     back: {
@@ -29,7 +31,7 @@ gulp.task(config.back.build, function () {
         .pipe(gulp.dest(config.back.outDir));
 });
 
-gulp.task(config.front.build, function() {
+gulp.task(config.front.build, function () {
     return gulp.src(config.front.tsFiles)
         .pipe(ts(config.front.tsConfig))
         .pipe(gulp.dest(config.front.outDir));
@@ -58,14 +60,34 @@ function handleError(err) {
     this.emit("end");
 }
 
-gulp.task(config.back.watch, [config.back.test], function () {
-    gulp.watch(config.back.tsFiles, [config.back.test]);
+gulp.task(config.back.watch, [config.back.build], function () {
+    gulp.watch(config.back.tsFiles, [config.back.build]);
 });
 
-gulp.task(config.front.watch, [config.front.build], function () {
-    gulp.watch(config.front.tsFiles, [config.front.build]);
+gulp.task("build:html", function() {
+    gulp.src("front/src/**/*.html")
+        .pipe(gulp.dest("front/dist"))
 });
 
-gulp.task("watch", [config.back.watch, config.front.watch]);
+gulp.task(config.front.watch, [config.front.build, "build:html"], function () {
+    gulp.watch(config.front.tsFiles, [config.front.build, function() { browserSync.reload();}]);
+    gulp.watch("front/src/**/*.html", ["build:html", function() { browserSync.reload(); }])
+});
+
+gulp.task("watch", [config.back.watch, config.front.watch], function() {
+    nodemon({
+        script: "back/dist/main",
+        watch: "back/dist/**/*.js"
+    });
+});
+
+gulp.task("serve", ["watch"], function() {
+    setTimeout(function() {
+        browserSync.init({
+            proxy: "localhost:3000",
+            port: 4000
+        });
+    }, 1000);
+});
 
 gulp.task("default", [config.back.test]);
