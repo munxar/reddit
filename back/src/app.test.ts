@@ -7,6 +7,7 @@ import {config} from "./config";
 import {Account, IAccount} from "./model/Account";
 import {Topic, ITopic} from "./model/Topic";
 import {TokenService} from "./service/TokenService";
+import {IComment} from "./model/Comment";
 
 var expect = chai.expect;
 var tokenService = new TokenService();
@@ -210,7 +211,7 @@ describe("api", () => {
                     .expect(200)
                     .end((err, res) => {
                         expect(err).to.be.null;
-                        Account.count(function(e, count) {
+                        Account.count(function (e, count) {
                             expect(e).to.be.null;
                             expect(count).eql(0);
                             done(err);
@@ -399,7 +400,7 @@ describe("api", () => {
         it("user reset a vote on a topic", done => {
             var acc = new Account({username: "user", password: "1234"});
 
-            Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes:[acc._id]})
+            Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes: [acc._id]})
                 .then(topic => {
                     request(app)
                         .put("/api/topic/" + topic._id + "/vote")
@@ -421,7 +422,7 @@ describe("api", () => {
             var acc = new Account({username: "user", password: "1234"});
 
             // initial state with upvote
-            Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes:[acc._id]})
+            Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes: [acc._id]})
                 .then(topic => {
                     // down vote
                     request(app)
@@ -443,7 +444,7 @@ describe("api", () => {
             var acc = new Account({username: "user", password: "1234"});
 
             // initial state with upvote
-            Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes:[acc._id]})
+            Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes: [acc._id]})
                 .then(topic => {
                     // up vote again should have no impact
                     request(app)
@@ -464,4 +465,30 @@ describe("api", () => {
         });
     });
 
+    describe("comment", () => {
+
+        it("add comment to topic", done => {
+            var account;
+
+            Account.create({username: "obivan", password: "force"})
+                .then(acc => account = acc)
+                .then(() => Topic.create({title:"general grevis sucks!", type: "text", content: "may the force be with you...", creator: account._id}))
+                .then((topic: ITopic) => {
+                    request(app)
+                        .post("/api/topic/" + topic._id + "/comment")
+                        .set(tokenService.header(account))
+                        .send({content: "Hello!"})
+                        .expect("content-type", /json/)
+                        .expect(200)
+                        .end((err, res) => {
+                            var comment: IComment = res.body;
+                            expect(comment._id).to.exist;
+                            expect(comment.content).eql("Hello!");
+
+                            done(err);
+                        });
+                }, done)
+        });
+
+    })
 });

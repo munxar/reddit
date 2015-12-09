@@ -33,7 +33,7 @@ gulp.task("pre-test", [config.back.build], function () {
 gulp.task(config.back.test, ["pre-test"], function () {
     return gulp.src(config.back.testFiles, {read: false})
         .pipe(mocha(config.back.testConfig))
-        .pipe(istanbul.writeReports().on("error", handleError))
+        //.pipe(istanbul.writeReports().on("error", handleError))
         .on("error", handleError);
 });
 

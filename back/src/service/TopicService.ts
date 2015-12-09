@@ -2,6 +2,7 @@
 import {Topic, ITopic} from "../model/Topic";
 import {WebError} from "../util/error";
 import {IAccount} from "../model/Account";
+import {Comment, IComment} from "../model/Comment";
 import {addUnique, removeElement} from "../util/array";
 
 /**
@@ -54,5 +55,15 @@ export class TopicService {
                 return topic.save();
             });
     }
-}
 
+    createComment(userId, id, content: string) {
+        return this.getOne(userId, id)
+            .then(() => {
+                return Comment.create({creator:userId,content,topic:id})
+            });
+    }
+
+    removeComment(userId, id, commentId) {
+        return Comment.findById(commentId).exec();
+    }
+}

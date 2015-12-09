@@ -28,3 +28,5 @@ node_modules
 .idea/
 back/dist/
 front/dist/
+front/lib/
+

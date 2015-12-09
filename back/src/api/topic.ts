@@ -16,5 +16,11 @@ topic.get("/", ctrl.getAll);
 topic.delete("/:id", ctrl.remove);
 // get one topic by id
 topic.get("/:id", ctrl.getOne);
+
 // add a vote to a topic
 topic.put("/:id/vote", ctrl.vote);
+
+// create a comment
+topic.post("/:id/comment", ctrl.createComment);
+// remove a comment (only users own comments)
+topic.delete("/:id/comment/:commentId", ctrl.removeComment);

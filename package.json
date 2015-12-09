@@ -9,6 +9,7 @@
     "express": "^4.13.3",
     "express-jwt": "^3.3.0",
     "jsonwebtoken": "^5.4.1",
+    "jspm": "^0.16.15",
     "mongoose": "^4.2.9"
   },
   "devDependencies": {
@@ -31,5 +32,13 @@
   "bugs": {
     "url": "https://github.com/munxar/reddit/issues"
   },
-  "homepage": "https://github.com/munxar/reddit#readme"
+  "homepage": "https://github.com/munxar/reddit#readme",
+  "jspm": {
+    "directories": {
+      "baseURL": "front",
+      "packages": "front/lib"
+    },
+    "dependencies": {},
+    "devDependencies": {}
+  }
 }

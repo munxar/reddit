@@ -15,7 +15,7 @@ tested with local installation of:
 (but should work with node 4.x.x or older)
 
 # run in deveopment mode
-gulp
+gulp watch
 
-# build
-gulp build
+# build and test
+gulp

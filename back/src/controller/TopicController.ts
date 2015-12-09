@@ -34,4 +34,16 @@ export class TopicController {
             .vote(req.user._id, req.params.id, req.body.value)
             .then(topic => res.json(topic), next);
     };
+
+    createComment = (req, res, next) => {
+        this.topicService
+            .createComment(req.user._id, req.params.id, req.body.content)
+            .then(comment => res.json(comment), next);
+    };
+
+    removeComment = (req, res, next) => {
+        this.topicService
+            .removeComment(req.user._id, req.params.id, req.params.commentId)
+            .then(comment => res.json(comment), next);
+    };
 }
