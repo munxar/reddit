@@ -10,6 +10,8 @@ System.config({
     "angular": "github:angular/bower-angular@1.4.8",
     "angular-material": "github:angular/bower-material@0.11.4",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
+    "css": "github:systemjs/plugin-css@0.1.20",
+    "text": "github:systemjs/plugin-text@0.0.4",
     "github:angular-ui/ui-router@0.2.15": {
       "angular": "github:angular/bower-angular@1.4.8"
     },

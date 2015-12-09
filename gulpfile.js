@@ -4,6 +4,7 @@ var mocha = require("gulp-mocha");
 var istanbul = require("gulp-istanbul");
 var nodemon = require("gulp-nodemon");
 var browserSync = require("browser-sync").create();
+var sass = require("gulp-sass");
 
 var config = {
     back: {
@@ -69,9 +70,16 @@ gulp.task("build:html", function() {
         .pipe(gulp.dest("front/dist"))
 });
 
-gulp.task(config.front.watch, [config.front.build, "build:html"], function () {
+gulp.task("build:scss", function() {
+    return gulp.src("front/src/**/*.scss")
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest("front/dist"));
+});
+
+gulp.task(config.front.watch, [config.front.build, "build:html", "build:scss"], function () {
     gulp.watch(config.front.tsFiles, [config.front.build, function() { browserSync.reload();}]);
-    gulp.watch("front/src/**/*.html", ["build:html", function() { browserSync.reload(); }])
+    gulp.watch("front/src/**/*.html", ["build:html", function() { browserSync.reload(); }]);
+    gulp.watch("front/src/**/*.scss", ["build:scss", function() { browserSync.reload(); }]);
 });
 
 gulp.task("watch", [config.back.watch, config.front.watch], function() {
