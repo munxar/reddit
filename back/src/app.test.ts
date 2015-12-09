@@ -4,7 +4,8 @@ import * as request from "supertest";
 import {connect, connection} from "mongoose";
 import {app} from "./app";
 import {config} from "./config";
-import {Account} from "./model/Account";
+import {Account, IAccount} from "./model/Account";
+import {Topic, ITopic} from "./model/Topic";
 import {TokenService} from "./service/TokenService";
 
 var expect = chai.expect;
@@ -24,7 +25,10 @@ describe("api", () => {
 
     // remove relevant collections before every test
     beforeEach(done => {
-        Account.find({}).remove(done);
+        Promise.all([
+            Account.find({}).remove(),
+            Topic.find({}).remove()
+        ]).then(() => done());
     });
 
     describe("account", () => {
@@ -152,7 +156,7 @@ describe("api", () => {
                 request(app)
                     .put("/api/account")
                     .set(tokenService.header(account))
-                    .send({password:"abcd", newPassword: "1234"})
+                    .send({password: "abcd", newPassword: "1234"})
                     .expect("content-type", /json/)
                     .expect(200)
                     .end((err, res) => {
@@ -160,7 +164,7 @@ describe("api", () => {
                         Account.findById(res.body.account._id).exec()
                             .then(acc => {
                                 acc.comparePasswords("1234").then(isValid => {
-                                    if(!isValid) return done("password wrong");
+                                    if (!isValid) return done("password wrong");
                                     done(err);
                                 })
                             }, done);
@@ -175,23 +179,148 @@ describe("api", () => {
                 request(app)
                     .put("/api/account")
                     .set(tokenService.header(account))
-                    .send({password:"abcx", newPassword: "1234"})
+                    .send({password: "abcx", newPassword: "1234"})
                     .expect("content-type", /json/)
                     .expect(401, done);
             }, done);
         });
-
     });
 
-    it("test 404 forward", done => {
-        request(app)
-            .get("/make404")
-            .expect("content-type", /json/)
-            .expect(404)
-            .end((err, res) => {
-                expect(res.body.message).eql("Not Found!");
-                done(err);
+    describe("Topic", () => {
+
+        it("every valid user can create a topic", done => {
+            Account.create({username: "hans", password: "1234"}).then(account => {
+                request(app)
+                    .post("/api/topic")
+                    .send({title: "hi there!", content: "www.abc.com"})
+                    .set(tokenService.header(account))
+                    .expect("content-type", /json/)
+                    .expect(200)
+                    .end((err, res) => {
+                        expect(res.body._id).to.exist;
+                        expect(res.body.title).eql("hi there!");
+                        expect(res.body.content).eql("www.abc.com");
+
+                        done(err);
+                    });
             });
-    })
+        });
+
+        it("invalid user can't create a topic", done => {
+            request(app)
+                .post("/api/topic")
+                .send({title: "hi there!", content: "www.abc.com"})
+                .expect("content-type", /json/)
+                .expect(401, done);
+        });
+
+        it("a user can delete his own topic", done => {
+            Account.create({username: "hans", password: "1234"}).then(account => {
+                var token = tokenService.header(account);
+
+                request(app)
+                    .post("/api/topic")
+                    .set(tokenService.header(account))
+                    .send({title: "hi there!", content: "www.abc.com"})
+                    .set(token)
+                    .end((err, res) => {
+                        var topic = res.body;
+
+                        request(app)
+                            .delete("/api/topic/" + topic._id)
+                            .set(token)
+                            .expect(200)
+                            .end((err, res) => {
+                                // check response contains deleted topic
+                                expect(res.body._id).eql(topic._id);
+
+                                // check db no topic anymore
+                                Topic.find({}).count(function (e, count) {
+                                    expect(e).to.be.null;
+                                    expect(count).eql(0);
+
+                                    done(err);
+                                });
+                            });
+                    });
+            });
+        });
+
+        it("a user can't delete topic from other users", done => {
+            var account1, account2;
+
+            // create account1
+            Account.create({username: "user1", password: "1234"})
+                .then(account => account1 = account)
+                // create account2
+                .then(() => Account.create({username: "user2", password: "1234"}))
+                .then(account => account2 = account)
+                // create topic for account1
+                .then(() => Topic.create({title: "test", content: "www.test.com", creator: account1}))
+                // try to delete topic with account2 should fail
+                .then((topic:ITopic) => {
+                    request(app)
+                        .delete("/api/topic/" + topic._id)
+                        .set(tokenService.header(account2))
+                        .expect("content-type", /json/)
+                        .expect(401)
+                        .end((err, res) => {
+
+                            done(err);
+                        });
+                }, done);
+        });
+
+        it("try to access topic that dosn't exists should return 404", done => {
+
+            // create account1
+            Account.create({username: "user1", password: "1234"})
+                .then(account => {
+                    var topic = new Topic();
+                    request(app)
+                        .delete("/api/topic/" + topic._id)
+                        .set(tokenService.header(account))
+                        .expect("content-type", /json/)
+                        .expect(404)
+                        .end((err, res) => {
+                            done(err);
+                        });
+                });
+        });
+
+        it("a user can list all available topics", done => {
+            var acc = new Account({username: "user", password: "1234"});
+
+            Topic.create({creator: acc._id, title: "test1", content: "www.test.com"})
+                .then(() => Topic.create({creator: acc._id, title: "test2", content: "www.test.com"}))
+                .then(() => {
+                    request(app)
+                        .get("/api/topic")
+                        .set(tokenService.header(acc))
+                        .expect("content-type", /json/)
+                        .expect(200)
+                        .end((err, res) => {
+                            expect(res.body.length).eql(2);
+
+                            done(err);
+                        })
+                }, done)
+        });
+    });
+
+    describe("app", () => {
+
+        it("test 404 forward", done => {
+            request(app)
+                .get("/make404")
+                .expect("content-type", /json/)
+                .expect(404)
+                .end((err, res) => {
+                    expect(res.body.message).eql("Not Found!");
+                    done(err);
+                });
+        })
+
+    });
 
 });

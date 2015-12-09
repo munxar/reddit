@@ -13,3 +13,4 @@
 /// <reference path="express-jwt/express-jwt.d.ts" />
 /// <reference path="express-unless/express-unless.d.ts" />
 /// <reference path="jsonwebtoken/jsonwebtoken.d.ts" />
+/// <reference path="es6-promise/es6-promise.d.ts" />
