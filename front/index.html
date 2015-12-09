@@ -10,7 +10,7 @@
     <md-button class="menu" hide-gt-sm>
         Menu
     </md-button>
-    <h1>Reddit Clone</h1>
+    <span>Reddit Clone</span>
 
     <div layout="column">
         <md-menu md-position-mode="target-right target">
@@ -26,10 +26,9 @@
         </md-menu>
     </div>
 </md-toolbar>
-<main role="main" layout="row">
+<main role="main" flex layout="row">
 
-    <md-sidenav flex layout-padding class="md-whiteframe-z2" md-component-id="left"
-                md-is-locked-open="$mdMedia('gt-sm')">
+    <md-sidenav flex layout-padding class="md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
 
         <md-list>
             <md-button class="md-raised md-primary">New Topic</md-button>
@@ -51,8 +50,7 @@
 
     <md-content flex layout-margin>
         <p>Search</p>
-        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText"
-                         md-items="item in getMatches(searchText)" md-item-text="item.display">
+        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.display">
             <span md-highlight-text="searchText">{{item.display}}</span>
         </md-autocomplete>
         <md-card layout="row">
