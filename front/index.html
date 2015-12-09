@@ -6,13 +6,13 @@
 </head>
 <body>
 
-<md-toolbar layout="row">
+<md-toolbar layout="row" layout-padding layout-align="space-between center">
     <md-button class="menu" hide-gt-sm>
         Menu
     </md-button>
     <h1>Reddit Clone</h1>
 
-    <div class="menu-container" layout-align="end" layout="column">
+    <div layout="column">
         <md-menu md-position-mode="target-right target">
             <md-button class="md-raised" aria-label="Open demo menu" ng-click="$mdOpenMenu($event)">
                 Munxar
@@ -28,7 +28,7 @@
 </md-toolbar>
 <main role="main" layout="row">
 
-    <md-sidenav flex class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left"
+    <md-sidenav flex layout-padding class="md-whiteframe-z2" md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-sm')">
 
         <md-list>
@@ -49,7 +49,7 @@
         </md-list>
     </md-sidenav>
 
-    <md-content flex class="content">
+    <md-content flex layout-margin>
         <p>Search</p>
         <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText"
                          md-items="item in getMatches(searchText)" md-item-text="item.display">
