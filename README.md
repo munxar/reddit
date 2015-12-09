@@ -3,7 +3,7 @@
 # reddit
 simplified reddit clone build with the MEAN stack.
 
-in addition we use typescript and jspm to make use of es6 modules in the frontend.
+In addition we use typescript and jspm to make use of es6 modules in the frontend.
 
 
 # requirements
@@ -14,7 +14,7 @@ tested with local installation of:
 
 (but should work with node 4.x.x or older)
 
-# run in deveopment mode
+# run in development mode
 gulp watch
 
 # build and test
