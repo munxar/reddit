@@ -7,5 +7,76 @@
 <body>
     <h1>Hallo, World</h1>
 
+    <md-toolbar layout="row">
+        <md-button class="menu" hide-gt-sm>
+            Menu
+        </md-button>
+        <h1>Reddit Clone</h1>
+          <div class="menu-container" layout-align="end" layout="column">
+            <md-menu md-position-mode="target-right target">
+              <md-button class="md-raised" aria-label="Open demo menu" ng-click="$mdOpenMenu($event)">
+                Munxar
+              </md-button>
+                <md-menu-content>
+                  <md-menu-item layout="column">
+                    <md-button>Settings</md-button>
+                    <md-button>Logout</md-button>
+                  </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+          </div>
+      </md-toolbar>
+    <main role="main" layout="row">
+
+      <md-sidenav flex class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+
+        <md-list>
+          <md-button class="md-raised md-primary">New Topic</md-button>
+          <h1>Channels</h1>
+          <md-list-item>
+            <md-button>Music</md-button>
+          </md-list-item>
+          <md-list-item>
+            <md-button>Funny</md-button>
+          </md-list-item>
+          <md-list-item>
+            <md-button>Geek</md-button>
+          </md-list-item>
+          <md-list-item>
+            <md-button>Videos</md-button>
+          </md-list-item>
+        </md-list>
+      </md-sidenav>
+
+      <md-content flex class="content">
+        <p>Search</p>
+        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.display">
+          <span md-highlight-text="searchText">{{item.display}}</span>
+        </md-autocomplete>
+        <md-card layout="row">
+          <md-card-actions flex="10" layout="column">
+            <md-button><md-icon>keyboard_arrow_up</md-icon></md-button>
+            <md-button><md-icon>keyboard_arrow_down</md-icon></md-button>
+          </md-card-actions>
+          <md-card-content flex>
+            <h2>Why cats are assholes</h2>
+            <md-button>Comment</md-button>|<md-button>share</md-button>|<md-button>delete</md-button>
+          </md-card-content>
+        </md-card>
+        <md-card layout="row">
+          <md-card-actions flex="10" layout="column">
+            <md-button><md-icon>keyboard_arrow_up</md-icon></md-button>
+            <md-button><md-icon>keyboard_arrow_down</md-icon></md-button>
+          </md-card-actions>
+          <md-card-content flex>
+            <h2>Star Wars special</h2>
+            <md-button>Comment</md-button>|<md-button>share</md-button>|<md-button>delete</md-button>
+          </md-card-content>
+        </md-card>
+      </md-content>
+
+  </main>
+
+
 </body>
 </html>
