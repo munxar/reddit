@@ -31,6 +31,21 @@ describe("api", () => {
         ]).then(() => done());
     });
 
+    describe("app", () => {
+
+        it("test 404 forward", done => {
+            request(app)
+                .get("/make404")
+                .expect("content-type", /json/)
+                .expect(404)
+                .end((err, res) => {
+                    expect(res.body.message).eql("Not Found!");
+                    done(err);
+                });
+        })
+
+    });
+
     describe("account", () => {
 
         it("user can register account with username and password", done => {
@@ -163,10 +178,9 @@ describe("api", () => {
                         // check if new password is in db
                         Account.findById(res.body.account._id).exec()
                             .then(acc => {
-                                acc.comparePasswords("1234").then(isValid => {
-                                    if (!isValid) return done("password wrong");
+                                acc.comparePasswords("1234").then(() => {
                                     done(err);
-                                })
+                                });
                             }, done);
                     });
             }, done);
@@ -184,9 +198,29 @@ describe("api", () => {
                     .expect(401, done);
             }, done);
         });
+
+        it("user can delete own account", done => {
+            // create an account
+            Account.create({username: "deleter", password: "4242"}).then(account => {
+                // update password
+                request(app)
+                    .delete("/api/account")
+                    .set(tokenService.header(account))
+                    .expect("content-type", /json/)
+                    .expect(200)
+                    .end((err, res) => {
+                        expect(err).to.be.null;
+                        Account.count(function(e, count) {
+                            expect(e).to.be.null;
+                            expect(count).eql(0);
+                            done(err);
+                        });
+                    });
+            }, done);
+        });
     });
 
-    describe("Topic", () => {
+    describe("topic", () => {
 
         it("every valid user can create a topic", done => {
             Account.create({username: "hans", password: "1234"}).then(account => {
@@ -306,21 +340,128 @@ describe("api", () => {
                         })
                 }, done)
         });
-    });
 
-    describe("app", () => {
+        it("get a specific topic by id", done => {
+            var acc = new Account({username: "user", password: "1234"});
 
-        it("test 404 forward", done => {
-            request(app)
-                .get("/make404")
-                .expect("content-type", /json/)
-                .expect(404)
-                .end((err, res) => {
-                    expect(res.body.message).eql("Not Found!");
-                    done(err);
-                });
-        })
+            Topic.create({creator: acc._id, title: "test1", content: "www.test.com"})
+                .then(topic => {
+                    request(app)
+                        .get("/api/topic/" + topic._id)
+                        .set(tokenService.header(acc))
+                        .expect("content-type", /json/)
+                        .expect(200)
+                        .end((err, res) => {
+                            expect(res.body._id).eql(topic._id.toString());
 
+                            done(err);
+                        })
+                }, done)
+        });
+
+
+        it("user can up vote a topic", done => {
+            var acc = new Account({username: "user", password: "1234"});
+
+            Topic.create({creator: acc._id, title: "test1", content: "www.test.com"})
+                .then(topic => {
+                    request(app)
+                        .put("/api/topic/" + topic._id + "/vote")
+                        .send({value: 1})
+                        .set(tokenService.header(acc))
+                        .expect("content-type", /json/)
+                        .expect(200)
+                        .end((err, res) => {
+                            expect(res.body.upVotes).contains(acc._id.toString());
+                            done(err);
+                        })
+                }, done)
+        });
+
+        it("user can down vote a topic", done => {
+            var acc = new Account({username: "user", password: "1234"});
+
+            Topic.create({creator: acc._id, title: "test1", content: "www.test.com"})
+                .then(topic => {
+                    request(app)
+                        .put("/api/topic/" + topic._id + "/vote")
+                        .send({value: -1})
+                        .set(tokenService.header(acc))
+                        .expect("content-type", /json/)
+                        .expect(200)
+                        .end((err, res) => {
+                            expect(res.body.downVotes).contains(acc._id.toString());
+                            done(err);
+                        })
+                }, done)
+        });
+
+        it("user reset a vote on a topic", done => {
+            var acc = new Account({username: "user", password: "1234"});
+
+            Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes:[acc._id]})
+                .then(topic => {
+                    request(app)
+                        .put("/api/topic/" + topic._id + "/vote")
+                        // optional, if no value is send, we reset the vote
+                        //.send({value: 0})
+                        .set(tokenService.header(acc))
+                        .expect("content-type", /json/)
+                        .expect(200)
+                        .end((err, res) => {
+                            expect(res.body.downVotes).not.contains(acc._id.toString());
+                            expect(res.body.upVotes).not.contains(acc._id.toString());
+
+                            done(err);
+                        })
+                }, done)
+        });
+
+        it("up and down vote is exclusive", done => {
+            var acc = new Account({username: "user", password: "1234"});
+
+            // initial state with upvote
+            Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes:[acc._id]})
+                .then(topic => {
+                    // down vote
+                    request(app)
+                        .put("/api/topic/" + topic._id + "/vote")
+                        .send({value: -1})
+                        .set(tokenService.header(acc))
+                        .expect("content-type", /json/)
+                        .expect(200)
+                        .end((err, res) => {
+                            expect(res.body.downVotes).contains(acc._id.toString());
+                            expect(res.body.upVotes).not.contains(acc._id.toString());
+
+                            done(err);
+                        })
+                }, done)
+        });
+
+        it("a vote is unique per topic per user", done => {
+            var acc = new Account({username: "user", password: "1234"});
+
+            // initial state with upvote
+            Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes:[acc._id]})
+                .then(topic => {
+                    // up vote again should have no impact
+                    request(app)
+                        .put("/api/topic/" + topic._id + "/vote")
+                        .send({value: 1})
+                        .set(tokenService.header(acc))
+                        .expect("content-type", /json/)
+                        .expect(200)
+                        .end((err, res) => {
+                            expect(res.body.upVotes).contains(acc._id.toString());
+                            // only one entry
+                            expect(res.body.upVotes.length).eql(1);
+                            expect(res.body.downVotes).not.contains(acc._id.toString());
+
+                            done(err);
+                        })
+                }, done)
+        });
     });
 
 });

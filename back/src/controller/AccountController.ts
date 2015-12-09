@@ -30,6 +30,8 @@ export class AccountController {
     };
 
     remove = (req, res, next) => {
-        res.json({});
+        this.accountService
+            .remove(req.user._id)
+            .then(account => res.json(account), next);
     };
 }

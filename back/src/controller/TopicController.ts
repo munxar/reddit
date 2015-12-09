@@ -1,6 +1,7 @@
 import {TopicService} from "../service/TopicService";
 
 export class TopicController {
+
     constructor(private topicService: TopicService) {
 
     }
@@ -19,6 +20,18 @@ export class TopicController {
     remove = (req, res, next) => {
         this.topicService
             .remove(req.user._id, req.params.id)
+            .then(topic => res.json(topic), next);
+    };
+
+    getOne = (req,res, next) => {
+        this.topicService
+            .getOne(req.user._id, req.params.id)
+            .then(topic => res.json(topic), next);
+    };
+
+    vote = (req, res, next) => {
+        this.topicService
+            .vote(req.user._id, req.params.id, req.body.value)
             .then(topic => res.json(topic), next);
     };
 }

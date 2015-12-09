@@ -1,6 +1,7 @@
 var gulp = require("gulp");
 var ts = require("gulp-typescript");
 var mocha = require("gulp-mocha");
+var istanbul = require("gulp-istanbul");
 
 var config = {
     back: {
@@ -21,9 +22,18 @@ gulp.task(config.back.build, function () {
         .pipe(gulp.dest(config.back.outDir));
 });
 
-gulp.task(config.back.test, [config.back.build], function () {
+gulp.task("pre-test", [config.back.build], function () {
+    return gulp.src(["back/dist/**/*.js"])
+        // Covering files
+        .pipe(istanbul())
+        // Force `require` to return covered files
+        .pipe(istanbul.hookRequire());
+});
+
+gulp.task(config.back.test, ["pre-test"], function () {
     return gulp.src(config.back.testFiles, {read: false})
         .pipe(mocha(config.back.testConfig))
+        .pipe(istanbul.writeReports().on("error", handleError))
         .on("error", handleError);
 });
 
@@ -35,7 +45,7 @@ function handleError(err) {
     this.emit("end");
 }
 
-gulp.task(config.back.watch, [config.back.test], function() {
+gulp.task(config.back.watch, [config.back.test], function () {
     gulp.watch(config.back.tsFiles, [config.back.test]);
 });
 
