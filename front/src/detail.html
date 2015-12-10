@@ -1,8 +1,10 @@
-<md-content layout-margin class="md-whiteframe-1dp">
-    <h1>{{ctrl.topic.title}}</h1>
-
-    <p>{{ctrl.topic.content}}</p>
-</md-content>
-<div>
-    <md-button>add comment</md-button>
-</div>
+<md-card>
+    <md-card-content>
+        <h2 class="md-title"><a href="">{{ctrl.topic.title}}</a></h2>
+    </md-card-content>
+    <div class="md-actions" layout="row" layout-align="start center">
+        <md-button>Comment</md-button>
+        <md-button>Share</md-button>
+        <md-button ng-click="ctrl.remove()">delete</md-button>
+    </div>
+</md-card>

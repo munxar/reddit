@@ -1,13 +1,18 @@
 <h1>create</h1>
+
 <form ng-submit="ctrl.create()">
+
     <md-input-container>
-        <input type="text" placeholder="title" ng-model="ctrl.vm.title">
+        <label>Title</label>
+        <input type="text" ng-model="ctrl.vm.title">
     </md-input-container>
     <md-input-container>
-        <textarea placeholder="content" ng-model="ctrl.vm.content">
-        </textarea>
+        <label>URL</label>
+        <input type="text" ng-model="ctrl.vm.content"></input>
     </md-input-container>
 
-    <md-button class="md-primary">Create</md-button>
-    <md-button ui-sref="home">Cancel</md-button>
+    <section layout="row">
+        <md-button class="md-primary">Create</md-button>
+        <md-button ui-sref="home">Cancel</md-button>
+    </section>
 </form>

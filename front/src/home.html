@@ -1,26 +1,19 @@
 <md-content>
-    <md-input-container>
-        <input type="search" placeholder="search....">
-    </md-input-container>
-</md-content>
-<md-content>
-    <md-button ui-sref="create" class="md-primary">new</md-button>
-    <md-button ui-sref-active="active" ui-sref="home">all</md-button>
+    <md-button class="md-link" ui-sref-active="active" ui-sref="home">popular</md-button>
     <md-button ui-sref-active="active" ui-sref="sort({tag:'newest'})">newest</md-button>
-    <md-button ui-sref-active="active" ui-sref="sort({tag:'popular'})">popular</md-button>
     <md-button ui-sref-active="active" ui-sref="sort({tag:'rating'})">rating</md-button>
 </md-content>
 <md-content flex>
     <md-list>
         <md-list-item class="md-3-line" ng-repeat="topic in ctrl.topics">
             <img src="" alt="{{item.who}}" class="md-avatar">
+            <div class="md-avatar">{{$index}}</div>
             <div class="md-list-item-text">
-                <h3><a ui-sref="detail(topic)">{{topic.title}}</a></h3>
+                <h3><a href="{{ctrl.url(topic.content)}}" target="_blank">{{topic.title}}</a></h3>
                 <h4>ertellte am {{topic.creationDate | date}} von <a href="">{{topic.creator.username}}</a></h4>
                 <p>
-                    <span ng-click="">comments</span>
+                    <span><a ui-sref="detail(topic)">comments</a></span>
                     <span>share</span>
-                    <span>wurst</span>
                 </p>
             </div>
             <md-divider inset></md-divider>

@@ -2,7 +2,7 @@
 import * as angular from "angular";
 import "angular-material";
 import "angular-ui-router";
-import "./header/module";
+import "./modules/link/module";
 import "./main.css!";
 import {AuthController} from "./AuthController";
 import {redditAccount} from "./redditAccount";
@@ -19,10 +19,10 @@ var detailTemplate = require("./detail.html!text");
 import IStateProvider = angular.ui.IStateProvider;
 import IUrlRouterProvider = angular.ui.IUrlRouterProvider;
 
-var app = angular.module("reddit", [
+var app = angular.module("linkit", [
     "ngMaterial",
     "ui.router",
-    "reddit.header"
+    "linkit.link"
 ]);
 
 app.config(function($urlRouterProvider: IUrlRouterProvider, $stateProvider: IStateProvider, $httpProvider) {

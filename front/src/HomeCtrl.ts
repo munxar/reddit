@@ -25,11 +25,25 @@ export class ListCtrl {
     constructor($http) {
         $http.get("/api/topic").then(res => this.topics = res.data);
     }
+
+    url(s) {
+        var prefix = 'http://';
+        if (s.substr(0, prefix.length) !== prefix)
+        {
+            s = prefix + s;
+        }
+        return s;
+    }
 }
 
 export class DetailCtrl {
-    topic = {};
-    constructor($http, $state) {
+    topic: any = {};
+    constructor(private $http, private $state) {
         $http.get("/api/topic/" + $state.params._id).then(res => this.topic = res.data);
+    }
+
+    remove() {
+        this.$http.delete("/api/topic/" + this.topic._id)
+        .then(() => this.$state.go("home"), console.error);
     }
 }
