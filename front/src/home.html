@@ -6,13 +6,16 @@
 <md-content flex>
     <md-list>
         <md-list-item class="md-3-line" ng-repeat="topic in ctrl.topics">
-            <img src="" alt="{{item.who}}" class="md-avatar">
-            <div class="md-avatar">{{$index}}</div>
+            <div flex="10" layout="column" layout-align="center center">
+                <div aria-label="up vote">UP</div>
+                <div>1344</div>
+                <div aria-label="down vote">DN</div>
+            </div>
             <div class="md-list-item-text">
-                <h3><a href="{{ctrl.url(topic.content)}}" target="_blank">{{topic.title}}</a></h3>
-                <h4>ertellte am {{topic.creationDate | date}} von <a href="">{{topic.creator.username}}</a></h4>
+                <h3><a ui-sref="detail(topic)">{{topic.title}}</a></h3>
+                <h4>eingereicht am {{topic.creationDate | date}} von <a href="">{{topic.creator.username}}</a></h4>
                 <p>
-                    <span><a ui-sref="detail(topic)">comments</a></span>
+                    <a ui-sref="detail(topic)">comments</a>
                     <span>share</span>
                 </p>
             </div>
