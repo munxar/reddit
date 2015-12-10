@@ -1,0 +1,20 @@
+<div ng-if="!ctrl.isAuthenticated()" >
+    <md-button ui-sref="login">Login</md-button>
+    <md-button ui-sref="register">Register</md-button>
+</div>
+
+<md-menu class="md-buttom" ng-if="ctrl.isAuthenticated()">
+    <md-button aria-label="open account menu" ng-click="$mdOpenMenu($event)">
+        {{ctrl.getUsername()}}
+    </md-button>
+
+    <md-menu-content>
+        <md-menu-item>
+            <md-button ui-sref="account">Account</md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+            <md-button ng-click="ctrl.logout()">Logout</md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>

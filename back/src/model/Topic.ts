@@ -8,7 +8,7 @@ export interface ITopic extends Document {
     type: string;
     content: string;
 
-    creator: IAccount | Types.ObjectId;
+    creator: Types.ObjectId;
     creationDate: Date;
 
     upVotes: Types.ObjectId[];

@@ -17,27 +17,31 @@ export class TopicService {
     }
 
     remove(userId, id) {
-        return this.getOne(userId, id)
-            .then((topic: ITopic) => topic.remove());
+        return this.getOne(id)
+            .then((topic: ITopic) => {
+                if(topic.creator.toString() != userId) throw new WebError("Not Authorized!", 401);
+                return topic.remove();
+            });
     }
 
-    getAll(userId) {
-        return Topic.find({}).exec();
+    getAll() {
+        return Topic.find({}).populate("creator").exec();
     }
 
-    getOne(userId, id) {
+    getOne(id) {
         return Topic.findById(id).exec()
             .then(topic => {
                 if(!topic) throw new WebError("Not found", 404);
-                if(topic.creator != userId) throw new WebError("Not Authorized", 401);
 
                 return topic;
             })
     }
 
     vote(userId, id, value) {
-        return this.getOne(userId, id)
+        return this.getOne(id)
             .then((topic: ITopic) => {
+                if(topic.creator.toString() != userId) throw new WebError("Not Authorized!", 401);
+
                 // reset up or down vote for this user
                 removeElement(topic.upVotes, userId);
                 removeElement(topic.downVotes, userId);
@@ -57,7 +61,7 @@ export class TopicService {
     }
 
     createComment(userId, id, content: string) {
-        return this.getOne(userId, id)
+        return this.getOne(id)
             .then(() => {
                 return Comment.create({creator:userId,content,topic:id})
             });

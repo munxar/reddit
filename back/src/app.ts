@@ -4,7 +4,6 @@ import * as bodyParser from "body-parser";
 import {join} from "path";
 import {Account} from "./model/Account";
 import {api} from "./api/api";
-import {secure} from "./util/secure";
 import {onError, notFound} from "./util/error";
 
 // create a express app
@@ -17,7 +16,7 @@ app.use(express.static(join(__dirname,"../../front")));
 app.use(bodyParser.json());
 
 // mount api endpoint, and secure them
-app.use("/api", secure, api);
+app.use("/api", api);
 
 // if we come here, nothing was found
 app.use(notFound);

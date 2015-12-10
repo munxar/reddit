@@ -1,0 +1,11 @@
+<form ng-submit="ctrl.login()">
+    <md-input-container>
+        <input ng-model="ctrl.vm.username" type="text" placeholder="username">
+    </md-input-container>
+    <md-input-container>
+        <input ng-model="ctrl.vm.password" type="password" placeholder="password">
+    </md-input-container>
+
+    <md-button class="md-primary" type="submit">Login</md-button>
+    <md-button ui-sref="home">Cancel</md-button>
+</form>

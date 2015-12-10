@@ -1,21 +1,18 @@
 <md-toolbar flex="10" layout="row" layout-padding layout-align="space-between center">
-    <md-button class="menu" hide-gt-sm>
-        Menu
-    </md-button>
-    <span>Reddit</span>
+    <div class="md-toolbar-tools">
+        <md-button>Reddit</md-button>
+        <span flex></span>
 
-    <div layout="column">
-        <md-menu md-position-mode="target-right target">
-
+        <md-menu class="md-buttom">
             <md-button aria-label="open account menu" ng-click="$mdOpenMenu($event)">
                 Munxar
             </md-button>
-
 
             <md-menu-content>
                 <md-menu-item>
                     <md-button>Settings</md-button>
                 </md-menu-item>
+                <md-menu-divider></md-menu-divider>
                 <md-menu-item>
                     <md-button>Logout</md-button>
                 </md-menu-item>

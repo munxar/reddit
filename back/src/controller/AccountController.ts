@@ -1,6 +1,10 @@
 import {AccountService} from "../service/AccountService";
+import {TokenService} from "../service/TokenService";
+import {IAccount} from "../model/Account";
 
 export class AccountController {
+    tokenService = new TokenService();
+
     constructor(private accountService: AccountService) {
 
     }
@@ -14,13 +18,17 @@ export class AccountController {
     register = (req, res, next) => {
         this.accountService
             .register(req.body.username, req.body.password)
-            .then(account => res.json({account}), next);
+            .then((account: IAccount) => {
+                return res.json({account, token: this.tokenService.generate(account)})
+            }, next);
     };
 
     login = (req, res, next) => {
         this.accountService
             .authenticate(req.body.username, req.body.password)
-            .then(account => res.json({account}), next);
+            .then((account: IAccount) => {
+                return res.json({account, token: this.tokenService.generate(account)})
+            }, next);
     };
 
     update = (req, res, next) => {

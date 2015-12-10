@@ -6,81 +6,18 @@
 </head>
 <body layout="column">
 
-<reddit-header></reddit-header>
+<md-toolbar flex="10" layout="row" layout-padding layout-align="space-between center">
+    <div class="md-toolbar-tools">
+        <md-button ui-sref="home">Reddit</md-button>
+        <span flex></span>
 
-<main role="main" flex layout="row">
+        <reddit-account></reddit-account>
+    </div>
+</md-toolbar>
 
-    <md-sidenav layout-padding class="md-whiteframe-z2" md-component-id="left"
-                md-is-locked-open="$mdMedia('gt-sm')">
+<ui-view role="main" layout="column">
 
-        <md-list>
-            <md-button class="md-raised md-primary">New Topic</md-button>
-            <h1>Channels</h1>
-            <md-list-item>
-                <md-button>Music</md-button>
-            </md-list-item>
-            <md-list-item>
-                <md-button>Funny</md-button>
-            </md-list-item>
-            <md-list-item>
-                <md-button>Geek</md-button>
-            </md-list-item>
-            <md-list-item>
-                <md-button>Videos</md-button>
-            </md-list-item>
-        </md-list>
-    </md-sidenav>
-
-    <md-content flex layout-margin>
-        <p>Search</p>
-        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText"
-                         md-items="item in getMatches(searchText)" md-item-text="item.display">
-            <span md-highlight-text="searchText">{{item.display}}</span>
-        </md-autocomplete>
-        <md-card layout="row">
-            <md-card-actions flex="10" layout="column">
-                <md-button>
-                    <md-icon>up</md-icon>
-                </md-button>
-                <md-button>
-                    <md-icon>832</md-icon>
-                </md-button>
-                <md-button>
-                    <md-icon>down</md-icon>
-                </md-button>
-            </md-card-actions>
-            <md-card-content flex>
-                <h2>Why cats are assholes</h2>
-                <md-button>Comment</md-button>
-                |
-                <md-button>share</md-button>
-                |
-                <md-button>delete</md-button>
-            </md-card-content>
-        </md-card>
-        <md-card layout="row">
-            <md-card-actions flex="10" layout="column">
-                <md-button>
-                    <md-icon>up</md-icon>
-                </md-button>
-                <md-button>
-                    <md-icon>2349</md-icon>
-                </md-button>
-                <md-button>
-                    <md-icon>down</md-icon>
-                </md-button>
-            </md-card-actions>
-            <md-card-content flex>
-                <h2>Star Wars special</h2>
-                <md-button>Comment</md-button>
-                |
-                <md-button>share</md-button>
-                |
-                <md-button>delete</md-button>
-            </md-card-content>
-        </md-card>
-    </md-content>
-</main>
+</ui-view>
 
 <script src="lib/system.js"></script>
 <script src="config.js"></script>

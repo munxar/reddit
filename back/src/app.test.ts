@@ -177,7 +177,7 @@ describe("api", () => {
                     .expect(200)
                     .end((err, res) => {
                         // check if new password is in db
-                        Account.findById(res.body.account._id).exec()
+                        Account.findById(<any>res.body.account._id).exec()
                             .then(acc => {
                                 acc.comparePasswords("1234").then(() => {
                                     done(err);
