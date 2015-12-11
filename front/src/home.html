@@ -12,11 +12,11 @@
                 <div aria-label="down vote">DN</div>
             </div>
             <div class="md-list-item-text">
-                <h3><a href="{{ctrl.url(topic.content)}}" target="_blank">{{topic.title}}</a></h3>
+                <h3><a class="md-display-1" href="{{ctrl.url(topic.content)}}" target="_blank">{{topic.title}}</a></h3>
                 <h4>eingereicht am {{topic.creationDate | date}} von <a href="">{{topic.creator.username}}</a></h4>
                 <p>
-                    <a ui-sref="detail(topic)">231 comments</a>
-                    <span>share</span>
+                    <a ui-sref="detail(topic)" class="md-button md-primary">231 comments</a>
+                    <span class="md-button md-primary">share</span>
                 </p>
             </div>
             <md-divider inset></md-divider>

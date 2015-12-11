@@ -39,16 +39,16 @@ gulp
 # status
 Link Modul
 - erfassen [x]
-- löschen []
+- löschen [x]
 
 Kommentar Modul
-- link kommentieren []
+- link kommentieren [x]
 - Kommentar kommentieren [] (optional)
 
 Rating Modul
-- Links bewerten
-- Kommentare bewerten
-- Rating rückgängig machen
+- Links bewerten []
+- Kommentare bewerten []
+- Rating rückgängig machen []
 
 User Modul
 - User erfassen / login [x]

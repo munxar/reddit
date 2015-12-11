@@ -25,7 +25,7 @@ var app = angular.module("linkit", [
     "linkit.link"
 ]);
 
-app.config(function($urlRouterProvider: IUrlRouterProvider, $stateProvider: IStateProvider, $httpProvider) {
+app.config(function($urlRouterProvider: IUrlRouterProvider, $stateProvider: IStateProvider, $httpProvider, $mdThemingProvider) {
     $urlRouterProvider.otherwise("/");
 
     $stateProvider
@@ -88,6 +88,11 @@ app.config(function($urlRouterProvider: IUrlRouterProvider, $stateProvider: ISta
             }
         };
     });
+
+    $mdThemingProvider
+        .theme('default')
+        .primaryPalette('red')
+        .accentPalette('blue');
 });
 
 app.directive("redditAccount", redditAccount);
