@@ -1,6 +1,7 @@
 ///<reference path="../../typings/tsd.d.ts"/>
 import * as express from "express";
 import * as bodyParser from "body-parser";
+import * as morgan from "morgan";
 import {join} from "path";
 import {Account} from "./model/Account";
 import {api} from "./api/api";
@@ -11,6 +12,9 @@ export var app = express();
 
 // server static files
 app.use(express.static(join(__dirname,"../../front")));
+
+// logger
+app.use(morgan("dev"));
 
 // parse json bodies
 app.use(bodyParser.json());

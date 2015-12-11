@@ -25,7 +25,7 @@ export class TopicService {
     }
 
     getAll() {
-        return Topic.find({}).populate("creator").exec();
+        return Topic.find({}).populate("creator", "username").exec();
     }
 
     getOne(id) {
@@ -64,10 +64,18 @@ export class TopicService {
         return this.getOne(id)
             .then(() => {
                 return Comment.create({creator:userId,content,topic:id})
-            });
+            }).then(comment => Comment.populate(comment, {path: "creator", select: "username"}));
     }
 
     removeComment(userId, id, commentId) {
-        return Comment.findById(commentId).exec();
+        return Comment.findById(commentId).exec()
+            .then(comment => {
+                if(comment.creator.toString() != userId) throw new WebError("Not Authorized!", 401);
+                return comment.remove();
+            });
+    }
+
+    getAllComments(id) {
+        return Comment.find({topic: id}).populate("creator", "username").exec();
     }
 }

@@ -38,12 +38,37 @@ export class ListCtrl {
 
 export class DetailCtrl {
     topic: any = {};
+    comments = [];
+    comment = "";
+    form;
+
     constructor(private $http, private $state) {
-        $http.get("/api/topic/" + $state.params._id).then(res => this.topic = res.data);
+        var id = $state.params._id;
+        $http.get("/api/topic/" + id)
+            .then(res => this.topic = res.data);
+        $http.get("/api/topic/" + id + "/comment")
+            .then(res => this.comments = res.data);
     }
 
     remove() {
         this.$http.delete("/api/topic/" + this.topic._id)
         .then(() => this.$state.go("home"), console.error);
+    }
+
+    addComment() {
+        console.log(this.form);
+        this.$http.post("/api/topic/" + this.topic._id + "/comment", {content: this.comment})
+            .then(res => {
+                this.comment = null;
+                this.comments.push(res.data);
+            }, console.error);
+    }
+
+    removeComment(comment) {
+        this.$http.delete("/api/topic/" + this.topic._id + "/comment/" + comment._id)
+            .then(() => {
+                var idx = this.comments.indexOf(comment);
+                if(idx != -1) { this.comments.splice(idx, 1); }
+            }, console.error);
     }
 }

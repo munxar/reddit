@@ -46,4 +46,10 @@ export class TopicController {
             .removeComment(req.user._id, req.params.id, req.params.commentId)
             .then(comment => res.json(comment), next);
     };
+
+    getAllComments = (req, res, next) => {
+        this.topicService
+            .getAllComments(req.params.id)
+            .then(comments => res.json(comments), next);
+    };
 }

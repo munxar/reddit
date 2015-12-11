@@ -16,6 +16,11 @@ export class WebError {
 
 // generic error handler
 export function onError(err, req, res, next) {
+    // transform mongoose validation exceptions to status 400
+    if(err.name === "ValidationError") {
+        err.status = 400;
+    }
+
     res.status(err.status || 500).json(err);
 }
 

@@ -10,7 +10,8 @@
     "express-jwt": "^3.3.0",
     "jsonwebtoken": "^5.4.1",
     "jspm": "^0.16.15",
-    "mongoose": "^4.2.9"
+    "mongoose": "^4.2.9",
+    "morgan": "^1.6.1"
   },
   "devDependencies": {
     "browser-sync": "^2.10.0",
