@@ -5,9 +5,13 @@
     </md-card-content>
     <div class="md-actions" layout="row" layout-align="start center">
         <md-button>231 Comments</md-button>
-        <md-button class="md-primary">Share</md-button>
+        <md-button class="md-primary" ng-click="showShare = !showShare">Share</md-button>
         <md-button class="md-warn md-hue-2" ng-click="ctrl.remove()">delete</md-button>
     </div>
+    <div class="share" layout-margin ng-show="showShare">
+        Link: <input type="text" value="TOPIC URL HERE" ng-focus>
+    </div>
+
 </md-card>
 <md-content layout-margin>
     <form name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
@@ -31,10 +35,7 @@
         <div class="md-list-item-text">
             <h4 class="md-title" >{{comment.content}}</h4>
             <div>kommentiert am {{comment.creationDate | date}} von <a href="">{{comment.creator.username}}</a></div>
-            <p>
-                <span class="md-button md-primary">share</span>
-                <a ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2">delete</a>
-            </p>
+            <a ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2">delete</a>
         </div>
         <md-divider></md-divider>
     </md-list-item>

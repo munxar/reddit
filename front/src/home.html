@@ -16,8 +16,11 @@
                 <h4>eingereicht am {{topic.creationDate | date}} von <a href="">{{topic.creator.username}}</a></h4>
                 <p>
                     <a ui-sref="detail(topic)" class="md-button md-primary">231 comments</a>
-                    <span class="md-button md-primary">share</span>
+                    <span class="md-button md-primary" ng-click="showShare = !showShare">share</span>
                 </p>
+                <div class="share" layout-margin ng-show="showShare">
+                    Link: <input type="text" value="TOPIC URL HERE" ng-focus>
+                </div>
             </div>
             <md-divider inset></md-divider>
         </md-list-item>
