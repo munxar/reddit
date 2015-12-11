@@ -2,9 +2,9 @@
     <md-card-content>
         <h2 class="md-title"><a class="md-display-1" href="">{{ctrl.topic.title}}</a></h2>
         <p>Link: <a href="{{ctrl.url(topic.content)}}" target="_blank">{{ctrl.topic.content}}</a></p>
+        <span>231 Comments</span>
     </md-card-content>
     <div class="md-actions" layout="row" layout-align="start center">
-        <md-button>231 Comments</md-button>
         <md-button class="md-primary" ng-click="showShare = !showShare">Share</md-button>
         <md-button class="md-warn md-hue-2" ng-click="ctrl.remove()">delete</md-button>
     </div>
