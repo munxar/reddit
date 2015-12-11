@@ -7,7 +7,7 @@
     </md-input-container>
 
     <div layout="row">
-        <md-button class="md-primary" type="submit">Login</md-button>
+        <md-button class="md-raised md-primary" type="submit" ng-disabled="ctrl.vm.username.length < 3 || ctrl.vm.password.length < 3">Login</md-button>
         <md-button ui-sref="home">Cancel</md-button>
     </div>
 </form>
