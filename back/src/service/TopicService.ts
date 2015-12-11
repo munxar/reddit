@@ -19,7 +19,7 @@ export class TopicService {
     remove(userId, id) {
         return this.getOne(id)
             .then((topic: ITopic) => {
-                if(topic.creator.toString() != userId) throw new WebError("Not Authorized!", 401);
+                if(topic.creator.toString() != userId) throw new WebError("Not Authorized!", 403);
                 return topic.remove();
             });
     }
@@ -70,7 +70,7 @@ export class TopicService {
     removeComment(userId, id, commentId) {
         return Comment.findById(commentId).exec()
             .then(comment => {
-                if(comment.creator.toString() != userId) throw new WebError("Not Authorized!", 401);
+                if(comment.creator.toString() != userId) throw new WebError("Not Authorized!", 403);
                 return comment.remove();
             });
     }
