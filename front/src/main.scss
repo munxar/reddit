@@ -1,7 +1,29 @@
-$light-grey: #e1e1e1;
+@import 'variables';
 
 [ng-click] {
     cursor: pointer;
+}
+
+h4 {
+
+a:link {
+    color: $primary;
+}
+
+a:visited {
+    color: $primary;
+    text-decoration: none;
+}
+
+a:hover {
+    color:red;
+    text-decoration:underline
+}
+
+a:active {
+    color:yellow;
+    text-decoration:underline
+}
 }
 
 .md-button.active {
