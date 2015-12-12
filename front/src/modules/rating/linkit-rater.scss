@@ -4,8 +4,12 @@ $border-radius: 2px;
 .rater {
     color: $light-grey;
     border: 1px solid $light-grey;
-    padding: 10px 30px 10px 20px;
+    padding: 10px 20px;
     border-radius: $border-radius;
+
+    md-icon {
+        width: 15px;
+    }
 }
 
 .rater-up .fa-angle-up {
