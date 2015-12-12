@@ -1,0 +1,21 @@
+$neutral: lightgrey;
+
+.rater {
+    color: $neutral;
+}
+
+.rater-up {
+    color: tomato;
+}
+
+.rater-up > :last-child {
+    color: $neutral;
+}
+
+.rater-down {
+    color: cornflowerblue;
+}
+
+.rater-down > :first-child {
+    color: $neutral;
+}

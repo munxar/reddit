@@ -8,6 +8,7 @@ import {AuthController} from "./AuthController";
 import {redditAccount} from "./redditAccount";
 import {AuthService} from "./AuthService";
 import {CreateCtrl, ListCtrl, DetailCtrl} from "./HomeCtrl";
+import {linkitRater} from "./modules/rating/linkit-rater";
 
 var homeTemplate = require("./home.html!text");
 var createTemplate = require("./create.html!text");
@@ -97,6 +98,7 @@ app.config(function($urlRouterProvider: IUrlRouterProvider, $stateProvider: ISta
 
 app.directive("redditAccount", redditAccount);
 app.service("auth", AuthService);
+app.directive("linkitRater", linkitRater);
 
 app.run(function(auth) {
     auth.init();

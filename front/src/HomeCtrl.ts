@@ -22,7 +22,7 @@ export class CreateCtrl {
 
 export class ListCtrl {
     topics = [];
-    constructor($http) {
+    constructor(private $http) {
         $http.get("/api/topic").then(res => this.topics = res.data);
     }
 
@@ -34,6 +34,7 @@ export class ListCtrl {
         }
         return s;
     }
+
 }
 
 export class DetailCtrl {

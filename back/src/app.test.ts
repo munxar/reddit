@@ -298,7 +298,7 @@ describe("api", () => {
                         .delete("/api/topic/" + topic._id)
                         .set(tokenService.header(account2))
                         .expect("content-type", /json/)
-                        .expect(401)
+                        .expect(403)
                         .end((err, res) => {
 
                             done(err);

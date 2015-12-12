@@ -2,7 +2,7 @@
 export class AuthService {
     user = null;
 
-    constructor(private $http) {}
+    constructor(private $http, private $state) {}
 
     init() {
         this.getAccount().then(account => {
@@ -33,6 +33,7 @@ export class AuthService {
     logout() {
         localStorage.removeItem("token");
         this.user = null;
+        this.$state.go("home", null, {reload: true});
     }
 
     isAuthenticated() {

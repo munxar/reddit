@@ -1,7 +1,7 @@
-import * as expressJwt from "express-jwt";
-import {config} from "../config";
+import {WebError} from "./error";
 
-// express jwt middleware to prevent access without a json web token
-export var secure = expressJwt({
-    secret: config.tokenSecret
-});
+export function secure(req, res, next) {
+    if(!req.user._id) return next(new WebError("Not Authenticated!", 401));
+
+    next();
+}

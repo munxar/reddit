@@ -7,7 +7,7 @@ export class TopicController {
     }
 
     getAll = (req, res, next) => {
-        this.topicService.getAll()
+        this.topicService.getAll(req.user ? req.user._id : undefined)
             .then(topics => res.json(topics), next);
     };
 
@@ -25,7 +25,7 @@ export class TopicController {
 
     getOne = (req,res, next) => {
         this.topicService
-            .getOne(req.params.id)
+            .getOne(req.user._id, req.params.id)
             .then(topic => res.json(topic), next);
     };
 
