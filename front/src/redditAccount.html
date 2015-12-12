@@ -5,6 +5,7 @@
 
 <md-menu class="md-buttom" ng-if="ctrl.isAuthenticated()">
     <md-button aria-label="open account menu" ng-click="$mdOpenMenu($event)">
+        <md-icon class="fa fa-user fa-lg" aria-label="User Menu"></md-icon>
         {{ctrl.getUsername()}}
     </md-button>
 

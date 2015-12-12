@@ -8,11 +8,14 @@
 
 <md-toolbar>
     <div class="md-toolbar-tools" layout="row" layout-align="center center">
-        <md-button ui-sref="create" class="md-primary">+ New Link</md-button>
-
-        <md-button ui-sref="home" aria-label="home filter" flex>
+        <md-button ui-sref="home" aria-label="home filter">
             <img src="src/logo.svg" class="logo">
         </md-button >
+
+        <md-button ui-sref="create" flex>
+            <md-icon class="fa fa-plus fa-lg" aria-label="Create new Link"></md-icon>
+            New Link
+        </md-button>
 
         <reddit-account></reddit-account>
     </div>

@@ -11,12 +11,8 @@
                 <h3><a class="md-display-1" href="{{ctrl.url(topic.content)}}" target="_blank">{{topic.title}}</a></h3>
                 <h4>eingereicht am {{topic.creationDate | date}} von <a href="">{{topic.creator.username}}</a></h4>
                 <p>
-                    <a ui-sref="detail(topic)" class="md-button md-primary">231 comments</a>
-                    <span class="md-button md-primary" ng-click="showShare = !showShare">share</span>
+                    <a ui-sref="detail(topic)" class="md-button md-primary"><md-icon class="fa fa-comment" aria-label="View Topic Detail"></md-icon>comments</a>
                 </p>
-                <div class="share" layout-margin ng-show="showShare">
-                    Link: <input type="text" value="TOPIC URL HERE" ng-focus>
-                </div>
             </div>
             <md-divider inset></md-divider>
         </md-list-item>

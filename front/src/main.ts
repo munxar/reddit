@@ -2,6 +2,7 @@
 import * as angular from "angular";
 import "angular-material";
 import "angular-ui-router";
+import "font-awesome";
 import "./modules/link/module";
 import "./main.css!";
 import {AuthController} from "./AuthController";

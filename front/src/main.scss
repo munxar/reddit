@@ -1,6 +1,12 @@
+$light-grey: #e1e1e1;
+$border-radius: 2px;
+
+[ng-click] {
+    cursor: pointer;
+}
 
 .md-button.active {
-    background-color: grey;
+    background-color: $light-grey;
 }
 
 .md-display-1 {
@@ -13,8 +19,19 @@
 }
 
 .share {
-    border: 1px solid #e1e1e1;
+    border: 1px solid $light-grey;
     background: #fbfbfb;
     padding: 20px;
     width: 250px;
+}
+
+.rater {
+    color: $light-grey;
+    border: 1px solid $light-grey;
+    padding: 10px 30px 10px 20px;
+    border-radius: $border-radius;
+}
+
+.rater-up .fa-angle-up {
+    color: tomato;
 }
