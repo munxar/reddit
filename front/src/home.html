@@ -9,7 +9,7 @@
             <linkit-rater topic="topic"></linkit-rater>
             <div class="md-list-item-text" flex>
                 <h3><a class="md-display-1" href="{{ctrl.url(topic.content)}}" target="_blank">{{topic.title}}</a></h3>
-                <h4>eingereicht am {{topic.creationDate | date}} von <a href="">{{topic.creator.username}}</a></h4>
+                <h4>eingereicht <span am-time-ago="topic.creationDate"></span> von <a href="">{{topic.creator.username}}</a></h4>
                 <p>
                     <a ui-sref="detail(topic)" class="md-button md-primary"><md-icon class="fa fa-comment" aria-label="View Topic Detail"></md-icon>{{topic.comments.length}} comments</a>
                 </p>

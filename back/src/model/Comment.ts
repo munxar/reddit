@@ -32,7 +32,7 @@ export var CommentSchema = new Schema({
     // account id of creator
     creator: {type: Schema.Types.ObjectId, required: true, ref: "Account"},
     // timestamp
-    creationDate: {type: Date, required: true, "default": new Date()},
+    creationDate: {type: Date, required: true, "default": Date.now},
 
     // up and down votes
     upVotes: [{type: Schema.Types.ObjectId}],

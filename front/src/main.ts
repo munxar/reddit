@@ -3,6 +3,7 @@ import * as angular from "angular";
 import "angular-material";
 import "angular-ui-router";
 import "font-awesome";
+import "angular-moment";
 import "./modules/link/module";
 import "./main.css!";
 import {AuthController} from "./AuthController";
@@ -24,6 +25,7 @@ import IUrlRouterProvider = angular.ui.IUrlRouterProvider;
 var app = angular.module("linkit", [
     "ngMaterial",
     "ui.router",
+    "angularMoment",
     "linkit.link"
 ]);
 

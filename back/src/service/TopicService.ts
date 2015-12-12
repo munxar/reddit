@@ -75,7 +75,7 @@ export class TopicService {
                 topic.comments.push(comment);
                 return topic.save();
             })
-            .then(topic => this.getOne(userId, topic._id))
+            .then((topic: ITopic) => this.getOne(userId, topic._id))
             .then((topic: ITopic) => {
                 // return last comment
                 return topic.comments[topic.comments.length-1];
