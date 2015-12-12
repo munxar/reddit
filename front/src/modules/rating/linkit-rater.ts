@@ -33,7 +33,7 @@ class RateController {
             this.topic.vote = vote;
         }
 
-        this.$http.put("/api/topic/" + this.topic._id + "/vote", {value:this.topic.vote})
+        this.$http.put("/api/topic/" + this.topic._id + "/vote", {vote: this.topic.vote})
             .then(res => {
                 this.topic.vote = res.data.vote;
                 this.topic.votes = res.data.votes;

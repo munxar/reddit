@@ -266,6 +266,7 @@ describe("api", () => {
                             .set(token)
                             .expect(200)
                             .end((err, res) => {
+
                                 // check response contains deleted topic
                                 expect(res.body._id).eql(topic._id);
 
@@ -362,107 +363,114 @@ describe("api", () => {
 
 
         it("user can up vote a topic", done => {
-            var acc = new Account({username: "user", password: "1234"});
+            Account.create({username: "user", password: "1234"}).then(acc => {
 
-            Topic.create({creator: acc._id, title: "test1", content: "www.test.com"})
-                .then(topic => {
-                    request(app)
-                        .put("/api/topic/" + topic._id + "/vote")
-                        .send({value: 1})
-                        .set(tokenService.header(acc))
-                        .expect("content-type", /json/)
-                        .expect(200)
-                        .end((err, res) => {
-                            expect(res.body.upVotes).contains(acc._id.toString());
-                            done(err);
-                        })
-                }, done)
+                Topic.create({creator: acc._id, title: "test1", content: "www.test.com"})
+                    .then(topic => {
+
+                        request(app)
+                            .put("/api/topic/" + topic._id + "/vote")
+                            .send({vote: 1})
+                            .set(tokenService.header(acc))
+                            .expect("content-type", /json/)
+                            .expect(200)
+                            .end((err, res) => {
+                                expect(res.body.upVotes).contains(acc._id.toString());
+                                done(err);
+                            });
+
+                    }, done)
+            });
         });
 
         it("user can down vote a topic", done => {
-            var acc = new Account({username: "user", password: "1234"});
-
-            Topic.create({creator: acc._id, title: "test1", content: "www.test.com"})
-                .then(topic => {
-                    request(app)
-                        .put("/api/topic/" + topic._id + "/vote")
-                        .send({value: -1})
-                        .set(tokenService.header(acc))
-                        .expect("content-type", /json/)
-                        .expect(200)
-                        .end((err, res) => {
-                            expect(res.body.downVotes).contains(acc._id.toString());
-                            done(err);
-                        })
-                }, done)
+            Account.create({username: "user", password: "1234"}).then(acc => {
+                Topic.create({creator: acc._id, title: "test1", content: "www.test.com"})
+                    .then(topic => {
+                        request(app)
+                            .put("/api/topic/" + topic._id + "/vote")
+                            .send({vote: -1})
+                            .set(tokenService.header(acc))
+                            .expect("content-type", /json/)
+                            .expect(200)
+                            .end((err, res) => {
+                                expect(res.body.downVotes).contains(acc._id.toString());
+                                done(err);
+                            })
+                    }, done)
+            });
         });
 
         it("user reset a vote on a topic", done => {
-            var acc = new Account({username: "user", password: "1234"});
+            Account.create({username: "user", password: "1234"}).then(acc => {
 
-            Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes: [acc._id]})
-                .then(topic => {
-                    request(app)
-                        .put("/api/topic/" + topic._id + "/vote")
-                        // optional, if no value is send, we reset the vote
-                        //.send({value: 0})
-                        .set(tokenService.header(acc))
-                        .expect("content-type", /json/)
-                        .expect(200)
-                        .end((err, res) => {
-                            expect(res.body.downVotes).not.contains(acc._id.toString());
-                            expect(res.body.upVotes).not.contains(acc._id.toString());
+                Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes: [acc._id]})
+                    .then(topic => {
+                        request(app)
+                            .put("/api/topic/" + topic._id + "/vote")
+                            // optional, if no value is send, we reset the vote
+                            //.send({vote: 0})
+                            .set(tokenService.header(acc))
+                            .expect("content-type", /json/)
+                            .expect(200)
+                            .end((err, res) => {
+                                expect(res.body.downVotes).not.contains(acc._id.toString());
+                                expect(res.body.upVotes).not.contains(acc._id.toString());
 
-                            done(err);
-                        })
-                }, done)
+                                done(err);
+                            })
+                    }, done)
+            });
         });
 
         it("up and down vote is exclusive", done => {
-            var acc = new Account({username: "user", password: "1234"});
+            Account.create({username: "user", password: "1234"}).then(acc => {
 
-            // initial state with upvote
-            Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes: [acc._id]})
-                .then(topic => {
-                    // down vote
-                    request(app)
-                        .put("/api/topic/" + topic._id + "/vote")
-                        .send({value: -1})
-                        .set(tokenService.header(acc))
-                        .expect("content-type", /json/)
-                        .expect(200)
-                        .end((err, res) => {
-                            expect(res.body.downVotes).contains(acc._id.toString());
-                            expect(res.body.upVotes).not.contains(acc._id.toString());
+                // initial state with upvote
+                Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes: [acc._id]})
+                    .then(topic => {
+                        // down vote
+                        request(app)
+                            .put("/api/topic/" + topic._id + "/vote")
+                            .send({vote: -1})
+                            .set(tokenService.header(acc))
+                            .expect("content-type", /json/)
+                            .expect(200)
+                            .end((err, res) => {
+                                expect(res.body.downVotes).contains(acc._id.toString());
+                                expect(res.body.upVotes).not.contains(acc._id.toString());
 
-                            done(err);
-                        })
-                }, done)
+                                done(err);
+                            })
+                    }, done)
+            });
         });
 
         it("a vote is unique per topic per user", done => {
-            var acc = new Account({username: "user", password: "1234"});
+            Account.create({username: "user", password: "1234"}).then(acc => {
 
-            // initial state with upvote
-            Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes: [acc._id]})
-                .then(topic => {
-                    // up vote again should have no impact
-                    request(app)
-                        .put("/api/topic/" + topic._id + "/vote")
-                        .send({value: 1})
-                        .set(tokenService.header(acc))
-                        .expect("content-type", /json/)
-                        .expect(200)
-                        .end((err, res) => {
-                            expect(res.body.upVotes).contains(acc._id.toString());
-                            // only one entry
-                            expect(res.body.upVotes.length).eql(1);
-                            expect(res.body.downVotes).not.contains(acc._id.toString());
+                // initial state with upvote
+                Topic.create({creator: acc._id, title: "test1", content: "www.test.com", upVotes: [acc._id]})
+                    .then(topic => {
+                        // up vote again should have no impact
+                        request(app)
+                            .put("/api/topic/" + topic._id + "/vote")
+                            .send({vote: 1})
+                            .set(tokenService.header(acc))
+                            .expect("content-type", /json/)
+                            .expect(200)
+                            .end((err, res) => {
+                                expect(res.body.upVotes).contains(acc._id.toString());
+                                // only one entry
+                                expect(res.body.upVotes.length).eql(1);
+                                expect(res.body.downVotes).not.contains(acc._id.toString());
 
-                            done(err);
-                        })
-                }, done)
+                                done(err);
+                            })
+                    }, done)
+            });
         });
+
     });
 
     describe("comment", () => {
@@ -472,8 +480,13 @@ describe("api", () => {
 
             Account.create({username: "obivan", password: "force"})
                 .then(acc => account = acc)
-                .then(() => Topic.create({title:"general grevis sucks!", type: "text", content: "may the force be with you...", creator: account._id}))
-                .then((topic: ITopic) => {
+                .then(() => Topic.create({
+                    title: "general grevis sucks!",
+                    type: "text",
+                    content: "may the force be with you...",
+                    creator: account._id
+                }))
+                .then((topic:ITopic) => {
                     request(app)
                         .post("/api/topic/" + topic._id + "/comment")
                         .set(tokenService.header(account))
@@ -481,7 +494,7 @@ describe("api", () => {
                         .expect("content-type", /json/)
                         .expect(200)
                         .end((err, res) => {
-                            var comment: IComment = res.body;
+                            var comment:IComment = res.body;
                             expect(comment._id).to.exist;
                             expect(comment.content).eql("Hello!");
 

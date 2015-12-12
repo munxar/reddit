@@ -21,8 +21,6 @@ topic.get("/:id", ctrl.getOne);
 topic.put("/:id/vote", secure, ctrl.vote);
 
 // create a comment
-topic.get("/:id/comment", ctrl.getAllComments);
-// create a comment
 topic.post("/:id/comment", secure, ctrl.createComment);
 // remove a comment (only users own comments)
 topic.delete("/:id/comment/:commentId", secure, ctrl.removeComment);

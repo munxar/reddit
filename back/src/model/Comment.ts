@@ -11,7 +11,7 @@ export interface IComment extends Document {
 
     parent?: Types.ObjectId;
 
-    creator: IAccount | Types.ObjectId;
+    creator: IAccount;
     creationDate: Date;
 
     upVotes: Types.ObjectId[];
@@ -19,7 +19,7 @@ export interface IComment extends Document {
 }
 
 // mongoose schema for comment
-var CommentSchema = new Schema({
+export var CommentSchema = new Schema({
     // comment content
     content: {type: String, required: true},
 

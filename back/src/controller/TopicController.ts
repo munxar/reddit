@@ -31,7 +31,7 @@ export class TopicController {
 
     vote = (req, res, next) => {
         this.topicService
-            .vote(req.user._id, req.params.id, req.body.value)
+            .vote(req.user._id, req.params.id, req.body.vote)
             .then(topic => res.json(topic), next);
     };
 
@@ -47,9 +47,4 @@ export class TopicController {
             .then(comment => res.json(comment), next);
     };
 
-    getAllComments = (req, res, next) => {
-        this.topicService
-            .getAllComments(req.params.id)
-            .then(comments => res.json(comments), next);
-    };
 }
