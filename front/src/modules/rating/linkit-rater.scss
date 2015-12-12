@@ -1,0 +1,10 @@
+.rater {
+    color: $light-grey;
+    border: 1px solid $light-grey;
+    padding: 10px 30px 10px 20px;
+    border-radius: $border-radius;
+}
+
+.rater-up .fa-angle-up {
+    color: tomato;
+}
