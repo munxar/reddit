@@ -11,7 +11,7 @@
                 <h3><a class="md-display-1" href="{{ctrl.url(topic.content)}}" target="_blank">{{topic.title}}</a></h3>
                 <h4>eingereicht am {{topic.creationDate | date}} von <a href="">{{topic.creator.username}}</a></h4>
                 <p>
-                    <a ui-sref="detail(topic)" class="md-button md-primary">231 comments</a>
+                    <a ui-sref="detail(topic)" class="md-button md-primary">{{topic.comments.length}} comments</a>
                     <span class="md-button md-primary" ng-click="showShare = !showShare">share</span>
                 </p>
                 <div class="share" layout-margin ng-show="showShare">

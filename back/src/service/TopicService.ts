@@ -2,7 +2,7 @@
 import {Topic, ITopic} from "../model/Topic";
 import {WebError} from "../util/error";
 import {IAccount} from "../model/Account";
-import {Comment, IComment} from "../model/Comment";
+import {IComment, Comment} from "../model/Comment";
 import {addUnique, removeElement} from "../util/array";
 
 /**
@@ -20,24 +20,27 @@ export class TopicService {
     remove(userId, id) {
         return this.getOne(userId, id)
             .then((topic:ITopic) => {
-                if (topic.creator.toString() != userId) throw new WebError("Not Authorized!", 403);
+                if (topic.creator._id.toString() != userId) throw new WebError("Not Authorized!", 403);
                 return topic.remove();
             });
     }
 
     getAll(userId) {
         return Topic.find({})
-            .populate("creator", "username").exec()
+            .populate("creator", "username")
+            .exec()
             .then(topics => {
                 return topics.map(topic => calculateVotes(userId, topic));
             });
     }
 
     getOne(userId, id) {
-        return Topic.findById(id).exec()
+        return Topic.findById(id)
+            .populate("creator", "username")
+            .populate("comments.creator", "username")
+            .exec()
             .then(topic => {
                 if (!topic) throw new WebError("Not found", 404);
-
                 return topic;
             })
     }
@@ -67,21 +70,30 @@ export class TopicService {
 
     createComment(userId, id, content:string) {
         return this.getOne(userId, id)
-            .then(() => {
-                return Comment.create({creator: userId, content, topic: id})
-            }).then(comment => Comment.populate(comment, {path: "creator", select: "username"}));
-    }
-
-    removeComment(userId, id, commentId) {
-        return Comment.findById(commentId).exec()
-            .then(comment => {
-                if (comment.creator.toString() != userId) throw new WebError("Not Authorized!", 403);
-                return comment.remove();
+            .then((topic: ITopic) => {
+                var comment = new Comment({creator: userId, content, topic: id});
+                topic.comments.push(comment);
+                return topic.save();
+            })
+            .then(topic => this.getOne(userId, topic._id))
+            .then((topic: ITopic) => {
+                // return last comment
+                return topic.comments[topic.comments.length-1];
             });
     }
 
-    getAllComments(id) {
-        return Comment.find({topic: id}).populate("creator", "username").exec();
+    removeComment(userId, id, commentId) {
+        return this.getOne(userId, id)
+            .then((topic: ITopic) => {
+                var comment = topic.comments.filter(comment => comment._id.toString() == commentId)[0];
+                if(comment == undefined) throw new WebError("Not Found!", 404);
+                if(comment.creator._id.toString() != userId) throw new WebError("Not Authorized!", 403);
+                var idx = topic.comments.indexOf(comment);
+                if(idx != -1) {
+                    topic.comments.splice(idx, 1);
+                }
+                return topic.save();
+            });
     }
 }
 
@@ -94,6 +106,7 @@ function calculateVotes(userId, t) {
     }
 
     topic.votes = topic.upVotes.length - topic.downVotes.length;
-    return topic;
 
+    return topic;
 }
+

@@ -1,6 +1,7 @@
 ///<reference path="../../../typings/tsd.d.ts"/>
 import {Document, model, Schema, Model, Types} from "mongoose";
 import {IAccount} from "./Account";
+import {CommentSchema, IComment} from "./Comment";
 
 // interface for a topic
 export interface ITopic extends Document {
@@ -8,11 +9,13 @@ export interface ITopic extends Document {
     type: string;
     content: string;
 
-    creator: Types.ObjectId;
+    creator: IAccount;
     creationDate: Date;
 
     upVotes: Types.ObjectId[];
     downVotes: Types.ObjectId[];
+
+    comments: IComment[];
 }
 
 // mongoose schema for topic
@@ -31,7 +34,10 @@ var TopicSchema = new Schema({
 
     // we us two array to keep track of up and down votes.
     upVotes: [{type: Schema.Types.ObjectId}],
-    downVotes: [{type: Schema.Types.ObjectId}]
+    downVotes: [{type: Schema.Types.ObjectId}],
+
+    // comments
+    comments: [CommentSchema]
 });
 
 // create topic model

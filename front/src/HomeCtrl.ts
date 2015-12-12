@@ -46,9 +46,10 @@ export class DetailCtrl {
     constructor(private $http, private $state) {
         var id = $state.params._id;
         $http.get("/api/topic/" + id)
-            .then(res => this.topic = res.data);
-        $http.get("/api/topic/" + id + "/comment")
-            .then(res => this.comments = res.data);
+            .then(res => {
+                this.topic = res.data;
+                this.comments = this.topic.comments;
+            });
     }
 
     remove() {
