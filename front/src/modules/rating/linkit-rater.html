@@ -1,4 +1,4 @@
-<a aria-label="up vote" ng-click="ctrl.up()" class="rater" ng-class="{'rater-up': ctrl.isUp()}" layout-margin layout="column" layout-align="center center">
-    <md-icon class="fa fa-angle-up fa-lg"></md-icon>
-    <div class="total">{{ctrl.topic.votes}}</div>
+<a aria-label="up vote" ng-click="ctrl.vote()" class="rater" ng-class="{'voted': ctrl.isVoted()}" layout-margin layout="column" layout-align="center center">
+    <md-icon class="fa" ng-class="{'fa-star': ctrl.isVoted(), 'fa-star-o': !ctrl.isVoted()}"></md-icon>
+    <div class="total">{{ctrl.count()}}</div>
 </a>
