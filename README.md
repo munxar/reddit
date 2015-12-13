@@ -47,7 +47,7 @@ Kommentar Modul
 
 Rating Modul
 - Links bewerten [x]
-- Kommentare bewerten []
+- Kommentare bewerten [x]
 - Rating rückgängig machen [x]
 
 User Modul
