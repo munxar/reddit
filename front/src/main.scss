@@ -4,26 +4,18 @@
     cursor: pointer;
 }
 
-h4 {
+p {
 
-a:link {
-    color: $primary;
-}
+    a:link,
+    a:visited {
+        color: $primary;
+    }
 
-a:visited {
-    color: $primary;
-    text-decoration: none;
-}
-
-a:hover {
-    color:red;
-    text-decoration:underline
-}
-
-a:active {
-    color:yellow;
-    text-decoration:underline
-}
+    a:active,
+    a:hover {
+        color: darken($primary, 20%);
+        text-decoration:underline
+    }
 }
 
 .md-button.active {
@@ -37,6 +29,7 @@ a:active {
 
 .logo {
     margin-top: 10px;
+    width: 100%;
 }
 
 .share {
