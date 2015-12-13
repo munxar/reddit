@@ -3,12 +3,12 @@
         <linkit-rater votes="ctrl.topic.votes" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
         <div class="md-list-item-text" flex>
             <h3><a class="md-display-1" href="{{ctrl.url(ctrl.topic.content)}}" target="_blank">{{ctrl.topic.title}}</a></h3>
-            <h4>eingereicht <span am-time-ago="ctrl.topic.creationDate"></span> von <a href="">{{ctrl.topic.creator.username}}</a></h4>
+            <p>eingereicht <span am-time-ago="ctrl.topic.creationDate"></span> von <a href="">{{ctrl.topic.creator.username}}</a></p>
             <p>
                 <md-icon class="fa fa-comment" aria-label="View Topic Detail"></md-icon>{{ctrl.topic.comments.length}} comments
             </p>
             <div class="md-actions">
-                <md-button class="md-warn md-hue-2" ng-click="ctrl.remove()">delete</md-button>
+                <md-button class="md-warn md-hue-2" ng-click="ctrl.remove()" aria-label="Delete Topic"><md-icon class="fa fa-trash"></md-icon>delete</md-button>
             </div>
         </div>
     </md-list-item>
