@@ -1,18 +1,18 @@
 <md-content layout="row" layout-margin layout-align="center">
     <md-content flex flex-gt-md="50">
         <h1>register</h1>
-        <form ng-submit="ctrl.register()">
+        <form name="form" ng-submit="ctrl.register()" novalidate>
             <md-input-container>
-                <input ng-model="ctrl.vm.username" type="text" placeholder="username">
+                <label>username</label>
+                <input ng-model="ctrl.vm.username" type="text" required>
             </md-input-container>
             <md-input-container>
-                <input ng-model="ctrl.vm.password" type="password" placeholder="password">
+                <label>password</label>
+                <input ng-model="ctrl.vm.password" type="password" required>
             </md-input-container>
 
             <div layout="row">
-                <md-button class="md-raised md-primary" type="submit"
-                           ng-disabled="ctrl.vm.username.length < 3 || ctrl.vm.password.length < 3">Register
-                </md-button>
+                <md-button class="md-raised md-primary" type="submit" ng-disabled="form.$invalid">Register</md-button>
                 <md-button ui-sref="home">Cancel</md-button>
             </div>
         </form>

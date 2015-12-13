@@ -3,10 +3,12 @@
         <h1>login</h1>
         <form ng-submit="ctrl.login()">
             <md-input-container>
-                <input ng-model="ctrl.vm.username" type="text" placeholder="username">
+                <label>username</label>
+                <input ng-model="ctrl.vm.username" type="text">
             </md-input-container>
             <md-input-container>
-                <input ng-model="ctrl.vm.password" type="password" placeholder="password">
+                <label>password</label>
+                <input ng-model="ctrl.vm.password" type="password">
             </md-input-container>
 
             <div layout="row">
