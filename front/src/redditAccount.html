@@ -11,11 +11,17 @@
 
     <md-menu-content>
         <md-menu-item>
-            <md-button ui-sref="account">Account</md-button>
+            <md-button ui-sref="account">
+                <md-icon class="fa fa-cog fa-lg"></md-icon>
+                Account
+            </md-button>
         </md-menu-item>
         <md-menu-divider></md-menu-divider>
         <md-menu-item>
-            <md-button ng-click="ctrl.logout()">Logout</md-button>
+            <md-button ng-click="ctrl.logout()">
+                <md-icon class="fa fa-sign-out fa-lg"></md-icon>
+                Logout
+            </md-button>
         </md-menu-item>
     </md-menu-content>
 </md-menu>

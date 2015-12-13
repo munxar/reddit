@@ -14,8 +14,7 @@ export interface IComment extends Document {
     creator: IAccount;
     creationDate: Date;
 
-    upVotes: Types.ObjectId[];
-    downVotes: Types.ObjectId[];
+    votes: Types.ObjectId[];
 }
 
 // mongoose schema for comment
@@ -34,9 +33,8 @@ export var CommentSchema = new Schema({
     // timestamp
     creationDate: {type: Date, required: true, "default": Date.now},
 
-    // up and down votes
-    upVotes: [{type: Schema.Types.ObjectId}],
-    downVotes: [{type: Schema.Types.ObjectId}]
+    // up votes
+    votes: [{type: Schema.Types.ObjectId}],
 });
 
 // create comment model

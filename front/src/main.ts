@@ -94,9 +94,9 @@ app.config(function($urlRouterProvider: IUrlRouterProvider, $stateProvider: ISta
     });
 
     $mdThemingProvider
-        .theme('default')
-        .primaryPalette('red')
-        .accentPalette('blue');
+        .theme("default")
+        .primaryPalette("blue-grey")
+        .accentPalette("purple");
 });
 
 app.directive("redditAccount", redditAccount);

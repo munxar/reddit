@@ -1,13 +1,20 @@
-<form ng-submit="ctrl.login()">
-    <md-input-container>
-        <input ng-model="ctrl.vm.username" type="text" placeholder="username">
-    </md-input-container>
-    <md-input-container>
-        <input ng-model="ctrl.vm.password" type="password" placeholder="password">
-    </md-input-container>
+<md-content layout="row" layout-margin layout-align="center">
+    <md-content flex flex-gt-md="50">
+        <h1>login</h1>
+        <form ng-submit="ctrl.login()">
+            <md-input-container>
+                <input ng-model="ctrl.vm.username" type="text" placeholder="username">
+            </md-input-container>
+            <md-input-container>
+                <input ng-model="ctrl.vm.password" type="password" placeholder="password">
+            </md-input-container>
 
-    <div layout="row">
-        <md-button class="md-raised md-primary" type="submit" ng-disabled="ctrl.vm.username.length < 3 || ctrl.vm.password.length < 3">Login</md-button>
-        <md-button ui-sref="home">Cancel</md-button>
-    </div>
-</form>
+            <div layout="row">
+                <md-button class="md-raised md-primary" type="submit"
+                           ng-disabled="ctrl.vm.username.length < 3 || ctrl.vm.password.length < 3">Login
+                </md-button>
+                <md-button ui-sref="home">Cancel</md-button>
+            </div>
+        </form>
+    </md-content>
+</md-content>

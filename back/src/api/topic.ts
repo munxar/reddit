@@ -24,3 +24,5 @@ topic.put("/:id/vote", secure, ctrl.vote);
 topic.post("/:id/comment", secure, ctrl.createComment);
 // remove a comment (only users own comments)
 topic.delete("/:id/comment/:commentId", secure, ctrl.removeComment);
+// vote a comment
+topic.put("/:id/comment/:commentId/vote", secure, ctrl.voteComment);

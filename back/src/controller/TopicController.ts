@@ -47,4 +47,9 @@ export class TopicController {
             .then(comment => res.json(comment), next);
     };
 
+    voteComment = (req, res, next) => {
+        this.topicService
+            .voteComment(req.user._id, req.params.id, req.params.commentId, req.body.vote)
+            .then(comment => res.json(comment), next);
+    };
 }

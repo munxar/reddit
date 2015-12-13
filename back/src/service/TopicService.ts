@@ -95,6 +95,34 @@ export class TopicService {
                 return topic.save();
             });
     }
+
+    voteComment(userId, id, commentId, vote) {
+        var c;
+        return this.getOne(userId, id)
+            .then((topic: ITopic) => {
+                var comment = topic.comments.filter(comment => comment._id.toString() == commentId)[0];
+                if(comment == undefined) throw new WebError("Not Found!", 404);
+
+                var voteEntry = comment.votes.filter(v => v.toString() == userId)[0];
+                var idx = comment.votes.indexOf(voteEntry);
+
+                if(vote) {
+                    if(idx == -1) {
+                        comment.votes.push(userId);
+                    }
+                } else {
+                    if(idx != -1) {
+                        comment.votes.splice(idx, 1);
+                    }
+                }
+
+                c = comment;
+                return topic.save();
+            })
+            .then(() => {
+                return c;
+            })
+    }
 }
 
 function calculateVotes(userId, t) {
