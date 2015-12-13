@@ -25,13 +25,13 @@ export class TopicController {
 
     getOne = (req,res, next) => {
         this.topicService
-            .getOne(req.user._id, req.params.id)
+            .getOneVoted(req.user._id, req.params.id)
             .then(topic => res.json(topic), next);
     };
 
     vote = (req, res, next) => {
         this.topicService
-            .vote(req.user._id, req.params.id, req.body.vote)
+            .vote(req.user._id, req.params.id)
             .then(topic => res.json(topic), next);
     };
 
@@ -49,7 +49,7 @@ export class TopicController {
 
     voteComment = (req, res, next) => {
         this.topicService
-            .voteComment(req.user._id, req.params.id, req.params.commentId, req.body.vote)
+            .voteComment(req.user._id, req.params.id, req.params.commentId)
             .then(comment => res.json(comment), next);
     };
 }

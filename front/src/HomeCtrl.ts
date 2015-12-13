@@ -35,11 +35,16 @@ export class ListCtrl {
         return s;
     }
 
+    vote(topic) {
+        this.$http.put("/api/topic/" + topic._id + "/vote")
+            .then(res => {
+                topic.votes = res.data.votes;
+            }, console.error);
+    }
 }
 
 export class DetailCtrl {
-    topic: any = {};
-    comments = [];
+    topic:any = { vote:[] };
     comment = "";
     form;
 
@@ -48,7 +53,6 @@ export class DetailCtrl {
         $http.get("/api/topic/" + id)
             .then(res => {
                 this.topic = res.data;
-                this.comments = this.topic.comments;
             });
     }
 
@@ -62,15 +66,29 @@ export class DetailCtrl {
         this.$http.post("/api/topic/" + this.topic._id + "/comment", {content: this.comment})
             .then(res => {
                 this.comment = null;
-                this.comments.push(res.data);
+                this.topic.comments.push(res.data);
             }, console.error);
     }
 
     removeComment(comment) {
         this.$http.delete("/api/topic/" + this.topic._id + "/comment/" + comment._id)
             .then(() => {
-                var idx = this.comments.indexOf(comment);
-                if(idx != -1) { this.comments.splice(idx, 1); }
+                var idx = this.topic.comments.indexOf(comment);
+                if(idx != -1) { this.topic.comments.splice(idx, 1); }
+            }, console.error);
+    }
+
+    vote(topic) {
+        this.$http.put("/api/topic/" + topic._id + "/vote")
+            .then(res => {
+                topic.votes = res.data.votes;
+            }, console.error);
+    }
+
+    voteComment(comment) {
+        this.$http.put("/api/topic/" + this.topic._id + "/comment/" + comment._id + "/vote")
+            .then(res => {
+                comment.votes = res.data.votes;
             }, console.error);
     }
 }

@@ -1,6 +1,6 @@
 <md-list>
     <md-list-item class="md-3-line" layout="row">
-        <linkit-rater topic="ctrl.topic"></linkit-rater>
+        <linkit-rater votes="ctrl.topic.votes" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
         <div class="md-list-item-text" flex>
             <h3><a class="md-display-1" href="{{ctrl.url(ctrl.topic.content)}}" target="_blank">{{ctrl.topic.title}}</a></h3>
             <h4>eingereicht <span am-time-ago="ctrl.topic.creationDate"></span> von <a href="">{{ctrl.topic.creator.username}}</a></h4>
@@ -17,20 +17,20 @@
 <md-content layout-margin>
     <form name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
         <md-input-container>
-            <label>comment</label>
-            <textarea required ng-model="ctrl.comment" rows="3"></textarea>
+            <label>enter a comment</label>
+            <textarea required ng-model="ctrl.comment" rows="2"></textarea>
         </md-input-container>
         <section layout="row">
-            <md-button class="md-raised md-primary" type="submit">Save</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="ctrl.form.$invalid">Comment</md-button>
         </section>
     </form>
 </md-content>
 <md-list>
-    <md-list-item ng-repeat="comment in ctrl.comments">
-        <linkit-rater topic="comment"></linkit-rater>
+    <md-list-item ng-repeat="comment in ctrl.topic.comments">
+        <linkit-rater votes="comment.votes" onupdate="ctrl.voteComment(comment)"></linkit-rater>
         <div class="md-list-item-text">
             <h4 class="md-title" >{{comment.content}}</h4>
-            <div>kommentiert am {{comment.creationDate | date}} von <a href="">{{comment.creator.username}}</a></div>
+            <p>kommentiert <span am-time-ago="comment.creationDate"></span> von <a>{{comment.creator.username}}</a></p>
             <a ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2">delete</a>
         </div>
         <md-divider></md-divider>

@@ -28,10 +28,7 @@ export class TopicService {
     getAll(userId) {
         return Topic.find({})
             .populate("creator", "username")
-            .exec()
-            .then(topics => {
-                return topics.map(topic => calculateVotes(userId, topic));
-            });
+            .exec();
     }
 
     getOne(userId, id) {
@@ -45,27 +42,28 @@ export class TopicService {
             })
     }
 
-    vote(userId, id, value) {
+    getOneVoted(userId, id) {
+        return Topic.findById(id)
+            .populate("creator", "username")
+            .populate("comments.creator", "username")
+            .exec()
+            .then(topic => {
+                if (!topic) throw new WebError("Not found", 404);
+
+                return topic;
+            });
+    }
+
+    vote(userId, id) {
         return this.getOne(userId, id)
             .then((topic:ITopic) => {
 
-                // reset up or down vote for this user
-                removeElement(topic.upVotes, userId);
-                removeElement(topic.downVotes, userId);
-
-                // value positive, up vote
-                if (value > 0) {
-                    addUnique(topic.upVotes, userId);
-                }
-                // value negative, down vote
-                if (value < 0) {
-                    addUnique(topic.downVotes, userId);
-                }
+                // toggle vote
+                voteToggle(userId, topic);
 
                 // always save, to capture value == 0 case, which is a vote reset
                 return topic.save();
-            })
-            .then(topic => calculateVotes(userId, topic));
+            });
     }
 
     createComment(userId, id, content:string) {
@@ -96,45 +94,33 @@ export class TopicService {
             });
     }
 
-    voteComment(userId, id, commentId, vote) {
+    voteComment(userId, id, commentId) {
         var c;
         return this.getOne(userId, id)
             .then((topic: ITopic) => {
                 var comment = topic.comments.filter(comment => comment._id.toString() == commentId)[0];
                 if(comment == undefined) throw new WebError("Not Found!", 404);
 
-                var voteEntry = comment.votes.filter(v => v.toString() == userId)[0];
-                var idx = comment.votes.indexOf(voteEntry);
-
-                if(vote) {
-                    if(idx == -1) {
-                        comment.votes.push(userId);
-                    }
-                } else {
-                    if(idx != -1) {
-                        comment.votes.splice(idx, 1);
-                    }
-                }
-
+                // toggle vote
+                voteToggle(userId, comment);
                 c = comment;
                 return topic.save();
-            })
-            .then(() => {
-                return c;
-            })
+            }).then(() => c);
     }
 }
 
-function calculateVotes(userId, t) {
-    var topic = t.toJSON();
-    topic.vote = 0;
-    if (userId) {
-        topic.vote += topic.upVotes.filter(v => v == userId.toString()).length;
-        topic.vote -= topic.downVotes.filter(v => v == userId.toString()).length;
+function voteToggle(userId, entity) {
+    // check if voted
+    var value = entity.votes.filter(v => v.toString() == userId).length;
+
+    // value positive, remove vote
+    if (value == 1) {
+        // reset up or down vote for this user
+        removeElement(entity.votes, userId);
     }
 
-    topic.votes = topic.upVotes.length - topic.downVotes.length;
-
-    return topic;
+    // value zero, up vote
+    if (value == 0) {
+        addUnique(entity.votes, userId);
+    }
 }
-

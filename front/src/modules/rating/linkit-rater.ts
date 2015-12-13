@@ -2,42 +2,24 @@ var template = require("./linkit-rater.html!text");
 import "./linkit-rater.css!css";
 
 class RateController {
-    topic;
+    votes;
+    onupdate;
 
-    constructor(private $http) {
+    constructor(private auth) {
     }
 
-    up() {
-        this.rateOrReset(1);
+    vote() {
+        if(this.onupdate) { this.onupdate(); }
     }
 
-    down() {
-        this.rateOrReset(-1);
+    isVoted() {
+        var userId = this.auth.user ? this.auth.user._id : undefined;
+        var votes = this.votes || [];
+        return votes.filter(vote => vote == userId).length;
     }
 
-    isUp() {
-        return this.topic.vote == 1;
-    }
-
-    isDown() {
-        return this.topic.vote == -1;
-    }
-
-    rateOrReset(vote) {
-        // if already voted
-        if (this.topic.vote == vote) {
-            // vote
-            this.topic.vote = 0;
-        } else {
-            // rate
-            this.topic.vote = vote;
-        }
-
-        this.$http.put("/api/topic/" + this.topic._id + "/vote", {vote: this.topic.vote})
-            .then(res => {
-                this.topic.vote = res.data.vote;
-                this.topic.votes = res.data.votes;
-            }, console.error);
+    count() {
+        return (this.votes || []).length;
     }
 }
 
@@ -48,7 +30,8 @@ export function linkitRater() {
         controller: RateController,
         controllerAs: "ctrl",
         bindToController: {
-            topic: "="
+            votes: "=",
+            onupdate: "&"
         }
     }
 }

@@ -12,8 +12,7 @@ export interface ITopic extends Document {
     creator: IAccount;
     creationDate: Date;
 
-    upVotes: Types.ObjectId[];
-    downVotes: Types.ObjectId[];
+    votes: Types.ObjectId[];
 
     comments: IComment[];
 }
@@ -33,8 +32,7 @@ var TopicSchema = new Schema({
     creationDate: {type: Date, required: true, "default": Date.now},
 
     // we us two array to keep track of up and down votes.
-    upVotes: [{type: Schema.Types.ObjectId}],
-    downVotes: [{type: Schema.Types.ObjectId}],
+    votes: [{type: Schema.Types.ObjectId}],
 
     // comments
     comments: [CommentSchema]
