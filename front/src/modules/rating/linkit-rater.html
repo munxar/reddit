@@ -1,6 +1,4 @@
-<div class="rater" ng-class="{'rater-up': ctrl.isVoted()}" layout-margin layout="column" layout-align="center center">
-    <a aria-label="vote or unvote" ng-click="ctrl.vote()">
-        <md-icon class="fa fa-angle-up fa-lg"></md-icon>
-    </a>
-    <div>{{ctrl.count()}}</div>
-</div>
+<a aria-label="up vote" ng-click="ctrl.up()" class="rater" ng-class="{'rater-up': ctrl.isUp()}" layout-margin layout="column" layout-align="center center">
+    <md-icon class="fa fa-angle-up fa-lg"></md-icon>
+    <div class="total">{{ctrl.topic.votes}}</div>
+</a>
