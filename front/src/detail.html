@@ -3,12 +3,12 @@
         <linkit-rater votes="ctrl.topic.votes" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
         <div class="md-list-item-text" flex>
             <h3><a class="md-display-1" href="{{ctrl.url(ctrl.topic.content)}}" target="_blank">{{ctrl.topic.title}}</a></h3>
-            <p>eingereicht <span am-time-ago="ctrl.topic.creationDate"></span> von <a href="">{{ctrl.topic.creator.username}}</a></p>
+            <p>submitted <span am-time-ago="ctrl.topic.creationDate"></span> by <a href="">{{ctrl.topic.creator.username}}</a></p>
             <p>
                 <md-icon class="fa fa-comment" aria-label="View Topic Detail"></md-icon>{{ctrl.topic.comments.length}} comments
             </p>
             <div class="md-actions">
-                <md-button class="md-warn md-hue-2" ng-click="ctrl.remove()" aria-label="Delete Topic"><md-icon class="fa fa-trash"></md-icon>delete</md-button>
+                <md-button class="md-warn md-hue-2" ng-click="ctrl.remove()" aria-label="Delete Topic"><md-icon class="fa fa-trash fa-fw"></md-icon>Delete</md-button>
             </div>
         </div>
     </md-list-item>
@@ -17,7 +17,7 @@
 <md-content layout-margin>
     <form name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
         <md-input-container>
-            <label>enter a comment</label>
+            <label>Enter a comment</label>
             <textarea required ng-model="ctrl.comment" rows="2"></textarea>
         </md-input-container>
         <section layout="row">
@@ -26,12 +26,12 @@
     </form>
 </md-content>
 <md-list>
-    <md-list-item ng-repeat="comment in ctrl.topic.comments">
+    <md-list-item class="md-3-line" ng-repeat="comment in ctrl.topic.comments">
         <linkit-rater votes="comment.votes" onupdate="ctrl.voteComment(comment)"></linkit-rater>
         <div class="md-list-item-text">
-            <h4 class="md-title" >{{comment.content}}</h4>
-            <p>kommentiert <span am-time-ago="comment.creationDate"></span> von <a>{{comment.creator.username}}</a></p>
-            <a ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2">delete</a>
+            <h4 class="md-title">{{comment.content}}</h4>
+            <p>commented <span am-time-ago="comment.creationDate"></span> by <a href="">{{comment.creator.username}}</a></p>
+            <a ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2">Delete</a>
         </div>
         <md-divider></md-divider>
     </md-list-item>
