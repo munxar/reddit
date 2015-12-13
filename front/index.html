@@ -14,7 +14,7 @@
             </md-button>
 
             <div flex layout="row" layout-align="center center">
-                <md-button ui-sref="create">
+                <md-button ui-sref="create" ng-if="ctrl.isAuthenticated()">
                     <md-icon class="fa fa-plus fa-lg" aria-label="Create new Link"></md-icon>
                     New Link
                 </md-button>

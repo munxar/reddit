@@ -1,7 +1,7 @@
 // convenient array util methods
 
 /**
- * add a element to an array if not existing, yet
+ * add an element to an array if not existing, yet
  * @param array
  * @param element
  * @returns {boolean} true if added, false if not added
@@ -18,7 +18,7 @@ export function addUnique<T>(array: T[], element: T) {
 }
 
 /**
- * remove a element from a array, if existing
+ * remove an element from an array, if existing
  * @param array
  * @param element
  * @returns {boolean} true if removed, false else

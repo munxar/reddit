@@ -8,6 +8,7 @@ import "./modules/link/module";
 import "./main.css!";
 import {AuthController} from "./AuthController";
 import {redditAccount} from "./redditAccount";
+import {AccController} from "./AccController";
 import {AuthService} from "./AuthService";
 import {CreateCtrl, ListCtrl, DetailCtrl} from "./HomeCtrl";
 import {linkitRater} from "./modules/rating/linkit-rater";
@@ -70,7 +71,7 @@ app.config(function($urlRouterProvider: IUrlRouterProvider, $stateProvider: ISta
         .state("account", {
             url: "/account",
             template: accountTemplate,
-            controller: AuthController,
+            controller: AccController,
             controllerAs: "ctrl"
         })
     ;
