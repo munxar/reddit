@@ -46,9 +46,9 @@ Kommentar Modul
 - Kommentar kommentieren [] (optional)
 
 Rating Modul
-- Links bewerten []
+- Links bewerten [x]
 - Kommentare bewerten []
-- Rating rückgängig machen []
+- Rating rückgängig machen [x]
 
 User Modul
 - User erfassen / login [x]
@@ -58,7 +58,7 @@ User Modul
 Security Modul
 - User Login [x]
 - User Logout [x]
-- authorization nur angemeldete User könne Link, Kommentare, Rating verändern
+- authorization nur angemeldete User könne Link, Kommentare, Rating verändern [x]
 
 Language Modul
 - Sprachumschaltung [] (einfach) (en, de evtl. fr, it)
