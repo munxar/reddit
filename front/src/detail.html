@@ -11,7 +11,6 @@
                 <md-button class="md-warn md-hue-2" ng-click="ctrl.remove()">delete</md-button>
             </div>
         </div>
-
     </md-list-item>
 </md-list>
 
@@ -27,16 +26,8 @@
     </form>
 </md-content>
 <md-list>
-    <md-divider></md-divider>
     <md-list-item ng-repeat="comment in ctrl.comments">
-        <div flex="10" layout="column" layout-align="center center">
-            <div class="rater">
-                <div aria-label="comment vote up">
-                    <md-icon class="rater-up fa fa-angle-up fa-lg"></md-icon>
-                </div>
-                <div>4</div>
-            </div>
-        </div>
+        <linkit-rater topic="comment"></linkit-rater>
         <div class="md-list-item-text">
             <h4 class="md-title" >{{comment.content}}</h4>
             <div>kommentiert am {{comment.creationDate | date}} von <a href="">{{comment.creator.username}}</a></div>
