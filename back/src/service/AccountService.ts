@@ -75,7 +75,7 @@ export class AccountService {
             })
             .then(isValid => {
                 if (!isValid) {
-                    throw new WebError("password invalid", 401);
+                    throw new WebError("password invalid", 400);
                 }
                 account.password = newPassword;
                 return account.save();
