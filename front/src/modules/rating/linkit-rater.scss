@@ -4,13 +4,15 @@
     color: $grey;
     border: 1px solid $light-grey;
     padding: 10px 20px;
-    border-radius: $border-radius;
+    border-radius: 3px;
 
     md-icon {
         width: 15px;
     }
+
+    &.voted .fa-star {
+        color: $secondary;
+    }
 }
 
-.voted .fa {
-    color: $secondary;
-}
+

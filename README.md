@@ -52,7 +52,7 @@ Rating Modul
 
 User Modul
 - User erfassen / login [x]
-- User password change []
+- User password change [x]
 - Account löschen [] (zusätzlich)
 
 Security Modul
@@ -65,5 +65,5 @@ Language Modul
 
 Optional
 - Performance Optimierung [] (einfach da jspm schon bundling hat)
-- WCAG [] (einfach da angular-aria)
+- WCAG [x] (einfach da angular-aria)
 - rss feed [] (super optional anstelle SEO)

@@ -4,16 +4,16 @@
         <form name="form" ng-submit="ctrl.register()" novalidate>
             <md-input-container>
                 <label>Username</label>
-                <input ng-model="ctrl.vm.username" type="text" required>
+                <input ng-model="ctrl.vm.username" aria-label="Type your new Username" type="text" required>
             </md-input-container>
             <md-input-container>
                 <label>Password</label>
-                <input ng-model="ctrl.vm.password" type="password" required>
+                <input ng-model="ctrl.vm.password" aria-label="Type your new Password" type="password" required>
             </md-input-container>
 
             <div layout="row">
-                <md-button class="md-raised md-primary" type="submit" ng-disabled="form.$invalid">Register</md-button>
-                <md-button ui-sref="home">Cancel</md-button>
+                <md-button class="md-raised md-primary" aria-label="Register" type="submit" ng-disabled="form.$invalid">Register</md-button>
+                <md-button ui-sref="home" aria-label="Go to Home">Cancel</md-button>
             </div>
         </form>
     </md-content>

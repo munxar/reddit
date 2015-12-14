@@ -4,16 +4,16 @@
         <form name="form" ng-submit="ctrl.create()" novalidate>
             <md-input-container>
                 <label>Descriptive Title</label>
-                <input type="text" ng-model="ctrl.vm.title" required>
+                <input type="text" ng-model="ctrl.vm.title" aria-label="Type Topic Title" required>
             </md-input-container>
             <md-input-container>
                 <label>URL</label>
-                <input type="text" ng-model="ctrl.vm.content" required>
+                <input type="text" ng-model="ctrl.vm.content" aria-label="Type Topic URL" required>
             </md-input-container>
 
             <section layout="row">
-                <md-button class="md-raised md-primary" ng-disabled="form.$invalid">Create</md-button>
-                <md-button ui-sref="home">Cancel</md-button>
+                <md-button class="md-raised md-primary" aria-label="Create new Topic" ng-disabled="form.$invalid">Create</md-button>
+                <md-button ui-sref="home" aria-label="Go to Home">Cancel</md-button>
             </section>
         </form>
     </md-content>

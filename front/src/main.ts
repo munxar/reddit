@@ -4,6 +4,7 @@ import "angular-material";
 import "angular-ui-router";
 import "font-awesome";
 import "angular-moment";
+import "angular-validation-match";
 import "./modules/link/module";
 import "./main.css!";
 import {AuthController} from "./AuthController";
@@ -27,6 +28,7 @@ var app = angular.module("linkit", [
     "ngMaterial",
     "ui.router",
     "angularMoment",
+    "validation.match",
     "linkit.link"
 ]);
 

@@ -2,13 +2,13 @@
     <md-list-item class="md-3-line" layout="row">
         <linkit-rater votes="ctrl.topic.votes" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
         <div class="md-list-item-text" flex>
-            <h3><a class="md-display-1" href="{{ctrl.url(ctrl.topic.content)}}" target="_blank">{{ctrl.topic.title}}</a></h3>
-            <p>submitted <span am-time-ago="ctrl.topic.creationDate"></span> by <a href="">{{ctrl.topic.creator.username}}</a></p>
-            <p>
-                <md-icon class="fa fa-comment" aria-label="View Topic Detail"></md-icon>{{ctrl.topic.comments.length}} comments
+            <h3><a class="md-display-1" href="{{ctrl.url(ctrl.topic.content)}}" target="_blank" aria-label="Go to Topic URL">{{ctrl.topic.title}}</a></h3>
+            <p>submitted <span am-time-ago="ctrl.topic.creationDate" aria-label="Submitted Time"></span> by <a href="" aria-label="Topic Creator">{{ctrl.topic.creator.username}}</a></p>
+            <p aria-label="Total Comments">
+                <md-icon class="fa fa-comment" aria-label="Comment Icon"></md-icon>{{ctrl.topic.comments.length}} comments
             </p>
             <div class="md-actions">
-                <md-button class="md-warn md-hue-2" ng-click="ctrl.remove()" aria-label="Delete Topic"><md-icon class="fa fa-trash fa-fw"></md-icon>Delete</md-button>
+                <md-button class="md-warn md-hue-2" ng-click="ctrl.remove()" aria-label="Delete Topic">Delete</md-button>
             </div>
         </div>
     </md-list-item>
@@ -18,10 +18,10 @@
     <form name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
         <md-input-container>
             <label>Enter a comment</label>
-            <textarea required ng-model="ctrl.comment" rows="2"></textarea>
+            <textarea required ng-model="ctrl.comment" rows="2" aria-label="Type your comment"></textarea>
         </md-input-container>
         <section layout="row">
-            <md-button class="md-raised md-primary" type="submit" ng-disabled="ctrl.form.$invalid">Comment</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="ctrl.form.$invalid" aria-label="Submit comment">Comment</md-button>
         </section>
     </form>
 </md-content>
@@ -29,9 +29,9 @@
     <md-list-item class="md-3-line" ng-repeat="comment in ctrl.topic.comments">
         <linkit-rater votes="comment.votes" onupdate="ctrl.voteComment(comment)"></linkit-rater>
         <div class="md-list-item-text">
-            <h4 class="md-title">{{comment.content}}</h4>
-            <p>commented <span am-time-ago="comment.creationDate"></span> by <a href="">{{comment.creator.username}}</a></p>
-            <a ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2">Delete</a>
+            <h4 class="md-title" aria-label="Comment Title">{{comment.content}}</h4>
+            <p aria-label="Comment Details">commented <span am-time-ago="comment.creationDate" aria-label="commented Time"></span> by <a href="" aria-label="Comment Creator">{{comment.creator.username}}</a></p>
+            <a ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2" aria-label="Delete Comment">Delete</a>
         </div>
         <md-divider></md-divider>
     </md-list-item>

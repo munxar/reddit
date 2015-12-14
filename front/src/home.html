@@ -1,9 +1,9 @@
 <md-content layout="row" layout-align-sm="center center"
 
 >
-    <md-button class="md-link" ui-sref-active="active" ui-sref="home">popular</md-button>
-    <md-button ui-sref-active="active" ui-sref="sort({tag:'newest'})">newest</md-button>
-    <md-button ui-sref-active="active" ui-sref="sort({tag:'rating'})">rating</md-button>
+    <md-button class="md-link" aria-label="Filter Topics by popularity" ui-sref-active="active" ui-sref="home">popular</md-button>
+    <md-button ui-sref-active="active" aria-label="Filter Topics by date" ui-sref="sort({tag:'newest'})">newest</md-button>
+    <md-button ui-sref-active="active" aria-label="Filter Topics by rating" ui-sref="sort({tag:'rating'})">rating</md-button>
 </md-content>
 <md-content flex>
     <md-list>
@@ -11,12 +11,12 @@
             <linkit-rater votes="topic.votes" onupdate="ctrl.vote(topic)"></linkit-rater>
             <div class="md-list-item-text" flex>
                 <h3>
-                    <a class="md-display-1" href="{{ctrl.url(topic.content)}}" target="_blank">{{topic.title}}</a>
+                    <a class="md-display-1" aria-label="Topic Title" href="{{ctrl.url(topic.content)}}" target="_blank">{{topic.title}}</a>
                 </h3>
                 <p>
-                    submitted <span am-time-ago="topic.creationDate"></span> by <a href="">{{topic.creator.username}}</a>
+                    submitted <span am-time-ago="topic.creationDate" aria-label="Submitted Time"></span> by <a href="" aria-label="Topic Creator">{{topic.creator.username}}</a>
                 </p>
-                <div>
+                <div aria-label="Total Comments">
                     <a ui-sref="detail(topic)" class="md-button md-primary"><md-icon class="fa fa-comment" aria-label="View Topic Detail"></md-icon>{{topic.comments.length}} comments</a>
                 </div>
             </div>

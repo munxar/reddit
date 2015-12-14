@@ -12,6 +12,7 @@ System.config({
     "angular-material": "github:angular/bower-material@0.11.4",
     "angular-moment": "npm:angular-moment@1.0.0-beta.3",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
+    "angular-validation-match": "npm:angular-validation-match@1.5.2",
     "css": "github:systemjs/plugin-css@0.1.20",
     "font-awesome": "npm:font-awesome@4.5.0",
     "text": "github:systemjs/plugin-text@0.0.4",
@@ -41,6 +42,9 @@ System.config({
     },
     "npm:angular-moment@1.0.0-beta.3": {
       "moment": "npm:moment@2.10.6"
+    },
+    "npm:angular-validation-match@1.5.2": {
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"

@@ -10,12 +10,12 @@
     <md-toolbar>
         <div class="md-toolbar-tools" layout="row" layout-sm="column">
             <md-button ui-sref="home" aria-label="go to Homepage">
-                <img src="src/logo.svg" class="logo">
+                <img src="src/logo.svg" class="logo" alt="linkit Logo">
             </md-button>
 
             <div flex layout="row" layout-align="center center">
-                <md-button ui-sref="create" ng-if="ctrl.isAuthenticated()">
-                    <md-icon class="fa fa-plus fa-lg" aria-label="Create new Link"></md-icon>
+                <md-button ui-sref="create" ng-if="ctrl.isAuthenticated()" aria-label="Create new Link">
+                    <md-icon class="fa fa-plus fa-lg" aria-label="new Link Icon"></md-icon>
                     New Link
                 </md-button>
             </div>

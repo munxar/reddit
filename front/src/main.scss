@@ -1,9 +1,17 @@
 @import 'variables';
 
+// Sometimes ng-click handler does not turn into a pointer
 [ng-click] {
     cursor: pointer;
 }
 
+// linkit Logo
+.logo {
+    margin-top: 10px;
+    width: 100%;
+}
+
+// Style Links in Paragraph Tag
 p {
     a:link,
     a:visited {
@@ -17,23 +25,13 @@ p {
     }
 }
 
+// Active Class for Buttons
 .md-button.active {
     background-color: $light-grey;
 }
 
+// Style for Topic Title
 .md-display-1 {
     text-decoration: none;
     color: #111;
-}
-
-.logo {
-    margin-top: 10px;
-    width: 100%;
-}
-
-.share {
-    border: 1px solid $light-grey;
-    background: #fbfbfb;
-    padding: 20px;
-    width: 250px;
 }
