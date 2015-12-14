@@ -1,113 +1,35 @@
-///<reference path="../../typings/tsd.d.ts"/>
-import * as angular from "angular";
-import "angular-material";
-import "angular-ui-router";
-import "font-awesome";
-import "angular-moment";
-import "./modules/link/module";
+///<reference path="../mithril.d.ts"/>
+
+import * as m from "mithril";
 import "./main.css!";
-import {AuthController} from "./AuthController";
-import {redditAccount} from "./redditAccount";
-import {AccController} from "./AccController";
-import {AuthService} from "./AuthService";
-import {CreateCtrl, ListCtrl, DetailCtrl} from "./HomeCtrl";
-import {linkitRater} from "./modules/rating/linkit-rater";
+import {AuthService} from "./auth/AuthService";
+import {LinkService} from "./links/LinksService";
+import {RouteService} from "./util/RouteService";
+import {navbar} from "./navbar/module";
+import {login} from "./auth/login";
+import {register} from "./auth/register";
+import {link, linkDetails, linkCreate} from "./links/module";
 
-var homeTemplate = require("./home.html!text");
-var createTemplate = require("./create.html!text");
-var loginTemplate = require("./login.html!text");
-var registerTemplate = require("./register.html!text");
-var accountTemplate = require("./account.html!text");
-var detailTemplate = require("./detail.html!text");
+var authService = new AuthService();
+var linkService = new LinkService(authService);
+var routeService = new RouteService(location);
 
-import IStateProvider = angular.ui.IStateProvider;
-import IUrlRouterProvider = angular.ui.IUrlRouterProvider;
-
-var app = angular.module("linkit", [
-    "ngMaterial",
-    "ui.router",
-    "angularMoment",
-    "linkit.link"
-]);
-
-app.config(function($urlRouterProvider: IUrlRouterProvider, $stateProvider: IStateProvider, $httpProvider, $mdThemingProvider) {
-    $urlRouterProvider.otherwise("/");
-
-    $stateProvider
-        .state("home", {
-            url: "/",
-            template: homeTemplate,
-            controller: ListCtrl,
-            controllerAs: "ctrl"
-        })
-        .state("sort", {
-            url: "/sort/:tag",
-            template: homeTemplate
-        })
-        .state("create", {
-            url: "/create",
-            template: createTemplate,
-            controller: CreateCtrl,
-            controllerAs: "ctrl"
-        })
-        .state("detail", {
-            url: "/topic/:_id",
-            template: detailTemplate,
-            controller: DetailCtrl,
-            controllerAs: "ctrl"
-        })
-        .state("login", {
-            url: "/login",
-            template: loginTemplate,
-            controller: AuthController,
-            controllerAs: "ctrl"
-        })
-        .state("register", {
-            url: "/register",
-            template: registerTemplate,
-            controller: AuthController,
-            controllerAs: "ctrl"
-        })
-        .state("account", {
-            url: "/account",
-            template: accountTemplate,
-            controller: AccController,
-            controllerAs: "ctrl"
-        })
-    ;
-
-    $httpProvider.interceptors.push(function ($q, $location) {
-        return {
-            "request": function (config) {
-                config.headers = config.headers || {};
-                if (localStorage["token"]) {
-                    config.headers.Authorization = "Bearer " + localStorage["token"];
-                }
-                return config;
-            },
-            "responseError": function (response) {
-                if (response.status === 401) {
-                    $location.path("/login");
-                }
-                return $q.reject(response);
-            }
-        };
-    });
-
-    $mdThemingProvider
-        .theme("default")
-        .primaryPalette("blue-grey")
-        .accentPalette("purple");
+m.render(document.body, {
+    view: () => m("div", [
+        m("#header"),
+        m("#main")
+    ])
 });
 
-app.directive("redditAccount", redditAccount);
-app.service("auth", AuthService);
-app.directive("linkitRater", linkitRater);
+m.mount(document.getElementById("header"), navbar(authService));
 
-app.run(function(auth) {
-    auth.init();
-
+m.route.mode = "hash";
+m.route(document.getElementById("main"), "/link", {
+    "/link": link(linkService),
+    "/link/:id": linkDetails(linkService, routeService),
+    "/link/create": linkCreate(linkService, routeService),
+    "/login": login(authService, routeService),
+    "/register": register(authService, routeService)
 });
 
-angular.bootstrap(document, [app.name]);
-
+authService.init();

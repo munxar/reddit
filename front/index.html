@@ -5,26 +5,7 @@
     <title>linkit</title>
     <meta name="viewport" content="width=device-width">
 </head>
-<body layout="column">
-
-    <md-toolbar>
-        <div class="md-toolbar-tools" layout="row" layout-sm="column">
-            <md-button ui-sref="home" aria-label="go to Homepage">
-                <img src="src/logo.svg" class="logo">
-            </md-button>
-
-            <div flex layout="row" layout-align="center center">
-                <md-button ui-sref="create" ng-if="ctrl.isAuthenticated()">
-                    <md-icon class="fa fa-plus fa-lg" aria-label="Create new Link"></md-icon>
-                    New Link
-                </md-button>
-            </div>
-
-            <reddit-account></reddit-account>
-        </div>
-    </md-toolbar>
-
-    <ui-view role="main" layout="column"></ui-view>
+<body>
 
     <script src="lib/system.js"></script>
     <script src="config.js"></script>

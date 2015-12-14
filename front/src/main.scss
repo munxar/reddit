@@ -1,39 +1,21 @@
-@import 'variables';
+$maincolor: grey;
 
-[ng-click] {
-    cursor: pointer;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-p {
-    a:link,
-    a:visited {
-        color: $primary;
+header {
+    background-color: $maincolor;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.account {
+    display: flex;
+    > * {
+        padding-left: 1rem;
     }
-
-    a:active,
-    a:hover {
-        color: darken($primary, 20%);
-        text-decoration:underline
-    }
 }
 
-.md-button.active {
-    background-color: $light-grey;
-}
-
-.md-display-1 {
-    text-decoration: none;
-    color: #111;
-}
-
-.logo {
-    margin-top: 10px;
-    width: 100%;
-}
-
-.share {
-    border: 1px solid $light-grey;
-    background: #fbfbfb;
-    padding: 20px;
-    width: 250px;
-}

@@ -17,11 +17,14 @@ export class AccountService {
      * @returns Promise<IAccount>
      */
     register(username:string, password:string) {
+        console.log("register");
+
         return Account.create({username, password}).then(account => account, err => {
             // duplicate key aka username
             if (err.code == 11000) {
                 throw new WebError("username already exists", 400);
             }
+            throw err;
         });
     }
 

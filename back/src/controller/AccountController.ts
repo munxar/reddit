@@ -20,7 +20,7 @@ export class AccountController {
             .register(req.body.username, req.body.password)
             .then((account: IAccount) => {
                 return res.json({account, token: this.tokenService.generate(account)})
-            }, next);
+            }, err => next(err));
     };
 
     login = (req, res, next) => {
