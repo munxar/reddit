@@ -1,20 +1,17 @@
-
-class AccountViewModel {
-    password = "";
-    newPassword = "";
-}
+import {AccountViewModel} from "./AccountViewModel";
 
 export class AccController {
     vm = new AccountViewModel();
 
-    constructor(private $state, private $http) {
-
-    }
+    constructor(private acc, private $state) { }
 
     changePass() {
-        this.$http.put("/api/account", this.vm).then(res => {
-            console.log(res.data);
-            this.$state.go("home");
-        }, err => console.error(err));
+        this.acc.changePass(this.vm).then(() => {
+            this.vm.reset();
+        }, err => console.error(err))
+    }
+
+    deleteAccount() {
+        this.acc.deleteAccount();
     }
 }

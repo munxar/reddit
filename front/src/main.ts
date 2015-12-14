@@ -11,6 +11,7 @@ import {AuthController} from "./AuthController";
 import {redditAccount} from "./redditAccount";
 import {AccController} from "./AccController";
 import {AuthService} from "./AuthService";
+import {AccService} from "./AccService";
 import {CreateCtrl, ListCtrl, DetailCtrl} from "./HomeCtrl";
 import {linkitRater} from "./modules/rating/linkit-rater";
 
@@ -104,6 +105,7 @@ app.config(function($urlRouterProvider: IUrlRouterProvider, $stateProvider: ISta
 
 app.directive("redditAccount", redditAccount);
 app.service("auth", AuthService);
+app.service("acc", AccService);
 app.directive("linkitRater", linkitRater);
 
 app.run(function(auth) {
