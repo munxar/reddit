@@ -2,6 +2,7 @@
 
 import * as m from "mithril";
 import "./main.css!";
+import "font-awesome";
 import {AuthService} from "./auth/AuthService";
 import {LinkService} from "./links/LinksService";
 import {RouteService} from "./util/RouteService";

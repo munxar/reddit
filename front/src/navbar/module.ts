@@ -8,7 +8,7 @@ export function navbar(auth:AuthService) {
         view: function (ctrl:NavbarCtrl) {
             return m("header", [
                 m(".logo", m("a", {href: "#/"}, "linkit")),
-                m(".btn-new", m("a", {href: "#/link/create"}, "new link")),
+                ctrl.isAuthenticated() ? m(".btn-new", m("a", {href: "#/link/create"}, "new link")) : m("div"),
                 m(".account", ctrl.isAuthenticated() ? renderLogout(ctrl) : renderLogin(ctrl))
             ]);
         },
@@ -18,7 +18,10 @@ export function navbar(auth:AuthService) {
 
 function renderLogout(ctrl) {
     return [
-        m("div", ctrl.username()),
+        m("div", [
+            m("i", {"class": "fa fa-user"}),
+            m("span", ctrl.username())
+        ]),
         m("a", {onclick: ctrl.logout}, "logout")
     ];
 }
