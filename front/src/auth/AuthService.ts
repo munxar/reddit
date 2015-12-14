@@ -6,8 +6,11 @@ export class AuthService {
     user:any = {};
 
     init() {
-        m.request({url: "api/account", config: tokenHeader})
-            .then(user => this.user = user);
+        return m.request({url: "api/account", config: tokenHeader})
+            .then(user => this.user = user, err => {
+                this.logout();
+                return err;
+            });
     }
 
     login(vm) {
@@ -36,4 +39,5 @@ export class AuthService {
     isAuthenticated() {
         return this.user._id != undefined;
     }
+
 }

@@ -22,15 +22,17 @@ m.render(document.body, {
     ])
 });
 
-m.mount(document.getElementById("header"), navbar(authService));
+authService.init().then(run);
 
-m.route.mode = "hash";
-m.route(document.getElementById("main"), "/link", {
-    "/link": link(linkService),
-    "/link/:id": linkDetails(linkService, routeService),
-    "/link/create": linkCreate(linkService, routeService),
-    "/login": login(authService, routeService),
-    "/register": register(authService, routeService)
-});
+function run() {
+    m.mount(document.getElementById("header"), navbar(authService));
 
-authService.init();
+    m.route.mode = "hash";
+    m.route(document.getElementById("main"), "/link", {
+        "/link": link(linkService),
+        "/link/:id": linkDetails(linkService, routeService),
+        "/link/create": linkCreate(linkService, routeService),
+        "/login": login(authService, routeService),
+        "/register": register(authService, routeService)
+    });
+}

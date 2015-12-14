@@ -21,4 +21,12 @@ export class LinkService {
     create(data) {
         return m.request({url: "api/topic", method: "post", data: data, config: tokenHeader});
     }
+
+    addComment(id, content) {
+        return m.request({url: "api/topic/" + id + "/comment", method: "post", data: {content}, config: tokenHeader});
+    }
+}
+
+function onError(err) {
+    console.error(err);
 }
