@@ -1,5 +1,5 @@
 {
-  "name": "reddit",
+  "name": "linkit",
   "version": "1.0.0",
   "description": "simplified reddit clone build with the MEAN stack.",
   "main": "gulpfile.js",

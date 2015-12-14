@@ -1,4 +1,4 @@
-var template = require("./redditAccount.html!text");
+var template = require("./linkitAccount.html!text");
 
 class AccountCtrl {
 
@@ -19,7 +19,7 @@ class AccountCtrl {
     }
 }
 
-export function redditAccount() {
+export function linkitAccount() {
     return {
         template,
         controller: AccountCtrl,

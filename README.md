@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/munxar/reddit.svg?branch=master)](https://travis-ci.org/munxar/reddit)
 
-# reddit
+# linkit
 simplified reddit clone build with the MEAN stack.
 
 In addition we use typescript and jspm to make use of es6 modules in the frontend.

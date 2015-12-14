@@ -8,7 +8,7 @@ import "angular-validation-match";
 import "./modules/link/module";
 import "./main.css!";
 import {AuthController} from "./AuthController";
-import {redditAccount} from "./redditAccount";
+import {linkitAccount} from "./linkitAccount";
 import {AccController} from "./AccController";
 import {AuthService} from "./AuthService";
 import {AccService} from "./AccService";
@@ -103,7 +103,7 @@ app.config(function($urlRouterProvider: IUrlRouterProvider, $stateProvider: ISta
         .accentPalette("purple");
 });
 
-app.directive("redditAccount", redditAccount);
+app.directive("linkitAccount", linkitAccount);
 app.service("auth", AuthService);
 app.service("acc", AccService);
 app.directive("linkitRater", linkitRater);
