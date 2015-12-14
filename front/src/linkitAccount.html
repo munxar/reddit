@@ -1,0 +1,27 @@
+<div ng-if="!ctrl.isAuthenticated()" layout-sm="column" layout-align-sm="center center">
+    <md-button ui-sref="login" aria-label="Login">Login</md-button>
+    <md-button ui-sref="register" aria-label="Register">Register</md-button>
+</div>
+
+<md-menu class="md-buttom" ng-if="ctrl.isAuthenticated()">
+    <md-button aria-label="open account menu" ng-click="$mdOpenMenu($event)">
+        <md-icon md-menu-origin class="fa fa-user fa-lg" aria-label="User Menu Icon"></md-icon>
+        {{ctrl.getUsername()}}
+    </md-button>
+
+    <md-menu-content>
+        <md-menu-item>
+            <md-button ui-sref="account" aria-label="Account Settings">
+                <md-icon class="fa fa-cog fa-lg" md-menu-align-target aria-label="Account Icon"></md-icon>
+                Account
+            </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+            <md-button ng-click="ctrl.logout()" aria-label="Logout">
+                <md-icon class="fa fa-sign-out fa-lg" md-menu-align-target aria-label="Logout Icon"></md-icon>
+                Logout
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>

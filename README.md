@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/munxar/reddit.svg?branch=master)](https://travis-ci.org/munxar/reddit)
 
-# reddit
+# linkit
 simplified reddit clone build with the MEAN stack.
 
 In addition we use typescript and jspm to make use of es6 modules in the frontend.
@@ -29,7 +29,7 @@ gulp serve
 
 # requirements
 tested with local installation of:
- - node (5.1.1)
+ - node (0.12.8 & 5.1.1)
  - mongodb (3.0.6)
  - gulp (3.9.0)
 
@@ -43,7 +43,7 @@ Link Modul
 
 Kommentar Modul
 - link kommentieren [x]
-- Kommentar kommentieren [] (optional)
+- optional: Kommentar kommentieren []
 
 Rating Modul
 - Links bewerten [x]
@@ -52,18 +52,14 @@ Rating Modul
 
 User Modul
 - User erfassen / login [x]
-- User password change []
-- Account löschen [] (zusätzlich)
+- User password change [x]
+- optional: Account löschen [x]
 
 Security Modul
 - User Login [x]
 - User Logout [x]
 - authorization nur angemeldete User könne Link, Kommentare, Rating verändern [x]
 
-Language Modul
-- Sprachumschaltung [] (einfach) (en, de evtl. fr, it)
-
 Optional
-- Performance Optimierung [] (einfach da jspm schon bundling hat)
-- WCAG [] (einfach da angular-aria)
-- rss feed [] (super optional anstelle SEO)
+- Performance Optimierung []
+- WCAG [x]

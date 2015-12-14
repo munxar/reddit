@@ -196,7 +196,7 @@ describe("api", () => {
                     .set(tokenService.header(account))
                     .send({password: "abcx", newPassword: "1234"})
                     .expect("content-type", /json/)
-                    .expect(401, done);
+                    .expect(400, done);
             }, done);
         });
 
