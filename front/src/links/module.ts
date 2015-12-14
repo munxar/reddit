@@ -43,13 +43,30 @@ function view(ctrl: LinkCtrl) {
     return m(".link-list", ctrl.links.map(link => renderLink(link)));
 }
 
+var rater = {
+    view: function(ctrl) {
+        return m(".rater", [
+            m("div", m("i.fa", {"class": ctrl.vote ? "fa-star" : "fa-star-o"})),
+            m("div", ctrl.count())
+        ])
+    },
+    controller: function(votes) {
+        this.votes = votes;
+        this.vote = true;
+        this.count = () => votes.length;
+    }
+};
+
 function renderLink(link) {
     var count = link.comments.length;
 
     return m(".link", [
-        m(".link-title", m("a", {href: "http://" + link.content, target: "_blank"}, link.title)),
-        m(".link-info", m("span", "created " + link.creationDate + " by " + link.creator.username)),
-        m(".link-actions", m("a", {href: "#/link/" + link._id}, count + " Comments"))
+        m.component(rater, link.votes),
+        m(".link-content", [
+            m(".link-title", m("a", {href: "http://" + link.content, target: "_blank"}, link.title)),
+            m(".link-info", m("span", "created " + link.creationDate + " by " + link.creator.username)),
+            m(".link-actions", m("a", {href: "#/link/" + link._id}, count + " Comments"))
+        ])
     ]);
 }
 

@@ -7,7 +7,10 @@ export class LinkService {
     constructor(private auth: AuthService) {}
 
     getAll() {
-        return m.request({url: "api/topic", config: tokenHeader});
+        return m.request({url: "api/topic", config: tokenHeader}).then(link => {
+            link.vote = link.votes.filter(vote => vote == this.auth.user._id).length > 0;
+            return link;
+        });
     }
 
     getOne(id) {

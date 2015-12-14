@@ -19,6 +19,20 @@ header {
     }
 }
 
+.link {
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid grey 1px;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.rater {
+    display: flex;
+    flex-direction: column;
+    padding-right: 1rem;
+}
+
 .comment {
     padding: 0.5rem;
 }
