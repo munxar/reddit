@@ -3,7 +3,7 @@
         <linkit-rater votes="ctrl.topic.votes" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
         <div class="md-list-item-text" flex>
             <h3><a class="md-display-1" href="{{ctrl.url(ctrl.topic.content)}}" target="_blank" aria-label="Go to Topic URL">{{ctrl.topic.title}}</a></h3>
-            <p>submitted <span am-time-ago="ctrl.topic.creationDate" aria-label="Submitted Time"></span> by <a href="" aria-label="Topic Creator">{{ctrl.topic.creator.username}}</a></p>
+            <p>submitted <span am-time-ago="ctrl.topic.creationDate" aria-label="Submitted Time"></span> by <span aria-label="Topic Creator">{{ctrl.topic.creator.username}}</span></p>
             <p aria-label="Total Comments">
                 <md-icon class="fa fa-comment" aria-label="Comment Icon"></md-icon>{{ctrl.topic.comments.length}} comments
             </p>
