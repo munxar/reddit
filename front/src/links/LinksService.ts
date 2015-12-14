@@ -8,7 +8,7 @@ export class LinkService {
 
     getAll() {
         return m.request({url: "api/topic", config: tokenHeader}).then(link => {
-            link.vote = link.votes.filter(vote => vote == this.auth.user._id).length > 0;
+            //link.vote = link.votes.filter(vote => vote == this.auth.user._id).length > 0;
             return link;
         });
     }

@@ -64,7 +64,7 @@ function renderLink(link) {
         m.component(rater, link.votes),
         m(".link-content", [
             m(".link-title", m("a", {href: "http://" + link.content, target: "_blank"}, link.title)),
-            m(".link-info", m("span", "created " + link.creationDate + " by " + link.creator.username)),
+            m(".link-info", m("span", "created " + link.creationDate + " by " + (link.creator ? link.creator.username : "(deleted user)"))),
             m(".link-actions", m("a", {href: "#/link/" + link._id}, count + " Comments"))
         ])
     ]);
@@ -97,7 +97,7 @@ export function linkDetails(linkService: LinkService, routeService: RouteService
 function renderComment(comment) {
     return m(".comment", [
         m(".comment-content", comment.content),
-        m(".comment-info", "created at " + comment.creationDate + " by " + comment.creator.username),
+        m(".comment-info", "created at " + comment.creationDate + " by " + (comment.creator ? comment.creator.username : "(deleted user)")),
         m(".comment-separator")
     ]);
 }
