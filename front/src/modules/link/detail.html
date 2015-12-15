@@ -2,7 +2,7 @@
     <md-list-item class="md-3-line" layout="row">
         <linkit-rater votes="ctrl.topic.votes" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
         <article flex>
-            <h3><a class="md-display-1" href="{{ctrl.url(ctrl.topic.content)}}" target="_blank" aria-label="Go to Topic URL">{{ctrl.topic.title}}</a></h3>
+            <h3><a class="md-headline" href="{{ctrl.url(ctrl.topic.content)}}" target="_blank" aria-label="Go to Topic URL">{{ctrl.topic.title}}</a></h3>
             <div class="md-list-item-text">
                 <p><span am-time-ago="ctrl.topic.creationDate" aria-label="Submitted Time"></span> by <span aria-label="Topic Creator">{{ctrl.topic.creator.username | account}}</span></p>
                 <p aria-label="Total Comments">
@@ -36,7 +36,7 @@
     <md-list-item class="md-3-line" layout="row" ng-repeat="comment in ctrl.topic.comments">
         <linkit-rater votes="comment.votes" onupdate="ctrl.voteComment(comment)"></linkit-rater>
         <article flex>
-            <h4 class="md-title" aria-label="Comment Title">{{comment.content}}</h4>
+            <h3 class="md-subhead" aria-label="Comment Title">{{comment.content}}</h3>
             <div class="md-list-item-text">
                 <p aria-label="Comment Details"><span am-time-ago="comment.creationDate" aria-label="commented Time"></span> by <span aria-label="Comment Creator">{{comment.creator.username | account}}</span></p>
                 <a ng-if="ctrl.isOwner(comment)" ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2" aria-label="Delete Comment">Delete</a>
