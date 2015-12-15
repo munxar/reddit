@@ -85,4 +85,14 @@ Bugs / offene Punkte
     - delete mit ok / cancel
     - account mit unterformularen
 
+    - After password change, form is wrong
+    - after comment red input
+    - Title on Mobile is cut
+    - detail page is not obvious
+    - URL is not shown on detail (better for UX, what do I click here)
+    - Titel on detail links to home not page
+    - newest Topic is at the bottom
+    - URLS with https are not working (it writes https//)
+
+
 
