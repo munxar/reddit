@@ -1,12 +1,7 @@
 @import 'variables';
 
-// Reset H3
+// add little space to H3
 h3 {
-    margin: 0;
-}
-
-// Add little Space to h4
-h4 {
     margin: 5px 0;
 }
 
@@ -36,7 +31,7 @@ p {
 }
 
 // Style for Topic Title
-.md-display-1 {
+.md-headline {
     text-decoration: none;
     color: #111;
 }
