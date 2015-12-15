@@ -13,7 +13,7 @@ export class AccountService {
     }
 
     deleteAccount() {
-        this.$http.delete("/api/account").then(res => {
+        return this.$http.delete("/api/account").then(res => {
             return res.data;
         });
     }

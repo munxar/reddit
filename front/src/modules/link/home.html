@@ -7,7 +7,7 @@
                     <a class="md-display-1" title="{{topic.title}}" aria-label="Topic Title" href="{{ctrl.url(topic.content)}}" target="_blank">{{topic.title}}</a>
                 </h3>
                 <p>
-                    submitted <span am-time-ago="topic.creationDate" aria-label="Submitted Time"></span> by <span aria-label="Topic Creator">{{topic.creator.username}}</span>
+                    <span am-time-ago="topic.creationDate" aria-label="Submitted Time"></span> by <span aria-label="Topic Creator">{{topic.creator.username | account}}</span>
                 </p>
                 <div aria-label="Total Comments">
                     <a ui-sref="detail(topic)" class="md-button md-primary"><md-icon class="fa fa-comment" aria-label="View Topic Detail"></md-icon>{{topic.comments.length}} comments</a>

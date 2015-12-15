@@ -70,7 +70,7 @@ export class DetailCtrl {
         this.$http.post("/api/topic/" + this.topic._id + "/comment", {content: this.comment})
             .then(res => {
                 this.comment = null;
-                this.topic.comments.push(res.data);
+                this.topic.comments.unshift(res.data);
             }, console.error);
     }
 

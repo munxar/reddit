@@ -28,6 +28,7 @@ export class TopicService {
     getAll(userId) {
         return Topic.find({})
             .populate("creator", "username")
+            .sort({_id: -1})
             .exec();
     }
 
@@ -70,13 +71,13 @@ export class TopicService {
         return this.getOne(userId, id)
             .then((topic: ITopic) => {
                 var comment = new Comment({creator: userId, content, topic: id});
-                topic.comments.push(comment);
+                topic.comments.unshift(comment);
                 return topic.save();
             })
             .then((topic: ITopic) => this.getOne(userId, topic._id))
             .then((topic: ITopic) => {
                 // return last comment
-                return topic.comments[topic.comments.length-1];
+                return topic.comments[0];
             });
     }
 

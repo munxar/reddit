@@ -15,9 +15,10 @@ export class AccountController {
     }
 
     deleteAccount() {
-        this.account.deleteAccount();
-        this.auth.logout();
-        this.toaster.show("account deleted");
-        this.$state.go("home");
+        this.account.deleteAccount().then(() => {
+            this.auth.logout();
+            this.toaster.show("account deleted");
+            this.$state.go("home");
+        }, res => this.toaster.show(res.data.message));
     }
 }
