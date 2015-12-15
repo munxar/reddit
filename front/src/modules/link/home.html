@@ -4,7 +4,7 @@
             <linkit-rater votes="topic.votes" onupdate="ctrl.vote(topic)"></linkit-rater>
             <div class="md-list-item-text" flex>
                 <h3>
-                    <a class="md-display-1" aria-label="Topic Title" href="{{ctrl.url(topic.content)}}" target="_blank">{{topic.title}}</a>
+                    <a class="md-display-1" title="{{topic.title}}" aria-label="Topic Title" href="{{ctrl.url(topic.content)}}" target="_blank">{{topic.title}}</a>
                 </h3>
                 <p>
                     submitted <span am-time-ago="topic.creationDate" aria-label="Submitted Time"></span> by <span aria-label="Topic Creator">{{topic.creator.username}}</span>

@@ -7,6 +7,7 @@ class UserPassViewModel {
 export class AuthController {
     vm = new UserPassViewModel();
 
+    static $inject = ["auth", "$state"];
     constructor(private auth, private $state) {}
 
     register() {

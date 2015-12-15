@@ -7,6 +7,7 @@ class TopicViewModel {
 export class CreateCtrl {
     vm = new TopicViewModel();
 
+    static $inject = ["$state", "$http"];
     constructor(private $state, private $http) {
 
     }
@@ -22,6 +23,8 @@ export class CreateCtrl {
 
 export class ListCtrl {
     topics = [];
+
+    static $inject = ["$http"];
     constructor(private $http) {
         $http.get("/api/topic").then(res => this.topics = res.data);
     }
@@ -48,6 +51,7 @@ export class DetailCtrl {
     comment = "";
     form;
 
+    static $inject = ["$http", "$state"];
     constructor(private $http, private $state) {
         var id = $state.params._id;
         $http.get("/api/topic/" + id)

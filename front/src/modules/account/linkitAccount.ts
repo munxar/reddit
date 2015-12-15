@@ -2,6 +2,7 @@ var template = require("./linkitAccount.html!text");
 
 class AccountCtrl {
 
+    static $inject = ["auth"];
     constructor(private auth) {
 
     }

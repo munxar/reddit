@@ -43,7 +43,7 @@ Link Modul
 
 Kommentar Modul
 - link kommentieren [x]
-- optional: Kommentar kommentieren []
+
 
 Rating Modul
 - Links bewerten [x]

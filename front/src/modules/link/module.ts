@@ -1,8 +1,8 @@
 ///<reference path="../../../../typings/tsd.d.ts"/>
 import * as angular from "angular";
+import {config} from "./config";
 
-var app = angular.module("linkit.link", [])
-.config(function() {})
-.run(function() {
-    console.info("loaded: %s", app.name)
-});
+angular
+    .module("linkit.link", [])
+    .config(config)
+;

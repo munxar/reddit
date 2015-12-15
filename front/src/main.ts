@@ -1,117 +1,36 @@
 ///<reference path="../../typings/tsd.d.ts"/>
+
+// import third party libraries
 import * as angular from "angular";
 import "angular-material";
 import "angular-ui-router";
 import "font-awesome";
 import "angular-moment";
 import "angular-validation-match";
+
+// load our application modules
+import "./modules/auth/module";
 import "./modules/link/module";
+import "./modules/rating/module";
+import "./modules/account/module";
+
+// load css
 import "./main.css!";
-import {AuthController} from "./AuthController";
-import {linkitAccount} from "./linkitAccount";
-import {AccController} from "./AccController";
-import {AuthService} from "./AuthService";
-import {AccService} from "./AccService";
-import {CreateCtrl, ListCtrl, DetailCtrl} from "./HomeCtrl";
-import {linkitRater} from "./modules/rating/linkit-rater";
 
-var homeTemplate = require("./home.html!text");
-var createTemplate = require("./create.html!text");
-var loginTemplate = require("./login.html!text");
-var registerTemplate = require("./register.html!text");
-var accountTemplate = require("./account.html!text");
-var detailTemplate = require("./detail.html!text");
+import {config} from "./config";
 
-import IStateProvider = angular.ui.IStateProvider;
-import IUrlRouterProvider = angular.ui.IUrlRouterProvider;
+angular
+    .module("linkit", [
+        "ngMaterial",
+        "ui.router",
+        "angularMoment",
+        "validation.match",
+        "linkit.auth",
+        "linkit.account",
+        "linkit.link",
+        "linkit.rating",
+    ])
+    .config(config)
+;
 
-var app = angular.module("linkit", [
-    "ngMaterial",
-    "ui.router",
-    "angularMoment",
-    "validation.match",
-    "linkit.link"
-]);
-
-app.config(function($urlRouterProvider: IUrlRouterProvider, $stateProvider: IStateProvider, $httpProvider, $mdThemingProvider) {
-    $urlRouterProvider.otherwise("/");
-
-    $stateProvider
-        .state("home", {
-            url: "/",
-            template: homeTemplate,
-            controller: ListCtrl,
-            controllerAs: "ctrl"
-        })
-        .state("sort", {
-            url: "/sort/:tag",
-            template: homeTemplate
-        })
-        .state("create", {
-            url: "/create",
-            template: createTemplate,
-            controller: CreateCtrl,
-            controllerAs: "ctrl"
-        })
-        .state("detail", {
-            url: "/topic/:_id",
-            template: detailTemplate,
-            controller: DetailCtrl,
-            controllerAs: "ctrl"
-        })
-        .state("login", {
-            url: "/login",
-            template: loginTemplate,
-            controller: AuthController,
-            controllerAs: "ctrl"
-        })
-        .state("register", {
-            url: "/register",
-            template: registerTemplate,
-            controller: AuthController,
-            controllerAs: "ctrl"
-        })
-        .state("account", {
-            url: "/account",
-            template: accountTemplate,
-            controller: AccController,
-            controllerAs: "ctrl"
-        })
-    ;
-
-    $httpProvider.interceptors.push(function ($q, $location) {
-        return {
-            "request": function (config) {
-                config.headers = config.headers || {};
-                if (localStorage["token"]) {
-                    config.headers.Authorization = "Bearer " + localStorage["token"];
-                }
-                return config;
-            },
-            "responseError": function (response) {
-                if (response.status === 401) {
-                    $location.path("/login");
-                }
-                return $q.reject(response);
-            }
-        };
-    });
-
-    $mdThemingProvider
-        .theme("default")
-        .primaryPalette("blue-grey")
-        .accentPalette("purple");
-});
-
-app.directive("linkitAccount", linkitAccount);
-app.service("auth", AuthService);
-app.service("acc", AccService);
-app.directive("linkitRater", linkitRater);
-
-app.run(function(auth) {
-    auth.init();
-
-});
-
-angular.bootstrap(document, [app.name]);
-
+angular.bootstrap(document, ["linkit"]);

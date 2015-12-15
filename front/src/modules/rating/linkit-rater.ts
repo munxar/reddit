@@ -5,6 +5,7 @@ class RateController {
     votes;
     onupdate;
 
+    static $inject = ["auth"];
     constructor(private auth) {
     }
 

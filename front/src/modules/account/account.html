@@ -2,7 +2,7 @@
     <md-content flex flex-gt-md="50">
         <h1>Account</h1>
         <h2>Change Password</h2>
-        <form name="form" ng-submit="ctrl.changePass()" novalidate>
+        <form name="form" ng-submit="ctrl.changePassword()" novalidate>
             <md-input-container>
                 <label>Old Password</label>
                 <input ng-model="ctrl.vm.password" aria-label="Type old Password" type="password" required>
@@ -23,6 +23,6 @@
         </form>
         <h2>Delete Account</h2>
         <p>Once you delete your Account, there is no going back. Please be certain.</p>
-        <md-button class="md-raised md-warn" aria-label="Delete my Account" ng-click="ctrl.deleteAccount()">Yes, delete my account</m-dbutton>
+        <md-button class="md-raised md-warn" aria-label="Delete my Account" ng-click="ctrl.deleteAccount()">Yes, delete my account</md-button>
     </md-content>
 </md-content>

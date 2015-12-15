@@ -1,11 +1,12 @@
 import {AccountViewModel} from "./AccountViewModel";
 
-export class AccService {
+export class AccountService {
     user = null;
 
-    constructor(private auth, private $http, private $state) {}
+    static $inject = ["auth", "$http"];
+    constructor(private auth, private $http) {}
 
-    changePass(userPass:AccountViewModel) {
+    changePassword(userPass:AccountViewModel) {
         return this.$http.put("/api/account", userPass).then(res => {
             console.log(res.data);
         }, err => console.error(err));
