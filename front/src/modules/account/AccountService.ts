@@ -8,14 +8,14 @@ export class AccountService {
 
     changePassword(userPass:AccountViewModel) {
         return this.$http.put("/api/account", userPass).then(res => {
-            console.log(res.data);
-        }, err => console.error(err));
+            return res.data;
+        });
     }
 
     deleteAccount() {
         this.$http.delete("/api/account").then(res => {
-            this.auth.logout();
-        }, err => console.error(err));
+            return res.data;
+        });
     }
 
 }

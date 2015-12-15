@@ -1,17 +1,10 @@
 
 export class AccountViewModel {
 
-    password:string;
-    newPassword:string;
-    newPasswordConfirm: string;
+    password = "";
+    newPassword = "";
+    newPasswordConfirm = "";
 
-    constructor() {
-        this.reset();
-    }
+    constructor() {}
 
-    reset() {
-        this.password = "";
-        this.newPassword = "";
-        this.newPasswordConfirm = "";
-    }
 }

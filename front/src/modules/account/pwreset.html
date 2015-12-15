@@ -1,0 +1,34 @@
+<md-content layout="row" layout-margin layout-align="center">
+    <md-content flex flex-gt-md="50">
+        <h1>Account</h1>
+        <h2>Change Password</h2>
+        <form name="form" ng-submit="ctrl.changePassword()" novalidate>
+            <md-input-container>
+                <label>Old Password</label>
+                <input name="oldPassword" ng-model="ctrl.vm.password" aria-label="Type old Password" type="password" required>
+                <div ng-messages="form.oldPassword.$error" ng-show="form.oldPassword.$dirty">
+                    <div ng-message="required">old Password is required!</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>New Password</label>
+                <input name="newPassword" ng-model="ctrl.vm.newPassword" aria-label="Type new Password" type="password" required>
+                <div ng-messages="form.newPassword.$error" ng-show="form.newPassword.$dirty">
+                    <div ng-message="required">new Password is required!</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>Confirm Password</label>
+                <input name="confirmPassword" ng-model="ctrl.vm.newPasswordConfirm" aria-label="Confirm new Password" type="password" match="ctrl.vm.newPassword" required>
+                <div ng-messages="form.confirmPassword.$error" ng-show="form.confirmPassword.$dirty">
+                    <div ng-message="required">confirm Password is required!</div>
+                </div>
+            </md-input-container>
+
+            <div layout="row">
+                <md-button class="md-raised md-primary" aria-label="Save new Password" ng-disabled="form.$invalid">Save</md-button>
+                <md-button ui-sref="^.details" aria-label="back to account">Cancel</md-button>
+            </div>
+        </form>
+    </md-content>
+</md-content>

@@ -79,13 +79,14 @@ Optional
 
 Bugs / offene Punkte
     - login / register username / password keine length validierung
-    - wenn user / pass falsch, kommt keine warnung
+    - wenn user / pass falsch, kommt keine warnung [x]
     - evtl. "submited" weglassen nur time und user
     - breadcrumb !
     - delete mit ok / cancel
-    - account mit unterformularen
+    - account mit unterformularen [x]
+    - cloak / ladebalken
 
-    - After password change, form is wrong
+    - After password change, form is wrong [x]
     - after comment red input
     - Title on Mobile is cut
     - detail page is not obvious

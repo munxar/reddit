@@ -14,14 +14,17 @@ export class AuthController {
         this.auth.register(this.vm).then(() => {
             this.$state.go("home");
             this.toaster.show("register success");
-        }, err => console.error(err))
+        }, err => this.toaster.show(err.data.message))
     }
 
     login() {
         this.auth.login(this.vm).then(account => {
             this.$state.go("home");
             this.toaster.show("welcome " + account.username);
-        }, err => console.error(err))
+        }, err => {
+            this.toaster.show(err.data.message);
+            this.vm.password = "";
+        })
     }
 
 }
