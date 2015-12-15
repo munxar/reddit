@@ -35,7 +35,7 @@
         <linkit-rater votes="comment.votes" onupdate="ctrl.voteComment(comment)"></linkit-rater>
         <div class="md-list-item-text">
             <h4 class="md-title" aria-label="Comment Title">{{comment.content}}</h4>
-            <p aria-label="Comment Details">commented <span am-time-ago="comment.creationDate" aria-label="commented Time"></span> by <a href="" aria-label="Comment Creator">{{comment.creator.username}}</a></p>
+            <p aria-label="Comment Details">commented <span am-time-ago="comment.creationDate" aria-label="commented Time"></span> by <span aria-label="Comment Creator">{{comment.creator.username}}</span></p>
             <a ng-if="ctrl.isOwner(comment)" ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2" aria-label="Delete Comment">Delete</a>
         </div>
         <md-divider></md-divider>
