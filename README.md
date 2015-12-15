@@ -46,7 +46,7 @@ tested with local installation of:
 
 # build and test
 ```sh
-gulp
+$ gulp
 ```
 
 # status
