@@ -154,7 +154,7 @@ describe("api", () => {
             request(app)
                 .get("/api/account")
                 .expect("content-type", /json/)
-                .expect(401, done);
+                .expect(403, done);
         });
 
         it("access user account with invalid token", done => {
@@ -246,7 +246,7 @@ describe("api", () => {
                 .post("/api/topic")
                 .send({title: "hi there!", content: "www.abc.com"})
                 .expect("content-type", /json/)
-                .expect(401, done);
+                .expect(403, done);
         });
 
         it("a user can delete his own topic", done => {
@@ -307,7 +307,7 @@ describe("api", () => {
                 }, done);
         });
 
-        it("try to access topic that dosn't exists should return 404", done => {
+        it("try to access topic that doesn't exists should return 404", done => {
 
             // create account1
             Account.create({username: "user1", password: "1234"})

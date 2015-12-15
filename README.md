@@ -76,3 +76,13 @@ Security Modul
 Optional
 - Performance Optimierung [x]
 - WCAG [x]
+
+Bugs / offene Punkte
+    - login / register username / password keine length validierung
+    - wenn user / pass falsch, kommt keine warnung
+    - evtl. "submited" weglassen nur time und user
+    - breadcrumb !
+    - delete mit ok / cancel
+    - account mit unterformularen
+
+
