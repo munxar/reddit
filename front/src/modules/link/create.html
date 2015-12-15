@@ -4,11 +4,11 @@
         <form name="form" ng-submit="ctrl.create()" novalidate>
             <md-input-container>
                 <label>Descriptive Title</label>
-                <input type="text" ng-model="ctrl.vm.title" aria-label="Type Topic Title" required>
+                <input type="text" ng-model="ctrl.vm.title" aria-label="Type Topic Title" required md-maxlength="100">
             </md-input-container>
             <md-input-container>
                 <label>URL</label>
-                <input type="text" ng-model="ctrl.vm.content" aria-label="Type Topic URL" required>
+                <input type="text" ng-model="ctrl.vm.content" aria-label="Type Topic URL" required md-maxlength="100">
             </md-input-container>
 
             <section layout="row">

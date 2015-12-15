@@ -18,7 +18,7 @@
     <form name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
         <md-input-container>
             <label>Enter a comment</label>
-            <textarea required ng-model="ctrl.comment" rows="2" aria-label="Type your comment"></textarea>
+            <textarea required ng-model="ctrl.comment" rows="2" aria-label="Type your comment" md-maxlength="255"></textarea>
         </md-input-container>
         <section layout="row">
             <md-button class="md-raised md-primary" type="submit" ng-disabled="ctrl.form.$invalid" aria-label="Submit comment">Comment</md-button>
