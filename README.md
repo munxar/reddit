@@ -7,33 +7,36 @@ In addition we use typescript and jspm to make use of es6 modules in the fronten
 
 ## Setup
 You need the following binaries installed:
-* [node](https://nodejs.org/)
-* [npm](https://www.npmjs.com/)
-* [mongodb](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/)
+- [node](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+- [mongodb](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/)
 
-Install the following npm tools globally
-```$
-npm install -g gulp tsd
-```
+```sh
+# Install Gulp and Typescript globally
+$ npm install -g gulp tsd
 
-## Install Dependencies
-```$
-npm install
+# Install project Node dependencies
+$ npm install
 ```
 
 ## Development
-```$
-mongod
-gulp serve
+```sh
+# Run primary daemon process for MongoDB system
+$ mongod
+# Start Node Server and Gulp Task by running
+$ gulp serve
 ```
 
 ## Production
-```$
-npm run bundle
-mongod
-gulp serve
-(use http://localhost:3000/index2.html to access production build)
+```sh
+# Run NPM Bundle to build dist Folder
+$ npm run bundle
+# Run primary daemon process for MongoDB system
+$ mongod
+# Start Node Server and Gulp Task by running
+$ gulp serve
 ```
+Run this Site to access production build [http://localhost:3000/index2.html](http://localhost:3000/index2.html)
 
 # requirements
 tested with local installation of:
@@ -42,7 +45,9 @@ tested with local installation of:
  - gulp (3.9.0)
 
 # build and test
+```sh
 gulp
+```
 
 # status
 Link Modul
