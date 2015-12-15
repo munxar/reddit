@@ -27,6 +27,14 @@ mongod
 gulp serve
 ```
 
+## Production
+```$
+npm run bundle
+mongod
+gulp serve
+(use http://localhost:3000/index2.html to access production build)
+```
+
 # requirements
 tested with local installation of:
  - node (0.12.8 & 5.1.1)
@@ -58,8 +66,8 @@ User Modul
 Security Modul
 - User Login [x]
 - User Logout [x]
-- authorization nur angemeldete User könne Link, Kommentare, Rating verändern [x]
+- authorization nur angemeldete User können Link, Kommentare, Rating verändern [x]
 
 Optional
-- Performance Optimierung []
+- Performance Optimierung [x]
 - WCAG [x]

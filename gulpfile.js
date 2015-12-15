@@ -32,7 +32,7 @@ gulp.task(config.back.build, function () {
         .pipe(gulp.dest(config.back.outDir));
 });
 
-gulp.task(config.front.build, function () {
+gulp.task(config.front.build, ["build:html", "build:scss"], function () {
     return gulp.src(config.front.tsFiles)
         .pipe(ts(config.front.tsConfig))
         .pipe(gulp.dest(config.front.outDir));
@@ -76,7 +76,7 @@ gulp.task("build:scss", function() {
         .pipe(gulp.dest("front/dist"));
 });
 
-gulp.task(config.front.watch, [config.front.build, "build:html", "build:scss"], function () {
+gulp.task(config.front.watch, [config.front.build], function () {
     gulp.watch(config.front.tsFiles, [config.front.build, function() { browserSync.reload();}]);
     gulp.watch("front/src/**/*.html", ["build:html", function() { browserSync.reload(); }]);
     gulp.watch("front/src/**/*.scss", ["build:scss", function() { browserSync.reload(); }]);
@@ -98,4 +98,4 @@ gulp.task("serve", ["watch"], function() {
     }, 1000);
 });
 
-gulp.task("default", [config.back.test]);
+gulp.task("default", [config.back.test, config.front.build]);

@@ -11,16 +11,12 @@ System.config({
     "angular": "github:angular/bower-angular@1.4.8",
     "angular-material": "github:angular/bower-material@0.11.4",
     "angular-moment": "npm:angular-moment@1.0.0-beta.3",
-    "angular-translate": "github:angular-translate/bower-angular-translate@2.8.1",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
     "angular-validation-match": "npm:angular-validation-match@1.5.2",
     "clean-css": "npm:clean-css@3.4.8",
     "css": "github:systemjs/plugin-css@0.1.20",
     "font-awesome": "npm:font-awesome@4.5.0",
     "text": "github:systemjs/plugin-text@0.0.4",
-    "github:angular-translate/bower-angular-translate@2.8.1": {
-      "angular": "github:angular/bower-angular@1.4.8"
-    },
     "github:angular-ui/ui-router@0.2.15": {
       "angular": "github:angular/bower-angular@1.4.8"
     },
