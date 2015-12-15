@@ -78,7 +78,6 @@ Optional
 - WCAG [x]
 
 Bugs / offene Punkte
-    - login / register username / password keine length validierung
     - wenn user / pass falsch, kommt keine warnung
     - evtl. "submited" weglassen nur time und user
     - breadcrumb !
@@ -86,11 +85,11 @@ Bugs / offene Punkte
     - account mit unterformularen
 
     - After password change, form is wrong
-    - after comment red input
-    - Title on Mobile is cut
-    - detail page is not obvious
+    - after comment red input (form is wrong)
+    - Title on Mobile is cutted
+    - detail page is not obvious (i have to click on comments)
     - URL is not shown on detail (better for UX, what do I click here)
-    - Titel on detail links to home not page
+    - Title on detail -> links to home site not page (url)
     - newest Topic is at the bottom
     - URLS with https are not working (it writes https//)
 

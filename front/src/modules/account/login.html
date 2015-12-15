@@ -1,19 +1,29 @@
 <md-content layout="row" layout-margin layout-align="center">
     <md-content flex flex-gt-md="50">
         <h1>Login</h1>
-        <form ng-submit="ctrl.login()">
+        <form name="Login" ng-submit="ctrl.login()">
             <md-input-container>
                 <label>Username</label>
-                <input ng-model="ctrl.vm.username" aria-label="Type Username" type="text">
+                <input name="Username" ng-model="ctrl.vm.username" aria-label="Type Username" type="text" minlength="4" md-maxlength="16" required>
+                <div ng-messages="Login.Username.$error" ng-show="Login.Username.$dirty">
+                    <div ng-message="required">Username is required!</div>
+                    <div ng-message="minlength">Username is too short!</div>
+                    <div ng-message="md-maxlength">Username is too long!</div>
+                </div>
             </md-input-container>
             <md-input-container>
                 <label>Password</label>
-                <input ng-model="ctrl.vm.password" aria-label="Type Password" type="password">
+                <input name="Password" ng-model="ctrl.vm.password" aria-label="Type Password" type="password" minlength="4" md-maxlength="16" required>
+                <div ng-messages="Login.Password.$error" ng-show="Login.Password.$dirty">
+                    <div ng-message="required">Password is required!</div>
+                    <div ng-message="minlength">Password is too short!</div>
+                    <div ng-message="md-maxlength">Password is too long!</div>
+                </div>
             </md-input-container>
 
             <div layout="row">
                 <md-button aria-label="Login" class="md-raised md-primary" type="submit"
-                           ng-disabled="ctrl.vm.username.length < 3 || ctrl.vm.password.length < 3">Login
+                           ng-disabled="Login.$invalid">Login
                 </md-button>
                 <md-button aria-label="Go to Home" ui-sref="home">Cancel</md-button>
             </div>
