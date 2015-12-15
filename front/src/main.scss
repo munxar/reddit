@@ -1,5 +1,15 @@
 @import 'variables';
 
+// Reset H3
+h3 {
+    margin: 0;
+}
+
+// Add little Space to h4
+h4 {
+    margin: 5px 0;
+}
+
 // Sometimes ng-click handler does not turn into a pointer
 [ng-click] {
     cursor: pointer;

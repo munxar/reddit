@@ -1,16 +1,18 @@
 <md-list>
     <md-list-item class="md-3-line" layout="row">
         <linkit-rater votes="ctrl.topic.votes" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
-        <div class="md-list-item-text" flex>
+        <article flex>
             <h3><a class="md-display-1" href="{{ctrl.url(ctrl.topic.content)}}" target="_blank" aria-label="Go to Topic URL">{{ctrl.topic.title}}</a></h3>
-            <p>submitted <span am-time-ago="ctrl.topic.creationDate" aria-label="Submitted Time"></span> by <span aria-label="Topic Creator">{{ctrl.topic.creator.username}}</span></p>
-            <p aria-label="Total Comments">
-                <md-icon class="fa fa-comment" aria-label="Comment Icon"></md-icon>{{ctrl.topic.comments.length}} comments
-            </p>
-            <div class="md-actions" ng-if="ctrl.isOwner(ctrl.topic)">
-                <md-button class="md-warn md-hue-2" ng-click="ctrl.remove()" aria-label="Delete Topic">Delete</md-button>
+            <div class="md-list-item-text">
+                <p>submitted <span am-time-ago="ctrl.topic.creationDate" aria-label="Submitted Time"></span> by <span aria-label="Topic Creator">{{ctrl.topic.creator.username}}</span></p>
+                <p aria-label="Total Comments">
+                    <md-icon class="fa fa-comment" aria-label="Comment Icon"></md-icon>{{ctrl.topic.comments.length}} comments
+                </p>
+                <div class="md-actions" ng-if="ctrl.isOwner(ctrl.topic)">
+                    <md-button class="md-warn md-hue-2" ng-click="ctrl.remove()" aria-label="Delete Topic">Delete</md-button>
+                </div>
             </div>
-        </div>
+        </article>
     </md-list-item>
 </md-list>
 
@@ -31,13 +33,15 @@
 </md-content>
 
 <md-list>
-    <md-list-item class="md-3-line" ng-repeat="comment in ctrl.topic.comments">
+    <md-list-item class="md-3-line" layout="row" ng-repeat="comment in ctrl.topic.comments">
         <linkit-rater votes="comment.votes" onupdate="ctrl.voteComment(comment)"></linkit-rater>
-        <div class="md-list-item-text">
+        <article flex>
             <h4 class="md-title" aria-label="Comment Title">{{comment.content}}</h4>
-            <p aria-label="Comment Details">commented <span am-time-ago="comment.creationDate" aria-label="commented Time"></span> by <span aria-label="Comment Creator">{{comment.creator.username}}</span></p>
-            <a ng-if="ctrl.isOwner(comment)" ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2" aria-label="Delete Comment">Delete</a>
-        </div>
+            <div class="md-list-item-text">
+                <p aria-label="Comment Details">commented <span am-time-ago="comment.creationDate" aria-label="commented Time"></span> by <span aria-label="Comment Creator">{{comment.creator.username}}</span></p>
+                <a ng-if="ctrl.isOwner(comment)" ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2" aria-label="Delete Comment">Delete</a>
+            </div>
+        </article>
         <md-divider></md-divider>
     </md-list-item>
 </md-list>
