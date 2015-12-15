@@ -86,12 +86,12 @@ Bugs / offene Punkte
     - account mit unterformularen [x]
     - cloak / ladebalken
 
-    - After password change, form is wrong [x]
-    - after comment red input
-    - Title on Mobile is cut
-    - detail page is not obvious
+    - After password change, form is wrong
+    - after comment red input (form is wrong)
+    - Title on Mobile is cutted
+    - detail page is not obvious (i have to click on comments)
     - URL is not shown on detail (better for UX, what do I click here)
-    - Titel on detail links to home not page
+    - Title on detail -> links to home site not page (url)
     - newest Topic is at the bottom
     - URLS with https are not working (it writes https//)
 
