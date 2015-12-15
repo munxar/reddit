@@ -8,8 +8,8 @@
                 <input name="oldPassword" ng-model="ctrl.vm.password" aria-label="Type old Password" type="password" minlength="4" md-maxlength="16" required>
                 <div ng-messages="form.oldPassword.$error" ng-show="form.oldPassword.$dirty">
                     <div ng-message="required">old Password is required!</div>
-                    <div ng-message="minlength">old Password is too short!</div>
-                    <div ng-message="md-maxlength">old Password is too long!</div>
+                    <div ng-message="minlength">min Password length is 4!</div>
+                    <div ng-message="md-maxlength">max Password length is 16</div>
                 </div>
             </md-input-container>
             <md-input-container>
@@ -17,8 +17,8 @@
                 <input name="newPassword" ng-model="ctrl.vm.newPassword" aria-label="Type new Password" type="password" minlength="4" md-maxlength="16" required>
                 <div ng-messages="form.newPassword.$error" ng-show="form.newPassword.$dirty">
                     <div ng-message="required">new Password is required!</div>
-                    <div ng-message="minlength">new Password is too short!</div>
-                    <div ng-message="md-maxlength">new Password is too long!</div>
+                    <div ng-message="minlength">min Password length is 4!</div>
+                    <div ng-message="md-maxlength">max Password length is 16</div>
                 </div>
             </md-input-container>
             <md-input-container>
@@ -26,8 +26,8 @@
                 <input name="confirmPassword" ng-model="ctrl.vm.newPasswordConfirm" aria-label="Confirm new Password" type="password" match="ctrl.vm.newPassword" minlength="4" md-maxlength="16" required>
                 <div ng-messages="form.confirmPassword.$error" ng-show="form.confirmPassword.$dirty">
                     <div ng-message="required">confirm Password is required!</div>
-                    <div ng-message="minlength">confirm Password is too short!</div>
-                    <div ng-message="md-maxlength">confirm Password is too long!</div>
+                    <div ng-message="minlength">min Password length is 4!</div>
+                    <div ng-message="md-maxlength">max Password length is 16</div>
                 </div>
             </md-input-container>
 

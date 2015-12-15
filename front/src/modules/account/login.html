@@ -7,8 +7,8 @@
                 <input name="Username" ng-model="ctrl.vm.username" aria-label="Type Username" type="text" minlength="4" md-maxlength="16" required>
                 <div ng-messages="Login.Username.$error" ng-show="Login.Username.$dirty">
                     <div ng-message="required">Username is required!</div>
-                    <div ng-message="minlength">Username is too short!</div>
-                    <div ng-message="md-maxlength">Username is too long!</div>
+                    <div ng-message="minlength">min Username length is 4!</div>
+                    <div ng-message="md-maxlength">max Username length is 16</div>
                 </div>
             </md-input-container>
             <md-input-container>
@@ -16,8 +16,8 @@
                 <input name="Password" ng-model="ctrl.vm.password" aria-label="Type Password" type="password" minlength="4" md-maxlength="16" required>
                 <div ng-messages="Login.Password.$error" ng-show="Login.Password.$dirty">
                     <div ng-message="required">Password is required!</div>
-                    <div ng-message="minlength">Password is too short!</div>
-                    <div ng-message="md-maxlength">Password is too long!</div>
+                    <div ng-message="minlength">min Password length is 4!</div>
+                    <div ng-message="md-maxlength">max Password length is 16</div>
                 </div>
             </md-input-container>
 
