@@ -10,7 +10,7 @@ import "angular-validation-match";
 
 // load our application modules
 import "./modules/auth/module";
-import "./modules/link/module";
+import link from "./modules/link/module";
 import "./modules/rating/module";
 import "./modules/account/module";
 
@@ -27,7 +27,7 @@ angular
         "validation.match",
         "linkit.auth",
         "linkit.account",
-        "linkit.link",
+        link.name,
         "linkit.rating",
     ])
     .config(config)

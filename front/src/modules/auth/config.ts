@@ -13,8 +13,12 @@ export function config($httpProvider: ng.IHttpProvider) {
                 return config;
             },
             "responseError": function (response) {
-                if (response.status === 401) {
-                    $location.path("/login");
+                if (response.status === 401 || response.status === 403) {
+                    //$location.path("/login");
+                }
+                // not found -> redirect
+                if(response.status === 404) {
+                    $location.path("/");
                 }
                 return $q.reject(response);
             }

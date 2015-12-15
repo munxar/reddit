@@ -7,8 +7,8 @@ class TopicViewModel {
 export class CreateCtrl {
     vm = new TopicViewModel();
 
-    static $inject = ["$state", "$http"];
-    constructor(private $state, private $http) {
+    static $inject = ["$state", "$http", "toaster"];
+    constructor(private $state, private $http, private toaster) {
 
     }
 
@@ -24,8 +24,8 @@ export class CreateCtrl {
 export class ListCtrl {
     topics = [];
 
-    static $inject = ["$http"];
-    constructor(private $http) {
+    static $inject = ["$http", "toaster"];
+    constructor(private $http, private toaster) {
         $http.get("/api/topic").then(res => this.topics = res.data);
     }
 
@@ -42,17 +42,17 @@ export class ListCtrl {
         this.$http.put("/api/topic/" + topic._id + "/vote")
             .then(res => {
                 topic.votes = res.data.votes;
-            }, console.error);
+            }, err => this.toaster.show("login to rate a link"));
     }
 }
 
 export class DetailCtrl {
-    topic:any = { vote:[] };
+    topic:any = { vote:[], creator: {} };
     comment = "";
     form;
 
-    static $inject = ["$http", "$state"];
-    constructor(private $http, private $state) {
+    static $inject = ["$http", "$state", "auth", "toaster"];
+    constructor(private $http, private $state, private auth, private toaster) {
         var id = $state.params._id;
         $http.get("/api/topic/" + id)
             .then(res => {
@@ -86,13 +86,22 @@ export class DetailCtrl {
         this.$http.put("/api/topic/" + topic._id + "/vote")
             .then(res => {
                 topic.votes = res.data.votes;
-            }, console.error);
+            }, () => this.toaster.show("login to rate link"));
     }
 
     voteComment(comment) {
         this.$http.put("/api/topic/" + this.topic._id + "/comment/" + comment._id + "/vote")
             .then(res => {
                 comment.votes = res.data.votes;
-            }, console.error);
+            }, () => this.toaster.show("login to vote comment"));
+    }
+
+    isOwner(entity) {
+        var creator = (entity ? (entity.creator ? entity.creator._id : undefined) : undefined)
+        return this.auth.user._id === creator;
+    }
+
+    isAuthenticated() {
+        return this.auth.isAuthenticated();
     }
 }

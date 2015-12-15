@@ -22,12 +22,17 @@
     "gulp-nodemon": "^2.0.4",
     "gulp-sass": "^2.1.0",
     "gulp-typescript": "^2.10.0",
+    "karma": "^0.13.15",
+    "karma-jspm": "^2.0.2",
+    "karma-mocha": "^0.2.1",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.19",
     "supertest": "^1.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "jspm install",
-      "bundle": "gulp && jspm bundle-sfx --minify dist/main front/dist/app.js"
+    "bundle": "gulp && jspm bundle-sfx --minify dist/main front/dist/app.js"
   },
   "repository": {
     "type": "git",
@@ -47,9 +52,11 @@
     "dependencies": {
       "angular": "github:angular/bower-angular@^1.4.8",
       "angular-material": "github:angular/bower-material@^0.11.4",
+      "angular-mocks": "github:angular/bower-angular-mocks@^1.4.8",
       "angular-moment": "npm:angular-moment@^1.0.0-beta.3",
       "angular-ui-router": "github:angular-ui/ui-router@^0.2.15",
       "angular-validation-match": "npm:angular-validation-match@^1.5.2",
+      "chai": "npm:chai@^3.4.1",
       "css": "github:systemjs/plugin-css@^0.1.20",
       "font-awesome": "npm:font-awesome@^4.5.0",
       "text": "github:systemjs/plugin-text@^0.0.4"

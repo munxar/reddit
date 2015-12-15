@@ -8,4 +8,5 @@ export function config($urlRouterProvider:ng.ui.IUrlRouterProvider, $mdThemingPr
         .theme("default")
         .primaryPalette("blue-grey")
         .accentPalette("purple");
+
 }

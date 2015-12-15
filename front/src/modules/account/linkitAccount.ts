@@ -2,13 +2,14 @@ var template = require("./linkitAccount.html!text");
 
 class AccountCtrl {
 
-    static $inject = ["auth"];
-    constructor(private auth) {
+    static $inject = ["auth", "toaster"];
+    constructor(private auth, private toaster) {
 
     }
 
     logout() {
         this.auth.logout();
+        this.toaster.show("logout success");
     }
 
     isAuthenticated() {

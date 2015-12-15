@@ -5,6 +5,7 @@ var istanbul = require("gulp-istanbul");
 var nodemon = require("gulp-nodemon");
 var browserSync = require("browser-sync").create();
 var sass = require("gulp-sass");
+var KarmaServer = require("karma").Server;
 
 var config = {
     back: {
@@ -87,6 +88,12 @@ gulp.task("watch", [config.back.watch, config.front.watch], function() {
         script: "back/dist/main",
         watch: "back/dist/**/*.js"
     });
+});
+
+gulp.task("front:test", function(done) {
+    new KarmaServer({
+        configFile: __dirname + "/karma.conf.js"
+    }, done).start();
 });
 
 gulp.task("serve", ["watch"], function() {

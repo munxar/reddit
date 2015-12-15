@@ -10,9 +10,11 @@ System.config({
   map: {
     "angular": "github:angular/bower-angular@1.4.8",
     "angular-material": "github:angular/bower-material@0.11.4",
+    "angular-mocks": "github:angular/bower-angular-mocks@1.4.8",
     "angular-moment": "npm:angular-moment@1.0.0-beta.3",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
     "angular-validation-match": "npm:angular-validation-match@1.5.2",
+    "chai": "npm:chai@3.4.1",
     "clean-css": "npm:clean-css@3.4.8",
     "css": "github:systemjs/plugin-css@0.1.20",
     "font-awesome": "npm:font-awesome@4.5.0",
@@ -24,6 +26,9 @@ System.config({
       "angular": "github:angular/bower-angular@1.4.8"
     },
     "github:angular/bower-angular-aria@1.4.8": {
+      "angular": "github:angular/bower-angular@1.4.8"
+    },
+    "github:angular/bower-angular-mocks@1.4.8": {
       "angular": "github:angular/bower-angular@1.4.8"
     },
     "github:angular/bower-material@0.11.4": {
@@ -93,6 +98,14 @@ System.config({
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
+    "npm:chai@3.4.1": {
+      "assertion-error": "npm:assertion-error@1.0.1",
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "deep-eql": "npm:deep-eql@0.1.3",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0",
+      "type-detect": "npm:type-detect@1.0.0"
+    },
     "npm:clean-css@3.4.8": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "commander": "npm:commander@2.8.1",
@@ -116,6 +129,10 @@ System.config({
     },
     "npm:core-util-is@1.0.2": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
+    },
+    "npm:deep-eql@0.1.3": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "type-detect": "npm:type-detect@0.1.1"
     },
     "npm:font-awesome@4.5.0": {
       "css": "github:systemjs/plugin-css@0.1.20"

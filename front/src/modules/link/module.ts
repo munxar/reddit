@@ -1,8 +1,11 @@
 ///<reference path="../../../../typings/tsd.d.ts"/>
 import * as angular from "angular";
 import {config} from "./config";
+import core from "../core/module";
 
-angular
-    .module("linkit.link", [])
+export default angular
+    .module("linkit.link", [
+        core.name
+    ])
     .config(config)
 ;

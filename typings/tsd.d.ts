@@ -20,3 +20,4 @@
 /// <reference path="jquery/jquery.d.ts" />
 /// <reference path="morgan/morgan.d.ts" />
 /// <reference path="angular-translate/angular-translate.d.ts" />
+/// <reference path="angularjs/angular-mocks.d.ts" />

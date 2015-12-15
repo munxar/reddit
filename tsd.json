@@ -54,7 +54,7 @@
       "commit": "220716d99a77df1654fb4f6cd760dc134ffa8e89"
     },
     "angular-material/angular-material.d.ts": {
-      "commit": "3e36ee3d77a06c8c540be4c55cfbcf10100db1ae"
+      "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
     },
     "angularjs/angular.d.ts": {
       "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
@@ -69,6 +69,9 @@
       "commit": "a81c34dcfd6b681b55eefd02b3f19e9635bc1e9c"
     },
     "angular-translate/angular-translate.d.ts": {
+      "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
+    },
+    "angularjs/angular-mocks.d.ts": {
       "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
     }
   }

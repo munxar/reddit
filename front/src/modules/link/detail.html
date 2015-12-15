@@ -7,14 +7,14 @@
             <p aria-label="Total Comments">
                 <md-icon class="fa fa-comment" aria-label="Comment Icon"></md-icon>{{ctrl.topic.comments.length}} comments
             </p>
-            <div class="md-actions">
+            <div class="md-actions" ng-if="ctrl.isOwner(ctrl.topic)">
                 <md-button class="md-warn md-hue-2" ng-click="ctrl.remove()" aria-label="Delete Topic">Delete</md-button>
             </div>
         </div>
     </md-list-item>
 </md-list>
 
-<md-content layout-margin>
+<md-content ng-if="ctrl.isAuthenticated()" layout-margin>
     <form name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
         <md-input-container>
             <label>Enter a comment</label>
@@ -25,13 +25,14 @@
         </section>
     </form>
 </md-content>
+
 <md-list>
     <md-list-item class="md-3-line" ng-repeat="comment in ctrl.topic.comments">
         <linkit-rater votes="comment.votes" onupdate="ctrl.voteComment(comment)"></linkit-rater>
         <div class="md-list-item-text">
             <h4 class="md-title" aria-label="Comment Title">{{comment.content}}</h4>
             <p aria-label="Comment Details">commented <span am-time-ago="comment.creationDate" aria-label="commented Time"></span> by <a href="" aria-label="Comment Creator">{{comment.creator.username}}</a></p>
-            <a ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2" aria-label="Delete Comment">Delete</a>
+            <a ng-if="ctrl.isOwner(comment)" ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2" aria-label="Delete Comment">Delete</a>
         </div>
         <md-divider></md-divider>
     </md-list-item>
