@@ -1,7 +1,7 @@
 System.config({
   baseURL: "",
   defaultJSExtensions: true,
-  transpiler: "none",
+  transpiler: false,
   paths: {
     "github:*": "lib/github/*",
     "npm:*": "lib/npm/*"
@@ -10,6 +10,7 @@ System.config({
   map: {
     "angular": "github:angular/bower-angular@1.4.8",
     "angular-material": "github:angular/bower-material@0.11.4",
+    "angular-messages": "npm:angular-messages@1.4.8",
     "angular-mocks": "github:angular/bower-angular-mocks@1.4.8",
     "angular-moment": "npm:angular-moment@1.0.0-beta.3",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",

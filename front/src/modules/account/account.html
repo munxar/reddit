@@ -5,15 +5,24 @@
         <form name="form" ng-submit="ctrl.changePassword()" novalidate>
             <md-input-container>
                 <label>Old Password</label>
-                <input ng-model="ctrl.vm.password" aria-label="Type old Password" type="password" required>
+                <input name="oldPassword" ng-model="ctrl.vm.password" aria-label="Type old Password" type="password" required>
+                <div ng-messages="form.oldPassword.$error" ng-show="form.oldPassword.$dirty">
+                    <div ng-message="required">old Password is required!</div>
+                </div>
             </md-input-container>
             <md-input-container>
                 <label>New Password</label>
-                <input ng-model="ctrl.vm.newPassword" aria-label="Type new Password" type="password" required>
+                <input name="newPassword" ng-model="ctrl.vm.newPassword" aria-label="Type new Password" type="password" required>
+                <div ng-messages="form.newPassword.$error" ng-show="form.newPassword.$dirty">
+                    <div ng-message="required">new Password is required!</div>
+                </div>
             </md-input-container>
             <md-input-container>
                 <label>Confirm Password</label>
-                <input ng-model="ctrl.vm.newPasswordConfirm" aria-label="Confirm new Password" type="password" match="ctrl.vm.newPassword" required>
+                <input name="confirmPassword" ng-model="ctrl.vm.newPasswordConfirm" aria-label="Confirm new Password" type="password" match="ctrl.vm.newPassword" required>
+                <div ng-messages="form.confirmPassword.$error" ng-show="form.confirmPassword.$dirty">
+                    <div ng-message="required">confirm Password is required!</div>
+                </div>
             </md-input-container>
 
             <div layout="row">

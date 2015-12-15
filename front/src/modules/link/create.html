@@ -4,11 +4,19 @@
         <form name="form" ng-submit="ctrl.create()" novalidate>
             <md-input-container>
                 <label>Descriptive Title</label>
-                <input type="text" ng-model="ctrl.vm.title" aria-label="Type Topic Title" required md-maxlength="100">
+                <input name="Title" type="text" ng-model="ctrl.vm.title" aria-label="Type Topic Title" required md-maxlength="100">
+                <div ng-messages="form.Title.$error" ng-show="form.Title.$dirty">
+                    <div ng-message="required">Title is required!</div>
+                    <div ng-message="md-maxlength">Title is too long!</div>
+                </div>
             </md-input-container>
             <md-input-container>
                 <label>URL</label>
-                <input type="text" ng-model="ctrl.vm.content" aria-label="Type Topic URL" required md-maxlength="100">
+                <input name="Url" type="text" ng-model="ctrl.vm.content" aria-label="Type Topic URL" required md-maxlength="100">
+                <div ng-messages="form.Url.$error" ng-show="form.Url.$dirty">
+                    <div ng-message="required">Url is required!</div>
+                    <div ng-message="md-maxlength">Url is too long!</div>
+                </div>
             </md-input-container>
 
             <section layout="row">

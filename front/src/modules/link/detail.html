@@ -18,7 +18,11 @@
     <form name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
         <md-input-container>
             <label>Enter a comment</label>
-            <textarea required ng-model="ctrl.comment" rows="2" aria-label="Type your comment" md-maxlength="255"></textarea>
+            <textarea name="Comment" required ng-model="ctrl.comment" rows="2" aria-label="Type your comment" md-maxlength="255"></textarea>
+            <div ng-messages="ctrl.form.Comment.$error" ng-show="ctrl.form.Comment.$dirty">
+                <div ng-message="required">Comment is required!</div>
+                <div ng-message="md-maxlength">Comment is too long!</div>
+            </div>
         </md-input-container>
         <section layout="row">
             <md-button class="md-raised md-primary" type="submit" ng-disabled="ctrl.form.$invalid" aria-label="Submit comment">Comment</md-button>

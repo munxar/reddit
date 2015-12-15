@@ -7,6 +7,7 @@ import "angular-ui-router";
 import "font-awesome";
 import "angular-moment";
 import "angular-validation-match";
+import "angular-messages";
 
 // load our application modules
 import "./modules/auth/module";
@@ -22,6 +23,7 @@ import {config} from "./config";
 angular
     .module("linkit", [
         "ngMaterial",
+        "ngMessages",
         "ui.router",
         "angularMoment",
         "validation.match",
