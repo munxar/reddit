@@ -78,22 +78,21 @@ Optional
 - WCAG [x]
 
 Bugs / offene Punkte
-    - login / register username / password keine length validierung [x]
-    - wenn user / pass falsch, kommt keine warnung [x]
-    - evtl. "submited" weglassen nur time und user
-    - breadcrumb !
-    - delete mit ok / cancel
-    - account mit unterformularen [x]
-    - cloak / ladebalken
-
-    - After password change, form is wrong
-    - after comment red input (form is wrong)
-    - Title on Mobile is cutted [x]
-    - detail page is not obvious (i have to click on comments)
-    - URL is not shown on detail (better for UX, what do I click here)
-    - Title on detail -> links to home site not page (url)
-    - newest Topic is at the bottom
-    - URLS with https are not working (it writes https//)
+- login / register username / password keine length validierung [x]
+- wenn user / pass falsch, kommt keine warnung [x]
+- evtl. "submited" weglassen nur time und user
+- breadcrumb !
+- delete mit ok / cancel
+- account mit unterformularen [x]
+- cloak / ladebalken
+- After password change, form is wrong
+- after comment red input (form is wrong)
+- Title on Mobile is cutted [x]
+- detail page is not obvious (i have to click on comments)
+- URL is not shown on detail (better for UX, what do I click here)
+- Title on detail -> links to home site not page (url)
+- newest Topic is at the bottom
+- URLS with https are not working (it writes https//)
 
 
 
