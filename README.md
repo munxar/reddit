@@ -1,7 +1,17 @@
 [![Build Status](https://travis-ci.org/munxar/reddit.svg?branch=master)](https://travis-ci.org/munxar/reddit)
 
 # linkit
-simplified reddit clone build with the MEAN stack.
+Linkit is a simplified reddit clone build with the MEAN stack.
+
+##linkit is built with:
+ * [Node.js](http://www.nodejs.org/)
+ * [MongoDB](http://www.mongodb.org/)
+ * [Mongoose](http://mongoosejs.com/)
+ * [Typescript](http://www.typescriptlang.org/)
+ * [jspm](http://jspm.io/)
+ * [Express](http://expressjs.com/)
+ * [AngularJS](http://angularjs.org/)
+ * [Angular Material](https://material.angularjs.org)
 
 In addition we use typescript and jspm to make use of es6 modules in the frontend.
 
@@ -57,6 +67,14 @@ We tested the App on following devices:
 ```sh
 $ gulp
 ```
+
+## Test
+To Test our Application we wrote unit and integration tests for backend and frontend.
+
+We use following Test Libraries:
+* [Karma](http://karma-runner.github.io/0.13/index.html)
+* [Mocha](http://mochajs.org/)
+* [Chai](http://chaijs.com/)
 
 ## Usertest
 
