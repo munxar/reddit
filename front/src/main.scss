@@ -5,6 +5,16 @@ h3 {
     margin: 5px 0;
 }
 
+a:link, a:visited {
+    color: $primary;
+    text-decoration: none;
+}
+
+a:active, a:hover {
+    color: darken($primary, 20%);
+    text-decoration: underline;
+}
+
 // Sometimes ng-click handler does not turn into a pointer
 [ng-click] {
     cursor: pointer;
@@ -16,18 +26,16 @@ h3 {
     margin-right: 4px;
 }
 
-a:link, a:visited {
+// Style for Website URL
+.list-item-url {
     color: $primary;
-    text-decoration:none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-a:active, a:hover {
-    color: darken($primary, 20%);
-    text-decoration:underline;
-}
-
-.url {
-    text-decoration:underline;
+.list-item-submitted {
+    margin: 5px 0;
 }
 
 // Style for Topic Title
@@ -39,14 +47,15 @@ a:active, a:hover {
 // breadcrumb navigation
 .breadcrumb {
     // insert a separator as pseudo element
-    > :after {
-        content:"»";
-        margin-left: 0.3rem;
+    :after {
+        content: "»";
+        margin-left: 5px;
         color: $grey;
     }
+
     // except for the last child
-    > :last-child:after {
-        content:"";
+    :last-of-type:after {
+        content: "";
     }
 }
 
