@@ -52,7 +52,7 @@ $ gulp
 ## Usertest
 
 ### Userin 1
-[User Image](usertest/userin1.jpg)
+![User Image](usertest/userin1.jpg)
 - login / register, username / password no length validation [x]
 - If user / password is wrong, display a message [x]
 - On Title details, display time and user only [x]
@@ -62,7 +62,7 @@ $ gulp
 - add Breadcrumb for better orientation [x]
 
 ### Userin 2
-[User Image](usertest/userin2.jpg)
+![User Image](usertest/userin2.jpg)
 - Detail page is not obvious (I have to click on comments to see details)
 - URL is not shown on detail (better for UX, what do I click here)
 - Title on detail links to home site not to website (url)
