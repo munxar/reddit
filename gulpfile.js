@@ -20,6 +20,7 @@ var config = {
     },
     front: {
         build: "front:build",
+        test: "front:test",
         watch: "front:watch",
         tsFiles: "front/src/**/*.ts",
         outDir: "front/dist",
@@ -90,7 +91,7 @@ gulp.task("watch", [config.back.watch, config.front.watch], function() {
     });
 });
 
-gulp.task("front:test", function(done) {
+gulp.task(config.front.test, [config.back.test, config.front.build], function(done) {
     new KarmaServer({
         configFile: __dirname + "/karma.conf.js"
     }, done).start();
@@ -105,4 +106,4 @@ gulp.task("serve", ["watch"], function() {
     }, 1000);
 });
 
-gulp.task("default", [config.back.test, config.front.build]);
+gulp.task("default", [config.back.test, config.front.test]);
