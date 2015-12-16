@@ -20,16 +20,16 @@ export interface IComment extends Document {
 // mongoose schema for comment
 export var CommentSchema = new Schema({
     // comment content
-    content: {type: String, required: true},
+    content: {type: String, required: true, minlength: 1, maxlength: 255},
 
     // a comment belongs to a topic
-    topic: {type: Schema.Types.ObjectId, required: true, ref: "Topic"},
+    topic: {type: Schema.Types.ObjectId, required: true, ref: "Topic", minlength: 1, maxlength: 255},
 
     // optional parent, to structure comments as tree
     parent: {type: Schema.Types.ObjectId},
 
     // account id of creator
-    creator: {type: Schema.Types.ObjectId, required: true, ref: "Account"},
+    creator: {type: Schema.Types.ObjectId, ref: "Account"},
     // timestamp
     creationDate: {type: Date, required: true, "default": Date.now},
 

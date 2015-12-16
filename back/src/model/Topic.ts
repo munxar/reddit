@@ -20,14 +20,14 @@ export interface ITopic extends Document {
 // mongoose schema for topic
 var TopicSchema = new Schema({
     // title of the topic
-    title: {type: String, required: true},
+    title: {type: String, required: true, minlength: 0, maxlength: 255},
     // type of topic
     type: {type: String, "enum": ["url", "text"], require: true, "default": "url"},
     // url if type == url, or text if type == text
-    content: {type: String, required: true},
+    content: {type: String, required: true, minlength: 0, maxlength: 255},
 
     // account id of creator
-    creator: {type: Schema.Types.ObjectId, required: true, ref: "Account"},
+    creator: {type: Schema.Types.ObjectId, ref: "Account"},
     // timestamp
     creationDate: {type: Date, required: true, "default": Date.now},
 

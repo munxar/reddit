@@ -1,31 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-cloak>
 <head>
     <meta charset="UTF-8">
     <title>linkit</title>
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="lib/github/angular/bower-angular@1.4.8/angular-csp.css">
 </head>
 <body layout="column">
 
-    <md-toolbar>
-        <div class="md-toolbar-tools" layout="row" layout-sm="column">
-            <md-button ui-sref="home" aria-label="go to Homepage">
-                <img src="src/logo.svg" class="logo" alt="linkit Logo">
+<md-toolbar>
+    <div class="md-toolbar-tools" layout="row" layout-sm="column">
+        <md-button ui-sref="home" aria-label="go to Homepage">
+            <md-icon md-svg-src="src/logo.svg" class="logo" alt="linkit logo"></md-icon>
+            Linkit
+        </md-button>
+
+        <div flex layout="row" layout-align="center center">
+            <md-button ui-sref="create" ng-if="ctrl.isAuthenticated()" aria-label="Create new Link">
+                <md-icon class="fa fa-plus fa-lg" aria-label="new Link Icon"></md-icon>
+                New Link
             </md-button>
-
-            <div flex layout="row" layout-align="center center">
-                <md-button ui-sref="create" ng-if="ctrl.isAuthenticated()" aria-label="Create new Link">
-                    <md-icon class="fa fa-plus fa-lg" aria-label="new Link Icon"></md-icon>
-                    New Link
-                </md-button>
-            </div>
-
-            <linkit-account></linkit-account>
         </div>
-    </md-toolbar>
 
-    <ui-view role="main" layout="column"></ui-view>
+        <linkit-account></linkit-account>
+    </div>
+</md-toolbar>
 
-    <script src="dist/app.js"></script>
+<ui-view role="main" layout="column"></ui-view>
+
+<script src="dist/app.js"></script>
 </body>
 </html>

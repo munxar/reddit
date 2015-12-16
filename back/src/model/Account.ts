@@ -13,8 +13,8 @@ export interface IAccount extends Document {
 
 // mongoose schema for user
 var AccountSchema = new Schema({
-    username: { type: String, required: true, index: { unique: true } },
-    password: { type: String, required: true }
+    username: { type: String, required: true, index: { unique: true }, minlength: 4, maxlength: 16 },
+    password: { type: String, required: true, minlength: 4, maxlength: 16 }
 });
 
 // if password was modified, encrypt it and override password with salt/hash string
