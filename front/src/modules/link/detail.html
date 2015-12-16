@@ -25,9 +25,9 @@
         </md-list-item>
     </md-list>
 
-    <md-content ng-if="ctrl.isAuthenticated()" layout-margin>
+    <md-content layout-margin>
         <h1 class="md-title">Comments</h1>
-        <form name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
+        <form ng-if="ctrl.isAuthenticated()"  name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
             <md-input-container>
                 <label>Enter a comment</label>
                 <textarea name="Comment" required ng-model="ctrl.comment" rows="2" aria-label="Type your comment"
