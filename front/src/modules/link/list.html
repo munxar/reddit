@@ -6,7 +6,7 @@
     <md-list>
         <md-list-item class="md-3-line" ng-repeat="topic in ctrl.topics" layout="row">
             <linkit-rater votes="topic.votes" onupdate="ctrl.vote(topic)"></linkit-rater>
-            <article flex>
+            <article class="list-item" flex>
                 <h3 class="md-headline"><a ui-sref="detail(topic)">{{topic.title}}</a></h3>
                 <div class="md-list-item-text">
                     <div class="list-item-url">

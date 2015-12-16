@@ -7,7 +7,7 @@
     <md-list>
         <md-list-item class="md-3-line" layout="row">
             <linkit-rater votes="ctrl.topic.votes" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
-            <article flex>
+            <article class="list-item" flex>
                 <h3 class="md-headline">{{ctrl.topic.title}}</h3>
                 <div class="list-item-url">
                     <a href="{{ctrl.topic.content}}" target="_blank" aria-label="Go to Topic URL">{{ctrl.topic.content}}</a>
