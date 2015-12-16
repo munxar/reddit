@@ -22,24 +22,8 @@ a:link, a:visited {
 
 a:active, a:hover {
     color: darken($primary, 20%);
-    text-decoration:underline
+    text-decoration:underline;
 }
-
-/*
-// Style Links in Paragraph Tag
-p {
-    a:link,
-    a:visited {
-        color: $primary;
-    }
-
-    a:active,
-    a:hover {
-        color: darken($primary, 20%);
-        text-decoration:underline
-    }
-}
-*/
 
 // Style for Topic Title
 .md-headline {

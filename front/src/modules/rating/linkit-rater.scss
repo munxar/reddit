@@ -5,6 +5,10 @@
     border: 1px solid $light-grey;
     padding: 10px 20px;
 
+    &:hover {
+        text-decoration: none;
+    }
+
     md-icon {
         width: 15px;
     }
