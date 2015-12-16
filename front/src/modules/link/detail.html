@@ -9,7 +9,7 @@
                     <md-icon class="fa fa-comment" aria-label="Comment Icon"></md-icon>{{ctrl.topic.comments.length}} comments
                 </p>
                 <div class="md-actions" ng-if="ctrl.isOwner(ctrl.topic)">
-                    <md-button class="md-warn md-hue-2" ng-click="ctrl.remove()" aria-label="Delete Topic">Delete</md-button>
+                    <linkit-delete onaction="ctrl.remove()"></linkit-delete>
                 </div>
             </div>
         </article>
@@ -26,22 +26,24 @@
                 <div ng-message="md-maxlength">Comment is too long!</div>
             </div>
         </md-input-container>
-        <section layout="row">
+        <div class="md-actions">
             <md-button class="md-raised md-primary" type="submit" ng-disabled="ctrl.form.$invalid" aria-label="Submit comment">Comment</md-button>
-        </section>
+        </div>
     </form>
 </md-content>
 
 <md-list>
     <md-list-item class="md-3-line" layout="row" ng-repeat="comment in ctrl.topic.comments">
+        <md-divider></md-divider>
         <linkit-rater votes="comment.votes" onupdate="ctrl.voteComment(comment)"></linkit-rater>
         <article flex>
             <h3 class="md-subhead" aria-label="Comment Title">{{comment.content}}</h3>
             <div class="md-list-item-text">
                 <p aria-label="Comment Details"><span am-time-ago="comment.creationDate" aria-label="commented Time"></span> by <span aria-label="Comment Creator">{{comment.creator.username | account}}</span></p>
-                <a ng-if="ctrl.isOwner(comment)" ng-click="ctrl.removeComment(comment)" class="md-button md-warn md-hue-2" aria-label="Delete Comment">Delete</a>
+            </div>
+            <div class="md-actions" ng-if="ctrl.isOwner(comment)" >
+                <linkit-delete onaction="ctrl.removeComment(comment)"></linkit-delete>
             </div>
         </article>
-        <md-divider></md-divider>
     </md-list-item>
 </md-list>
