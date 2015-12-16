@@ -22,6 +22,12 @@ You need the following binaries installed:
 - [npm](https://www.npmjs.com/)
 - [mongodb](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/)
 
+We tested with local installation of:
+- node (>0.12.8)
+- npm (>2.14.4)
+- mongodb (3.0.6)
+- gulp (3.9.0)
+
 ```sh
 # Install Gulp and Typescript globally
 $ npm install -g gulp tsd
@@ -50,12 +56,7 @@ $ gulp serve
 Run this Site to access production build [http://localhost:3000/index2.html](http://localhost:3000/index2.html)
 
 # Requirements
-tested with local installation of:
-- node (0.12.8 & 5.1.1)
-- mongodb (3.0.6)
-- gulp (3.9.0)
-
-# Build and test
+## Build and test
 ```sh
 $ gulp
 ```
