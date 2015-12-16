@@ -7,10 +7,9 @@
         <md-list-item class="md-3-line" ng-repeat="topic in ctrl.topics" layout="row">
             <linkit-rater votes="topic.votes" onupdate="ctrl.vote(topic)"></linkit-rater>
             <article flex>
-                <h3>
-                    <a class="md-headline" title="{{topic.title}}" aria-label="Topic Title" href="{{topic.content}}" target="_blank">{{topic.title}}</a>
-                </h3>
+                <h3 class="md-headline"><a ui-sref="detail(topic)">{{topic.title}}</a></h3>
                 <div class="md-list-item-text">
+                    <span>URL: <a title="{{topic.title}}" aria-label="Topic Title" href="{{topic.content}}" target="_blank">{{topic.content}}</a></span>
                     <p>
                         <span am-time-ago="topic.creationDate" aria-label="Submitted Time"></span> by <span aria-label="Topic Creator">{{topic.creator.username | account}}</span>
                     </p>

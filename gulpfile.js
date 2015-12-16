@@ -97,6 +97,13 @@ gulp.task(config.front.test, [config.back.test, config.front.build], function(do
     }, done).start();
 });
 
+gulp.task("front:dev", [config.front.watch], function(done) {
+    new KarmaServer({
+        configFile: __dirname + "/karma.conf.js",
+        singleRun: false
+    }, done).start();
+});
+
 gulp.task("serve", ["watch"], function() {
     setTimeout(function() {
         browserSync.init({

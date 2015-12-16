@@ -1,6 +1,6 @@
 var template = require("./linkitDelete.html!text");
 
-class LinkitDeleteController {
+export class LinkitDeleteController {
     onaction;
     isOpen;
 

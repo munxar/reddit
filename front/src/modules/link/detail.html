@@ -8,8 +8,11 @@
         <md-list-item class="md-3-line" layout="row">
             <linkit-rater votes="ctrl.topic.votes" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
             <article flex>
-                <h3 class="md-headline"><a href="{{ctrl.topic.content}}" target="_blank" aria-label="Go to Topic URL">{{ctrl.topic.title}}</a>
-                </h3>
+                <h3 class="md-headline">{{ctrl.topic.title}}</h3>
+                <div>
+                    <span>URL: </span>
+                    <a href="{{ctrl.topic.content}}" target="_blank" aria-label="Go to Topic URL">{{ctrl.topic.content}}</a>
+                </div>
                 <div class="md-list-item-text">
                     <p><span am-time-ago="ctrl.topic.creationDate" aria-label="Submitted Time"></span> by <span
                         aria-label="Topic Creator">{{ctrl.topic.creator.username | account}}</span></p>

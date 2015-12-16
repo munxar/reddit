@@ -5,6 +5,7 @@ import {linkitDelete} from "./linkitDelete";
 
 /**
  * core module
+ * basic functionality, used all over the application
  */
 export default angular
     .module("linkit.core", [])
