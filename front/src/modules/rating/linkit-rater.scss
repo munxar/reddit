@@ -12,6 +12,10 @@
     &.voted .fa-star {
         color: $secondary;
     }
+
+    &:hover {
+        background-color: $zero-grey;
+    }
 }
 
 a.rater:hover {

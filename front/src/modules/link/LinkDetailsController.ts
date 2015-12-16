@@ -1,59 +1,6 @@
 
-class TopicViewModel {
-    title: string;
-    content: string;
-}
 
-export class CreateCtrl {
-    vm = new TopicViewModel();
-
-    static $inject = ["$state", "$http", "toaster"];
-    constructor(private $state, private $http, private toaster) {
-
-    }
-
-    create() {
-        this.$http.post("/api/topic", this.vm).then(res => {
-            this.$state.go("home");
-        }, res => this.toaster.show(res.data.message));
-
-    }
-}
-
-export class ListCtrl {
-    topics = [];
-
-    static $inject = ["$http", "toaster", "$state", "auth"];
-    constructor(private $http, private toaster, private $state, private auth) {
-        $http.get("/api/topic").then(res => this.topics = res.data);
-    }
-
-    url(s) {
-        var prefix = 'http://';
-        if (s.substr(0, prefix.length) !== prefix)
-        {
-            s = prefix + s;
-        }
-        return s;
-    }
-
-    vote(topic) {
-        this.$http.put("/api/topic/" + topic._id + "/vote")
-            .then(res => {
-                topic.votes = res.data.votes;
-            }, err => this.toaster.show("login to rate a link"));
-    }
-
-    toCreate() {
-        if(this.auth.isAuthenticated()) {
-            this.$state.go("create");
-        } else {
-            this.toaster.show("please login to create a link")
-        }
-    }
-}
-
-export class DetailCtrl {
+export class LinkDetailsController {
     topic:any = { vote:[], creator: {} };
     comment = "";
     form;
@@ -69,7 +16,7 @@ export class DetailCtrl {
 
     remove() {
         this.$http.delete("/api/topic/" + this.topic._id)
-        .then(() => this.$state.go("home"), console.error);
+            .then(() => this.$state.go("home"), console.error);
     }
 
     addComment() {

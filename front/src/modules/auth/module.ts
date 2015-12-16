@@ -5,7 +5,7 @@ import {config} from "./config";
 import {run} from "./run";
 import core from "../core/module";
 
-angular
+export default angular
     .module("linkit.auth", [
         core.name
     ])

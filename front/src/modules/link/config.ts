@@ -1,10 +1,14 @@
 ///<reference path="../../../../typings/tsd.d.ts"/>
 
-import {CreateCtrl, ListCtrl, DetailCtrl} from "./HomeCtrl";
+// controllers
+import {LinkDetailsController} from "./LinkDetailsController";
+import {LinkCreateController} from "./LinkCreateController";
+import {LinkListController} from "./LinkListController";
 
-var homeTemplate = require("./home.html!text");
+// templates
+var listTemplate = require("./list.html!text");
 var createTemplate = require("./create.html!text");
-var detailTemplate = require("./detail.html!text");
+var detailsTemplate = require("./details.html!text");
 
 config.$inject = ["$stateProvider"];
 export function config($stateProvider: ng.ui.IStateProvider) {
@@ -12,24 +16,24 @@ export function config($stateProvider: ng.ui.IStateProvider) {
     $stateProvider
         .state("home", {
             url: "/",
-            template: homeTemplate,
-            controller: ListCtrl,
+            template: listTemplate,
+            controller: LinkListController,
             controllerAs: "ctrl"
         })
         .state("sort", {
             url: "/sort/:tag",
-            template: homeTemplate
+            template: listTemplate
         })
         .state("create", {
             url: "/create",
             template: createTemplate,
-            controller: CreateCtrl,
+            controller: LinkCreateController,
             controllerAs: "ctrl"
         })
         .state("detail", {
             url: "/topic/:_id",
-            template: detailTemplate,
-            controller: DetailCtrl,
+            template: detailsTemplate,
+            controller: LinkDetailsController,
             controllerAs: "ctrl"
         })
     ;
