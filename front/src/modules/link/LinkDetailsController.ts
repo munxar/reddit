@@ -1,52 +1,53 @@
-
+import {LinkService} from "./LinkService";
+import {topic} from "../../../../back/src/api/topic";
 
 export class LinkDetailsController {
-    topic:any = { vote:[], creator: {} };
+    topic:any = {vote: [], creator: {}};
     comment = "";
     form;
 
-    static $inject = ["$http", "$state", "auth", "toaster"];
-    constructor(private $http, private $state, private auth, private toaster) {
-        var id = $state.params._id;
-        $http.get("/api/topic/" + id)
-            .then(res => {
-                this.topic = res.data;
-            });
+    static $inject = ["$http", "$state", "auth", "toaster", "link"];
+
+    constructor(private $http, private $state, private auth, private toaster, private link:LinkService) {
+        this.init();
+    }
+
+    onError = err => this.toaster.show(err.message);
+    onSuccess = topic => this.topic = topic;
+
+    init() {
+        this.link.getOne(this.$state.params._id)
+            .then(this.onSuccess, this.onError);
     }
 
     remove() {
-        this.$http.delete("/api/topic/" + this.topic._id)
-            .then(() => this.$state.go("home"), console.error);
+        this.link.remove(this.topic._id).then(() => this.$state.go("home"), this.onError);
     }
 
     addComment() {
-        console.log(this.form);
-        this.$http.post("/api/topic/" + this.topic._id + "/comment", {content: this.comment})
-            .then(res => {
+        this.link.addComment(this.topic._id, this.comment)
+            .then(comment => {
                 this.comment = null;
-                this.topic.comments.unshift(res.data);
-            }, console.error);
+                this.topic.comments.unshift(comment);
+            }, this.onError);
     }
 
     removeComment(comment) {
-        this.$http.delete("/api/topic/" + this.topic._id + "/comment/" + comment._id)
-            .then(() => {
-                var idx = this.topic.comments.indexOf(comment);
-                if(idx != -1) { this.topic.comments.splice(idx, 1); }
-            }, console.error);
+        this.link.removeComment(this.topic._id, comment._id)
+        .then(this.onSuccess, this.onError);
     }
 
     vote(topic) {
-        this.$http.put("/api/topic/" + topic._id + "/vote")
-            .then(res => {
-                topic.votes = res.data.votes;
+        this.link.voteLink(topic._id)
+            .then(votes => {
+                topic.votes = votes;
             }, () => this.toaster.show("login to rate link"));
     }
 
     voteComment(comment) {
-        this.$http.put("/api/topic/" + this.topic._id + "/comment/" + comment._id + "/vote")
-            .then(res => {
-                comment.votes = res.data.votes;
+        this.link.voteComment(this.topic._id, comment._id)
+            .then(c => {
+                comment.votes = c.votes;
             }, () => this.toaster.show("login to vote comment"));
     }
 

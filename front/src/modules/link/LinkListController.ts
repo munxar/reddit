@@ -1,20 +1,35 @@
 
 
+import {LinkService} from "./LinkService";
+
 export class LinkListController {
-    topics = [];
+    topics: any[] = [];
 
-    static $inject = ["$http", "toaster", "$state", "auth"];
-    constructor(private $http, private toaster, private $state, private auth) {
-        $http.get("/api/topic").then(res => this.topics = res.data);
+    static $inject = ["toaster", "$state", "auth" , "link"];
+    constructor(private toaster, private $state, private auth, private link: LinkService) {
+        this.init();
     }
 
-    vote(topic) {
-        this.$http.put("/api/topic/" + topic._id + "/vote")
-            .then(res => {
-                topic.votes = res.data.votes;
-            }, err => this.toaster.show("login to rate a link"));
+    /**
+     * load all links
+     */
+    init() {
+        this.link.getAll()
+            .then(links => this.topics = links, err => this.toaster.show(err.message));
     }
 
+    /**
+     * vote a link
+     * @param topic to vote
+     */
+    vote(topic: any) {
+        this.link.voteLink(topic._id)
+            .then(votes => topic.votes = votes, () => this.toaster.show("login to rate a link"));
+    }
+
+    /**
+     * if user is authenticated, route else show message
+     */
     toCreate() {
         if(this.auth.isAuthenticated()) {
             this.$state.go("create");
