@@ -20,7 +20,7 @@ import "./main.css!";
 
 import {config} from "./config";
 
-angular
+var app = angular
     .module("linkit", [
         "ngMaterial",
         "ngMessages",
@@ -33,6 +33,6 @@ angular
         "linkit.rating",
     ])
     .config(config)
-;
+    ;
 
-angular.bootstrap(document, ["linkit"]);
+angular.bootstrap(document, [app.name]);

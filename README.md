@@ -90,8 +90,8 @@ Bugs / offene Punkte
 - newest Topic is at the bottom [x]
 - URLS with https are not working (it writes https//) [x]
 
-- breadcrumb !
+- breadcrumb [x]
 - detail page is not obvious (i have to click on comments)
 - URL is not shown on detail (better for UX, what do I click here)
 - Title on detail -> links to home site not page (url)
-- code cleanup
+- code cleanup []

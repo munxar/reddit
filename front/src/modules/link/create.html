@@ -1,29 +1,38 @@
-<md-content layout="row" layout-margin layout-align="center">
-    <md-content flex flex-gt-md="50">
-        <h1>Submit a link</h1>
-        <form name="form" ng-submit="ctrl.create()" novalidate>
-            <md-input-container>
-                <label>Descriptive Title</label>
-                <input name="Title" type="text" ng-model="ctrl.vm.title" aria-label="Type Topic Title" required md-maxlength="100">
-                <div ng-messages="form.Title.$error" ng-show="form.Title.$dirty">
-                    <div ng-message="required">Title is required!</div>
-                    <div ng-message="md-maxlength">Title is too long!</div>
-                </div>
-            </md-input-container>
-            <md-input-container>
-                <label>URL</label>
-                <input name="Url" type="url" ng-model="ctrl.vm.content" aria-label="Type Topic URL" required md-maxlength="100">
-                <div ng-messages="form.Url.$error" ng-show="form.Url.$dirty">
-                    <div ng-message="required">Url is required!</div>
-                    <div ng-message="md-maxlength">Url is too long!</div>
-                    <div ng-message="url">enter a valid url e.g. http://www.theurl.com</div>
-                </div>
-            </md-input-container>
+<md-content layout-margin>
+    <nav class=".md-subhead breadcrumb">
+        <span><a ui-sref="home">links</a></span>
+        <span>create link</span>
+    </nav>
+    <div layout-align="center" layout="row">
+        <md-content flex flex-gt-md="50">
+            <form name="form" ng-submit="ctrl.create()" novalidate>
+                <md-input-container>
+                    <label>Descriptive Title</label>
+                    <input name="Title" type="text" ng-model="ctrl.vm.title" aria-label="Type Topic Title" required
+                           md-maxlength="100">
+                    <div ng-messages="form.Title.$error" ng-show="form.Title.$dirty">
+                        <div ng-message="required">Title is required!</div>
+                        <div ng-message="md-maxlength">Title is too long!</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>URL</label>
+                    <input name="Url" type="url" ng-model="ctrl.vm.content" aria-label="Type Topic URL" required
+                           md-maxlength="100">
+                    <div ng-messages="form.Url.$error" ng-show="form.Url.$dirty">
+                        <div ng-message="required">Url is required!</div>
+                        <div ng-message="md-maxlength">Url is too long!</div>
+                        <div ng-message="url">enter a valid url e.g. http://www.theurl.com</div>
+                    </div>
+                </md-input-container>
 
-            <section layout="row">
-                <md-button class="md-raised md-primary" aria-label="Create new Topic" ng-disabled="form.$invalid">Create</md-button>
-                <md-button ui-sref="home" aria-label="Go to Home">Cancel</md-button>
-            </section>
-        </form>
-    </md-content>
+                <section layout="row">
+                    <md-button class="md-raised md-primary" aria-label="Create new Topic" ng-disabled="form.$invalid">
+                        Create
+                    </md-button>
+                    <md-button ui-sref="home" aria-label="Go to Home">Cancel</md-button>
+                </section>
+            </form>
+        </md-content>
+    </div>
 </md-content>

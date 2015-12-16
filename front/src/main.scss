@@ -16,6 +16,16 @@ h3 {
     margin-right: 4px;
 }
 
+a:link, a:visited {
+    color: $primary;
+}
+
+a:active, a:hover {
+    color: darken($primary, 20%);
+    text-decoration:underline
+}
+
+/*
 // Style Links in Paragraph Tag
 p {
     a:link,
@@ -29,9 +39,26 @@ p {
         text-decoration:underline
     }
 }
+*/
 
 // Style for Topic Title
 .md-headline {
     text-decoration: none;
     color: #111;
 }
+
+// breadcrumb navigation
+.breadcrumb {
+    // insert a separator as pseudo element
+    > :after {
+        content:"»";
+        margin-left: 0.3rem;
+        color: $grey;
+    }
+    // except for the last child
+    > :last-child:after {
+        content:"";
+    }
+}
+
+

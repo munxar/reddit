@@ -1,11 +1,19 @@
-<md-content layout="row" layout-margin layout-align="center">
-    <md-content flex flex-gt-md="50">
-        <h1>Account</h1>
-        <h2>Delete Account</h2>
-        <p>Once you delete your Account, there is no going back. Please be certain.</p>
-        <div layout="row">
-            <md-button class="md-raised md-warn" aria-label="Delete my Account" ng-click="ctrl.deleteAccount()">delete my account</md-button>
-            <md-button ui-sref="^.details">Cancel</md-button>
-        </div>
+<md-content layout-margin>
+
+    <nav class=".md-subhead breadcrumb">
+        <span><a ui-sref="home">links</a></span>
+        <span><a ui-sref="account.details">account</a></span>
+        <span>delete account</span>
+    </nav>
+
+    <md-content layout="row" layout-margin layout-align="center">
+        <md-content flex flex-gt-md="50">
+            <p>Once you delete your Account, there is no going back. Please be certain.</p>
+            <div layout="row">
+                <md-button class="md-raised md-warn" aria-label="Delete my Account" ng-click="ctrl.deleteAccount()">delete my account</md-button>
+                <md-button ui-sref="^.details">Cancel</md-button>
+            </div>
+        </md-content>
     </md-content>
+
 </md-content>

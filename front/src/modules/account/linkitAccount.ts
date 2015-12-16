@@ -2,14 +2,18 @@ var template = require("./linkitAccount.html!text");
 
 class AccountCtrl {
 
-    static $inject = ["auth", "toaster"];
-    constructor(private auth, private toaster) {
+    static $inject = ["auth", "toaster", "$state"];
+    constructor(private auth, private toaster, private $state) {
 
     }
 
     logout() {
         this.auth.logout();
         this.toaster.show("logout success");
+    }
+
+    account() {
+        this.$state.go("account.details");
     }
 
     isAuthenticated() {

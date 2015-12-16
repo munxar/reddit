@@ -1,4 +1,8 @@
-<md-content flex>
+<md-content flex layout-margin>
+    <nav class=".md-subhead breadcrumb">
+        <span>links</span>
+        <span><a href="" ng-click="ctrl.toCreate()" aria-label="create link">create link</a></span>
+    </nav>
     <md-list>
         <md-list-item class="md-3-line" ng-repeat="topic in ctrl.topics" layout="row">
             <linkit-rater votes="topic.votes" onupdate="ctrl.vote(topic)"></linkit-rater>

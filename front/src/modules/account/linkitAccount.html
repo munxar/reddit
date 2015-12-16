@@ -11,15 +11,15 @@
 
     <md-menu-content>
         <md-menu-item>
-            <md-button ui-sref="account.details" aria-label="Account Settings">
-                <md-icon class="fa fa-cog fa-lg" md-menu-align-target aria-label="Account Icon"></md-icon>
+            <md-button ng-click="ctrl.account()" aria-label="Account Settings">
+                <md-icon class="fa fa-cog fa-lg" aria-label="Account Icon"></md-icon>
                 Account
             </md-button>
         </md-menu-item>
         <md-menu-divider></md-menu-divider>
         <md-menu-item>
             <md-button ng-click="ctrl.logout()" aria-label="Logout">
-                <md-icon class="fa fa-sign-out fa-lg" md-menu-align-target aria-label="Logout Icon"></md-icon>
+                <md-icon class="fa fa-sign-out fa-lg" aria-label="Logout Icon"></md-icon>
                 Logout
             </md-button>
         </md-menu-item>

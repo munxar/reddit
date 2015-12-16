@@ -1,49 +1,65 @@
-<md-list>
-    <md-list-item class="md-3-line" layout="row">
-        <linkit-rater votes="ctrl.topic.votes" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
-        <article flex>
-            <h3><a class="md-headline" href="{{ctrl.topic.content}}" target="_blank" aria-label="Go to Topic URL">{{ctrl.topic.title}}</a></h3>
-            <div class="md-list-item-text">
-                <p><span am-time-ago="ctrl.topic.creationDate" aria-label="Submitted Time"></span> by <span aria-label="Topic Creator">{{ctrl.topic.creator.username | account}}</span></p>
-                <p aria-label="Total Comments">
-                    <md-icon class="fa fa-comment" aria-label="Comment Icon"></md-icon>{{ctrl.topic.comments.length}} comments
-                </p>
-                <div class="md-actions" ng-if="ctrl.isOwner(ctrl.topic)">
-                    <linkit-delete onaction="ctrl.remove()"></linkit-delete>
+<md-content layout-margin>
+    <nav class=".md-subhead breadcrumb">
+        <span><a ui-sref="home">links</a></span>
+        <span>details</span>
+    </nav>
+
+    <md-list>
+        <md-list-item class="md-3-line" layout="row">
+            <linkit-rater votes="ctrl.topic.votes" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
+            <article flex>
+                <h3 class="md-headline"><a href="{{ctrl.topic.content}}" target="_blank" aria-label="Go to Topic URL">{{ctrl.topic.title}}</a>
+                </h3>
+                <div class="md-list-item-text">
+                    <p><span am-time-ago="ctrl.topic.creationDate" aria-label="Submitted Time"></span> by <span
+                        aria-label="Topic Creator">{{ctrl.topic.creator.username | account}}</span></p>
+                    <p aria-label="Total Comments">
+                        <md-icon class="fa fa-comment" aria-label="Comment Icon"></md-icon>
+                        {{ctrl.topic.comments.length}} comments
+                    </p>
+                    <div class="md-actions" ng-if="ctrl.isOwner(ctrl.topic)">
+                        <linkit-delete onaction="ctrl.remove()"></linkit-delete>
+                    </div>
                 </div>
-            </div>
-        </article>
-    </md-list-item>
-</md-list>
+            </article>
+        </md-list-item>
+    </md-list>
 
-<md-content ng-if="ctrl.isAuthenticated()" layout-margin>
-    <form name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
-        <md-input-container>
-            <label>Enter a comment</label>
-            <textarea name="Comment" required ng-model="ctrl.comment" rows="2" aria-label="Type your comment" md-maxlength="255"></textarea>
-            <div ng-messages="ctrl.form.Comment.$error" ng-show="ctrl.form.Comment.$dirty">
-                <div ng-message="required">Comment is required!</div>
-                <div ng-message="md-maxlength">Comment is too long!</div>
+    <md-content ng-if="ctrl.isAuthenticated()" layout-margin>
+        <h1 class="md-title">Comments</h1>
+        <form name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
+            <md-input-container>
+                <label>Enter a comment</label>
+                <textarea name="Comment" required ng-model="ctrl.comment" rows="2" aria-label="Type your comment"
+                          md-maxlength="255"></textarea>
+                <div ng-messages="ctrl.form.Comment.$error" ng-show="ctrl.form.Comment.$dirty">
+                    <div ng-message="required">Comment is required!</div>
+                    <div ng-message="md-maxlength">Comment is too long!</div>
+                </div>
+            </md-input-container>
+            <div class="md-actions">
+                <md-button class="md-raised md-primary" type="submit" ng-disabled="ctrl.form.$invalid"
+                           aria-label="Submit comment">Comment
+                </md-button>
             </div>
-        </md-input-container>
-        <div class="md-actions">
-            <md-button class="md-raised md-primary" type="submit" ng-disabled="ctrl.form.$invalid" aria-label="Submit comment">Comment</md-button>
-        </div>
-    </form>
+        </form>
+    </md-content>
+
+    <md-list>
+        <md-list-item class="md-3-line" layout="row" ng-repeat="comment in ctrl.topic.comments">
+            <md-divider></md-divider>
+            <linkit-rater votes="comment.votes" onupdate="ctrl.voteComment(comment)"></linkit-rater>
+            <article flex>
+                <h3 class="md-subhead" aria-label="Comment Title">{{comment.content}}</h3>
+                <div class="md-list-item-text">
+                    <p aria-label="Comment Details"><span am-time-ago="comment.creationDate"
+                                                          aria-label="commented Time"></span> by <span
+                        aria-label="Comment Creator">{{comment.creator.username | account}}</span></p>
+                </div>
+                <div class="md-actions" ng-if="ctrl.isOwner(comment)">
+                    <linkit-delete onaction="ctrl.removeComment(comment)"></linkit-delete>
+                </div>
+            </article>
+        </md-list-item>
+    </md-list>
 </md-content>
-
-<md-list>
-    <md-list-item class="md-3-line" layout="row" ng-repeat="comment in ctrl.topic.comments">
-        <md-divider></md-divider>
-        <linkit-rater votes="comment.votes" onupdate="ctrl.voteComment(comment)"></linkit-rater>
-        <article flex>
-            <h3 class="md-subhead" aria-label="Comment Title">{{comment.content}}</h3>
-            <div class="md-list-item-text">
-                <p aria-label="Comment Details"><span am-time-ago="comment.creationDate" aria-label="commented Time"></span> by <span aria-label="Comment Creator">{{comment.creator.username | account}}</span></p>
-            </div>
-            <div class="md-actions" ng-if="ctrl.isOwner(comment)" >
-                <linkit-delete onaction="ctrl.removeComment(comment)"></linkit-delete>
-            </div>
-        </article>
-    </md-list-item>
-</md-list>

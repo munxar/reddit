@@ -14,9 +14,8 @@ export class CreateCtrl {
 
     create() {
         this.$http.post("/api/topic", this.vm).then(res => {
-            console.log(res.data);
             this.$state.go("home");
-        }, err => console.error(err));
+        }, res => this.toaster.show(res.data.message));
 
     }
 }
@@ -24,8 +23,8 @@ export class CreateCtrl {
 export class ListCtrl {
     topics = [];
 
-    static $inject = ["$http", "toaster"];
-    constructor(private $http, private toaster) {
+    static $inject = ["$http", "toaster", "$state", "auth"];
+    constructor(private $http, private toaster, private $state, private auth) {
         $http.get("/api/topic").then(res => this.topics = res.data);
     }
 
@@ -43,6 +42,14 @@ export class ListCtrl {
             .then(res => {
                 topic.votes = res.data.votes;
             }, err => this.toaster.show("login to rate a link"));
+    }
+
+    toCreate() {
+        if(this.auth.isAuthenticated()) {
+            this.$state.go("create");
+        } else {
+            this.toaster.show("please login to create a link")
+        }
     }
 }
 
@@ -104,4 +111,5 @@ export class DetailCtrl {
     isAuthenticated() {
         return this.auth.isAuthenticated();
     }
+
 }
