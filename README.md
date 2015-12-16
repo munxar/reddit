@@ -52,7 +52,7 @@ $ gulp
 ## Usertest
 
 ### Userin 1
-[User Image](usertest/userin1jpg)
+[User Image](usertest/userin1.jpg)
 - login / register, username / password no length validation [x]
 - If user / password is wrong, display a message [x]
 - On Title details, display time and user only [x]
