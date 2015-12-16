@@ -9,12 +9,14 @@
             <linkit-rater votes="ctrl.topic.votes" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
             <article flex>
                 <h3 class="md-headline">{{ctrl.topic.title}}</h3>
-                <div>
+                <div class="list-item-url">
                     <a href="{{ctrl.topic.content}}" target="_blank" aria-label="Go to Topic URL">{{ctrl.topic.content}}</a>
                 </div>
                 <div class="md-list-item-text">
-                    <p><span am-time-ago="ctrl.topic.creationDate" aria-label="Submitted Time"></span> by <span
-                        aria-label="Topic Creator">{{ctrl.topic.creator.username | account}}</span></p>
+                    <p class="list-item-submitted">
+                        <span am-time-ago="ctrl.topic.creationDate" aria-label="Submitted Time"></span> by <span
+                        aria-label="Topic Creator">{{ctrl.topic.creator.username | account}}</span>
+                    </p>
                     <div class="md-actions" ng-if="ctrl.isOwner(ctrl.topic)">
                         <linkit-delete onaction="ctrl.remove()"></linkit-delete>
                     </div>

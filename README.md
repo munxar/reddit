@@ -1,15 +1,32 @@
 [![Build Status](https://travis-ci.org/munxar/reddit.svg?branch=master)](https://travis-ci.org/munxar/reddit)
 
 # linkit
-simplified reddit clone build with the MEAN stack.
+Linkit is a simplified reddit clone build with the MEAN stack.
 
 In addition we use typescript and jspm to make use of es6 modules in the frontend.
+
+##linkit is built with:
+ * [Node.js](http://www.nodejs.org/)
+ * [MongoDB](http://www.mongodb.org/)
+ * [Mongoose](http://mongoosejs.com/)
+ * [Typescript](http://www.typescriptlang.org/)
+ * [jspm](http://jspm.io/)
+ * [Express](http://expressjs.com/)
+ * [AngularJS](http://angularjs.org/)
+ * [Angular Material](https://material.angularjs.org)
+
 
 ## Setup
 You need the following binaries installed:
 - [node](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 - [mongodb](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/)
+
+We tested with local installation of:
+- node (>0.12.8)
+- npm (>2.14.4)
+- mongodb (3.0.6)
+- gulp (3.9.0)
 
 ```sh
 # Install Gulp and Typescript globally
@@ -38,21 +55,32 @@ $ gulp serve
 ```
 Run this Site to access production build [http://localhost:3000/index2.html](http://localhost:3000/index2.html)
 
-# requirements
-tested with local installation of:
- - node (0.12.8 & 5.1.1)
- - mongodb (3.0.6)
- - gulp (3.9.0)
-
-# build and test
+# Requirements
+## Build and test
 ```sh
 $ gulp
 ```
 
-## Usertest
+## Device Lab
+![User Image](images/devicelab.jpg)
+We tested the App on following devices:
+- iPhone 5s
+- iPad mini
+- iPad Pro
+- MacBook Pro
+- MacBook Air
 
+## Tests
+To Test our Application we wrote unit and integration tests for backend and frontend.
+
+We use following Test Libraries:
+* [Karma](http://karma-runner.github.io/0.13/index.html)
+* [Mocha](http://mochajs.org/)
+* [Chai](http://chaijs.com/)
+
+## Usertests
 ### Userin 1
-![User Image](usertest/userin1.jpg)
+![User Image](images/userin1.jpg)
 - login / register, username / password no length validation [x]
 - If user / password is wrong, display a message [x]
 - On Title details, display time and user only [x]
@@ -62,7 +90,7 @@ $ gulp
 - add Breadcrumb for better orientation [x]
 
 ### Userin 2
-![User Image](usertest/userin2.jpg)
+![User Image](images/userin2.jpg)
 - Detail page is not obvious (I have to click on comments to see details)
 - URL is not shown on detail (better for UX, what do I click here)
 - Title on detail links to home site not to website (url)
@@ -72,8 +100,7 @@ $ gulp
 - Newest Topic is at the bottom [x]
 - URLS with https are not working (it writes https//) [x]
 
-
-# status
+# Status
 Link Modul
 - erfassen [x]
 - löschen [x]

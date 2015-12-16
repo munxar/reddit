@@ -9,8 +9,10 @@
             <article flex>
                 <h3 class="md-headline"><a ui-sref="detail(topic)">{{topic.title}}</a></h3>
                 <div class="md-list-item-text">
-                    <span><a title="{{topic.title}}" aria-label="Topic Title" href="{{topic.content}}" target="_blank">{{topic.content}}</a></span>
-                    <p>
+                    <div class="list-item-url">
+                        <a title="{{topic.title}}" aria-label="Topic Title" href="{{topic.content}}" target="_blank">{{topic.content}}</a>
+                    </div>
+                    <p class="list-item-submitted">
                         <span am-time-ago="topic.creationDate" aria-label="Submitted Time"></span> by <span aria-label="Topic Creator">{{topic.creator.username | account}}</span>
                     </p>
                     <div aria-label="Total Comments">
