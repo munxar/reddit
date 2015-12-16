@@ -85,7 +85,7 @@ Bugs / offene Punkte
 - delete mit ok / cancel
 - account mit unterformularen [x]
 - cloak [x]
-- After password change, form is wrong
+- After password change, form is wrong [x]
 - after comment red input (form is wrong)
 - Title on Mobile is cutted [x]
 - detail page is not obvious (i have to click on comments)
