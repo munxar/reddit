@@ -3,6 +3,8 @@
 # linkit
 Linkit is a simplified reddit clone build with the MEAN stack.
 
+In addition we use typescript and jspm to make use of es6 modules in the frontend.
+
 ##linkit is built with:
  * [Node.js](http://www.nodejs.org/)
  * [MongoDB](http://www.mongodb.org/)
@@ -13,7 +15,6 @@ Linkit is a simplified reddit clone build with the MEAN stack.
  * [AngularJS](http://angularjs.org/)
  * [Angular Material](https://material.angularjs.org)
 
-In addition we use typescript and jspm to make use of es6 modules in the frontend.
 
 ## Setup
 You need the following binaries installed:
@@ -48,13 +49,18 @@ $ gulp serve
 ```
 Run this Site to access production build [http://localhost:3000/index2.html](http://localhost:3000/index2.html)
 
-# requirements
+# Requirements
 tested with local installation of:
- - node (0.12.8 & 5.1.1)
- - mongodb (3.0.6)
- - gulp (3.9.0)
+- node (0.12.8 & 5.1.1)
+- mongodb (3.0.6)
+- gulp (3.9.0)
 
- ## Device Lab
+# Build and test
+```sh
+$ gulp
+```
+
+## Device Lab
 ![User Image](images/devicelab.jpg)
 We tested the App on following devices:
 - iPhone 5s
@@ -63,12 +69,7 @@ We tested the App on following devices:
 - MacBook Pro
 - MacBook Air
 
-# build and test
-```sh
-$ gulp
-```
-
-## Test
+## Tests
 To Test our Application we wrote unit and integration tests for backend and frontend.
 
 We use following Test Libraries:
@@ -76,8 +77,7 @@ We use following Test Libraries:
 * [Mocha](http://mochajs.org/)
 * [Chai](http://chaijs.com/)
 
-## Usertest
-
+## Usertests
 ### Userin 1
 ![User Image](images/userin1.jpg)
 - login / register, username / password no length validation [x]
@@ -99,8 +99,7 @@ We use following Test Libraries:
 - Newest Topic is at the bottom [x]
 - URLS with https are not working (it writes https//) [x]
 
-
-# status
+# Status
 Link Modul
 - erfassen [x]
 - löschen [x]
