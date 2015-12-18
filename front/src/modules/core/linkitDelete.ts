@@ -15,6 +15,11 @@ export class LinkitDeleteController {
     }
 }
 
+/**
+ * inline delete confirmation directive
+ * shows delete link and presents the actual delete button on click with a nice
+ * FAB speed dial.
+ */
 export function linkitDelete() {
     return {
         template,

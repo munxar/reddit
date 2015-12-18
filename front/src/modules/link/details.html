@@ -10,7 +10,8 @@
             <article class="list-item" flex>
                 <h3 class="md-headline">{{ctrl.topic.title}}</h3>
                 <div class="list-item-url">
-                    <a href="{{ctrl.topic.content}}" target="_blank" aria-label="Go to Topic URL">{{ctrl.topic.content}}</a>
+                    <a href="{{ctrl.topic.content}}" target="_blank"
+                       aria-label="Go to Topic URL">{{ctrl.topic.content}}</a>
                 </div>
                 <div class="md-list-item-text">
                     <p class="list-item-submitted">
@@ -27,13 +28,15 @@
 
     <md-content layout-margin>
         <h1 class="md-title">
-            <md-icon class="fa fa-comment" aria-label="Comment Icon"></md-icon> Comments ({{ctrl.topic.comments.length}})</h1>
-        <form ng-if="ctrl.isAuthenticated()"  name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
+            <md-icon class="fa fa-comment" aria-label="Comment Icon"></md-icon>
+            Comments ({{ctrl.topic.comments.length}})
+        </h1>
+        <form ng-if="ctrl.isAuthenticated()" name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
             <md-input-container>
                 <label>Enter a comment</label>
-                <textarea name="Comment" required ng-model="ctrl.comment" rows="2" aria-label="Type your comment"
+                <textarea name="comment" required ng-model="ctrl.comment" rows="2" aria-label="Type your comment"
                           md-maxlength="255"></textarea>
-                <div ng-messages="ctrl.form.Comment.$error" ng-show="ctrl.form.Comment.$dirty">
+                <div ng-messages="ctrl.form.comment.$error" ng-show="ctrl.form.comment.$dirty">
                     <div ng-message="required">Comment is required!</div>
                     <div ng-message="md-maxlength">Comment is too long!</div>
                 </div>

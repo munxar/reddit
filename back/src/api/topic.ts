@@ -17,12 +17,13 @@ topic.get("/", ctrl.getAll);
 topic.delete("/:id", secure, ctrl.remove);
 // get one topic by id
 topic.get("/:id", ctrl.getOne);
-// add a vote to a topic
-topic.put("/:id/vote", secure, ctrl.vote);
+// toggle the topic vote with the users credentials
+topic.patch("/:id/vote", secure, ctrl.vote);
 
 // create a comment
 topic.post("/:id/comment", secure, ctrl.createComment);
 // remove a comment (only users own comments)
 topic.delete("/:id/comment/:commentId", secure, ctrl.removeComment);
-// vote a comment
-topic.put("/:id/comment/:commentId/vote", secure, ctrl.voteComment);
+// toggle the comment vote with the users credentials
+topic.patch("/:id/comment/:commentId/vote", secure, ctrl.voteComment);
+

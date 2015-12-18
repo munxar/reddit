@@ -34,7 +34,7 @@ export class LinkService {
 
     // vote a link
     voteLink(linkId) {
-        return this.$http.put<Link>("api/topic/" + linkId + "/vote",{}).then(res => res.data.votes, this.onError);
+        return this.$http.patch<Link>("api/topic/" + linkId + "/vote",{}).then(res => res.data.votes, this.onError);
     }
 
     // get link by id
@@ -59,7 +59,7 @@ export class LinkService {
     }
 
     voteComment(topicId, commentId) {
-        return this.$http.put("/api/topic/" + topicId + "/comment/" + commentId + "/vote", {})
+        return this.$http.patch("/api/topic/" + topicId + "/comment/" + commentId + "/vote", {})
             .then(this.onSuccess, this.onError);
     }
 }

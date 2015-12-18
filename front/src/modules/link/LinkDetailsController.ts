@@ -4,7 +4,7 @@ import {topic} from "../../../../back/src/api/topic";
 export class LinkDetailsController {
     topic:any = {vote: [], creator: {}};
     comment = "";
-    form;
+    form: angular.IFormController;
 
     static $inject = ["$http", "$state", "auth", "toaster", "link"];
 
@@ -27,8 +27,13 @@ export class LinkDetailsController {
     addComment() {
         this.link.addComment(this.topic._id, this.comment)
             .then(comment => {
-                this.comment = null;
+                // add comment to list
                 this.topic.comments.unshift(comment);
+
+                // reset the form validation
+                this.comment = "";
+                this.form.$setUntouched();
+                this.form.$setPristine();
             }, this.onError);
     }
 

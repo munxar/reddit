@@ -369,7 +369,7 @@ describe("api", () => {
                     .then(topic => {
 
                         request(app)
-                            .put("/api/topic/" + topic._id + "/vote")
+                            .patch("/api/topic/" + topic._id + "/vote")
                             .set(tokenService.header(acc))
                             .expect("content-type", /json/)
                             .expect(200)
@@ -388,7 +388,7 @@ describe("api", () => {
                 Topic.create({creator: acc._id, title: "test1", content: "www.test.com", votes: [acc._id]})
                     .then(topic => {
                         request(app)
-                            .put("/api/topic/" + topic._id + "/vote")
+                            .patch("/api/topic/" + topic._id + "/vote")
                             .set(tokenService.header(acc))
                             .expect("content-type", /json/)
                             .expect(200)

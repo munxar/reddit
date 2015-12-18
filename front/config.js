@@ -1,7 +1,7 @@
 System.config({
   baseURL: "",
   defaultJSExtensions: true,
-  transpiler: false,
+  transpiler: "none",
   paths: {
     "github:*": "lib/github/*",
     "npm:*": "lib/npm/*"
@@ -17,6 +17,7 @@ System.config({
     "angular-validation-match": "npm:angular-validation-match@1.5.2",
     "chai": "npm:chai@3.4.1",
     "clean-css": "npm:clean-css@3.4.8",
+    "core-js": "npm:core-js@1.2.6",
     "css": "github:systemjs/plugin-css@0.1.20",
     "font-awesome": "npm:font-awesome@4.5.0",
     "text": "github:systemjs/plugin-text@0.0.4",
@@ -127,6 +128,12 @@ System.config({
       "graceful-readlink": "npm:graceful-readlink@1.0.1",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:core-js@1.2.6": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
     "npm:core-util-is@1.0.2": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
