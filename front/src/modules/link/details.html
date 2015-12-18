@@ -6,7 +6,7 @@
 
     <md-list>
         <md-list-item class="md-3-line" layout="row">
-            <linkit-rater votes="ctrl.topic.votes" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
+            <linkit-rater votes="ctrl.topic.votes" is-voted="ctrl.topic.isVoted" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
             <article class="list-item" flex>
                 <h3 class="md-headline">{{ctrl.topic.title}}</h3>
                 <div class="list-item-url">
@@ -52,7 +52,7 @@
     <md-list>
         <md-list-item class="md-3-line" layout="row" ng-repeat="comment in ctrl.topic.comments">
             <md-divider></md-divider>
-            <linkit-rater votes="comment.votes" onupdate="ctrl.voteComment(comment)"></linkit-rater>
+            <linkit-rater votes="comment.votes" is-voted="comment.isVoted" onupdate="ctrl.voteComment(comment)"></linkit-rater>
             <article flex>
                 <h3 class="md-subhead" aria-label="Comment Title">{{comment.content}}</h3>
                 <div class="md-list-item-text">

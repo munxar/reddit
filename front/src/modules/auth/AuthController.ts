@@ -1,9 +1,8 @@
+import {UserPassViewModel} from "./UserPassViewModel";
 
-class UserPassViewModel {
-    username = "";
-    password = "";
-}
-
+/**
+ * controller for login and register
+ */
 export class AuthController {
     vm = new UserPassViewModel();
 
@@ -11,20 +10,22 @@ export class AuthController {
     constructor(private auth, private $state, private toaster) {}
 
     register() {
-        this.auth.register(this.vm).then(() => {
-            this.$state.go("home");
-            this.toaster.show("register success");
-        }, err => this.toaster.show(err.data.message))
+        this.auth.register(this.vm)
+            .then(this.routeHomeAndDisplayWelcome, this.showErrorAndResetPassword)
     }
 
     login() {
-        this.auth.login(this.vm).then(account => {
-            this.$state.go("home");
-            this.toaster.show("welcome " + account.username);
-        }, err => {
-            this.toaster.show(err.data.message);
-            this.vm.password = "";
-        })
+        this.auth.login(this.vm)
+            .then(this.routeHomeAndDisplayWelcome, this.showErrorAndResetPassword)
     }
 
+    showErrorAndResetPassword = err => {
+        this.toaster.show(err.data.message);
+        this.vm.password = "";
+    };
+
+    routeHomeAndDisplayWelcome = account => {
+        this.$state.go("home");
+        this.toaster.show("welcome " + account.username);
+    };
 }

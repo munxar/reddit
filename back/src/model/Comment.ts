@@ -15,6 +15,7 @@ export interface IComment extends Document {
     creationDate: Date;
 
     votes: Types.ObjectId[];
+    isVoted: boolean;
 }
 
 // mongoose schema for comment

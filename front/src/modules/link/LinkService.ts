@@ -28,13 +28,14 @@ export class LinkService {
 
     // get all links
     getAll() {
-        return this.$http.get<any[]>("api/topic")
+        return this.$http.get("api/topic")
             .then(this.onSuccess, this.onError)
     }
 
     // vote a link
     voteLink(linkId) {
-        return this.$http.patch<Link>("api/topic/" + linkId + "/vote",{}).then(res => res.data.votes, this.onError);
+        return this.$http.patch<Link>("api/topic/" + linkId + "/vote", {})
+            .then(this.onSuccess, this.onError);
     }
 
     // get link by id

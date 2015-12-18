@@ -29,7 +29,8 @@ export class TopicService {
         return Topic.find({})
             .populate("creator", "username")
             .sort({_id: -1})
-            .exec();
+            .exec()
+            .then(topics => topics.map(topic => addIsVoted(userId, topic)));
     }
 
     getOne(userId, id) {
@@ -40,19 +41,12 @@ export class TopicService {
             .then(topic => {
                 if (!topic) throw new WebError("Not found", 404);
                 return topic;
-            })
+            });
     }
 
     getOneVoted(userId, id) {
-        return Topic.findById(id)
-            .populate("creator", "username")
-            .populate("comments.creator", "username")
-            .exec()
-            .then(topic => {
-                if (!topic) throw new WebError("Not found", 404);
-
-                return topic;
-            });
+        return this.getOne(userId, id)
+            .then(topic => addIsVoted(userId, topic));
     }
 
     vote(userId, id) {
@@ -64,7 +58,7 @@ export class TopicService {
 
                 // always save, to capture value == 0 case, which is a vote reset
                 return topic.save();
-            });
+            }).then(topic => addIsVoted(userId, topic));
     }
 
     createComment(userId, id, content:string) {
@@ -74,11 +68,8 @@ export class TopicService {
                 topic.comments.unshift(comment);
                 return topic.save();
             })
-            .then((topic: ITopic) => this.getOne(userId, topic._id))
-            .then((topic: ITopic) => {
-                // return last comment
-                return topic.comments[0];
-            });
+            .then(topic => Topic.populate(topic, {path: "comments.creator", select: "username"}))
+            .then(topic => addIsVoted(userId, topic));
     }
 
     removeComment(userId, id, commentId) {
@@ -92,11 +83,11 @@ export class TopicService {
                     topic.comments.splice(idx, 1);
                 }
                 return topic.save();
-            });
+            })
+            .then(topic => addIsVoted(userId, topic));
     }
 
     voteComment(userId, id, commentId) {
-        var c;
         return this.getOne(userId, id)
             .then((topic: ITopic) => {
                 var comment = topic.comments.filter(comment => comment._id.toString() == commentId)[0];
@@ -104,9 +95,10 @@ export class TopicService {
 
                 // toggle vote
                 voteToggle(userId, comment);
-                c = comment;
+
                 return topic.save();
-            }).then(() => c);
+            })
+            .then(topic => addIsVoted(userId, topic));
     }
 }
 
@@ -124,4 +116,18 @@ function voteToggle(userId, entity) {
     if (value == 0) {
         addUnique(entity.votes, userId);
     }
+}
+
+function addIsVoted(userId, topic) {
+    var out = topic.toObject();
+    var isVoted = votes => votes.filter(vote => vote.toString() == userId).length > 0;
+
+    out.isVoted = isVoted(topic.votes);
+    // if we have comments update them too
+    var comments = out.comments || [];
+    comments.forEach((comment: IComment) => {
+        comment.isVoted = isVoted(comment.votes);
+    });
+
+    return out;
 }

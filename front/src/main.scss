@@ -50,13 +50,15 @@ a:active, a:hover {
 
 // breadcrumb navigation
 .breadcrumb {
+    :first-child {
+
+    }
     // insert a separator as pseudo element
     :after {
         content: "»";
-        margin-left: 5px;
+        padding-left: 4px;
         color: $grey;
     }
-
     // except for the last child
     :last-of-type:after {
         content: "";

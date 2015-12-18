@@ -8,7 +8,7 @@ export class LinkDetailsController {
 
     static $inject = ["$http", "$state", "auth", "toaster", "link"];
 
-    constructor(private $http, private $state, private auth, private toaster, private link:LinkService) {
+    constructor(private $http, private $state: ng.ui.IStateService, private auth, private toaster, private link:LinkService) {
         this.init();
     }
 
@@ -16,7 +16,7 @@ export class LinkDetailsController {
     onSuccess = topic => this.topic = topic;
 
     init() {
-        this.link.getOne(this.$state.params._id)
+        this.link.getOne(this.$state.params["_id"])
             .then(this.onSuccess, this.onError);
     }
 
@@ -26,9 +26,9 @@ export class LinkDetailsController {
 
     addComment() {
         this.link.addComment(this.topic._id, this.comment)
-            .then(comment => {
-                // add comment to list
-                this.topic.comments.unshift(comment);
+            .then(topic => {
+                // update topic
+                angular.extend(this.topic, topic);
 
                 // reset the form validation
                 this.comment = "";
@@ -44,15 +44,13 @@ export class LinkDetailsController {
 
     vote(topic) {
         this.link.voteLink(topic._id)
-            .then(votes => {
-                topic.votes = votes;
-            }, () => this.toaster.show("login to rate link"));
+            .then(t => angular.extend(topic, t), () => this.toaster.show("login to rate link"));
     }
 
     voteComment(comment) {
         this.link.voteComment(this.topic._id, comment._id)
-            .then(c => {
-                comment.votes = c.votes;
+            .then(topic => {
+                angular.extend(this.topic, topic);
             }, () => this.toaster.show("login to vote comment"));
     }
 

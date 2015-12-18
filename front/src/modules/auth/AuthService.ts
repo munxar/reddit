@@ -42,10 +42,7 @@ export class AuthService {
      */
     register(userPass) {
         return this.$http.post<ITokenAccount>("/api/account/register", userPass)
-            .then(res => {
-                localStorage.setItem("token", res.data.token);
-                this.user = res.data.account;
-            });
+            .then(this.storeUserAndToken);
     }
 
     /**
@@ -55,11 +52,7 @@ export class AuthService {
      */
     login(userPass) {
         return this.$http.post<ITokenAccount>("/api/account/login", userPass)
-            .then(res => {
-                localStorage.setItem("token", res.data.token);
-                this.user = res.data.account;
-                return this.user;
-            });
+            .then(this.storeUserAndToken);
     }
 
     /**
@@ -79,4 +72,10 @@ export class AuthService {
     isAuthenticated() {
         return this.user._id !== null;
     }
+
+    private storeUserAndToken = res => {
+        localStorage.setItem("token", res.data.token);
+        this.user = res.data.account;
+        return this.user;
+    };
 }

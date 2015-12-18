@@ -1,10 +1,14 @@
 import {AccountViewModel} from "./AccountViewModel";
 
+/**
+ * account business logic
+ */
 export class AccountService {
-    user = null;
 
-    static $inject = ["auth", "$http"];
-    constructor(private auth, private $http) {}
+    static $inject = ["$http"];
+    constructor(private $http) {
+
+    }
 
     changePassword(userPass:AccountViewModel) {
         return this.$http.put("/api/account", userPass).then(res => {

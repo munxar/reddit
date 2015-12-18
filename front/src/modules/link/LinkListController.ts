@@ -1,5 +1,3 @@
-
-
 import {LinkService} from "./LinkService";
 
 export class LinkListController {
@@ -24,7 +22,7 @@ export class LinkListController {
      */
     vote(topic: any) {
         this.link.voteLink(topic._id)
-            .then(votes => topic.votes = votes, () => this.toaster.show("login to rate a link"));
+            .then(t => angular.extend(topic, t), () => this.toaster.show("login to rate a link"));
     }
 
     /**

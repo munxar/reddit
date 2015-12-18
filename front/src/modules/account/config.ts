@@ -7,17 +7,15 @@ var deleteTemplate = require("./delete.html!text");
 
 config.$inject = ["$stateProvider"];
 export function config($stateProvider:angular.ui.IStateProvider) {
-    $stateProvider
 
+    $stateProvider
         .state("account", {
             url: "/account",
             template: "<ui-view>",
         })
         .state("account.details", {
             url: "/",
-            template: accountTemplate,
-            controller: AccountController,
-            controllerAs: "ctrl"
+            template: accountTemplate
         })
         .state("account.reset", {
             url: "/reset",
@@ -31,5 +29,5 @@ export function config($stateProvider:angular.ui.IStateProvider) {
             controller: AccountController,
             controllerAs: "ctrl"
         })
-
+    ;
 }

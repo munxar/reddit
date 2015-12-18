@@ -1,22 +1,19 @@
 var template = require("./linkit-rater.html!text");
 import "./linkit-rater.css!css";
 
+/**
+ * rate directive
+ */
 class RateController {
     votes;
+    isVoted;
     onupdate;
 
-    static $inject = ["auth"];
-    constructor(private auth) {
+    constructor() {
     }
 
     vote() {
         if(this.onupdate) { this.onupdate(); }
-    }
-
-    isVoted() {
-        var userId = this.auth.user ? this.auth.user._id : undefined;
-        var votes = this.votes || [];
-        return votes.filter(vote => vote == userId).length;
     }
 
     count() {
@@ -32,6 +29,7 @@ export function linkitRater() {
         controllerAs: "ctrl",
         bindToController: {
             votes: "=",
+            isVoted: "=",
             onupdate: "&"
         }
     }

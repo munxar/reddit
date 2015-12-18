@@ -13,6 +13,7 @@ export interface ITopic extends Document {
     creationDate: Date;
 
     votes: Types.ObjectId[];
+    isVoted: boolean;
 
     comments: IComment[];
 }

@@ -6,7 +6,7 @@ import {linkitAccount} from "./linkitAccount";
 import {accountFilter} from "./accountFilter";
 import {config} from "./config";
 
-angular
+export default angular
     .module("linkit.account", [
         auth.name
     ])

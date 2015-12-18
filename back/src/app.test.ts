@@ -423,7 +423,7 @@ describe("api", () => {
                         .expect("content-type", /json/)
                         .expect(200)
                         .end((err, res) => {
-                            var comment:IComment = res.body;
+                            var comment:IComment = res.body.comments[0];
                             expect(comment._id).to.exist;
                             expect(comment.content).eql("Hello!");
 
