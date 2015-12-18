@@ -5,7 +5,7 @@ In addition we use typescript and jspm to make use of es6 modules in the fronten
 
 ## Status
 Link Module
-- add New link
+- add new link
 - delete your link
 
 Comment Module
@@ -81,17 +81,17 @@ $ gulp serve
 ```
 Run this Site to access production build [http://localhost:3000/index2.html](http://localhost:3000/index2.html)
 
-# Requirements
 ## Build and test
 ```sh
 $ gulp
 ```
 
+# Requirements
 ## Device Lab
 ![User Image](images/devicelab.jpg)
 
 ## Tests
-We use following Test Libraries:
+We use following Test Libraries for Unit and integration Tests:
 * [Karma](http://karma-runner.github.io/0.13/index.html)
 * [Mocha](http://mochajs.org/)
 * [Chai](http://chaijs.com/)
@@ -103,7 +103,7 @@ We use following Test Libraries:
 - If user / password is wrong, display a message
 - On Title details, display time and user only
 - If User removes a Topic or Comment, ask if ok to delete
-- Seperate Change Password and Remove Account on Account Page
+- Seperate change Password and remove Account on Account Page
 - add Cloak
 - add Breadcrumb for better orientation
 
