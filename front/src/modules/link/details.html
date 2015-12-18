@@ -7,30 +7,15 @@
     <md-list>
         <md-list-item class="md-3-line" layout="row">
             <linkit-rater votes="ctrl.topic.votes" is-voted="ctrl.topic.isVoted" onupdate="ctrl.vote(ctrl.topic)"></linkit-rater>
-            <article class="list-item" flex>
-                <h3 class="md-headline">{{ctrl.topic.title}}</h3>
-                <div class="list-item-url">
-                    <a href="{{ctrl.topic.content}}" target="_blank"
-                       aria-label="Go to Topic URL">{{ctrl.topic.content}}</a>
-                </div>
-                <div class="md-list-item-text">
-                    <p class="list-item-submitted">
-                        <span am-time-ago="ctrl.topic.creationDate" aria-label="Submitted Time"></span> by <span
-                        aria-label="Topic Creator">{{ctrl.topic.creator.username | account}}</span>
-                    </p>
-                    <div class="md-actions" ng-if="ctrl.isOwner(ctrl.topic)">
-                        <linkit-delete onaction="ctrl.remove()"></linkit-delete>
-                    </div>
-                </div>
-            </article>
+            <linkit-list-item item="ctrl.topic"></linkit-list-item>
         </md-list-item>
+        <div class="md-actions" ng-if="ctrl.isOwner(ctrl.topic)">
+            <linkit-delete onaction="ctrl.remove()"></linkit-delete>
+        </div>
     </md-list>
 
     <md-content layout-margin>
-        <h1 class="md-title">
-            <md-icon class="fa fa-comment" aria-label="Comment Icon"></md-icon>
-            Comments ({{ctrl.topic.comments.length}})
-        </h1>
+        <h1 class="md-title">Comments</h1>
         <form ng-if="ctrl.isAuthenticated()" name="ctrl.form" ng-submit="ctrl.addComment()" novalidate>
             <md-input-container>
                 <label>Enter a comment</label>

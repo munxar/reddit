@@ -1,0 +1,12 @@
+<article class="list-item" flex>
+    <h3 class="md-headline"><a ui-sref="detail(ctrl.item)">{{ctrl.item.title}}</a></h3>
+    <div class="md-list-item-text">
+        <div class="list-item-url">
+            <a title="{{ctrl.item.title}}" aria-label="Topic Title" href="{{ctrl.item.content}}" target="_blank">{{ctrl.item.content}}</a>
+        </div>
+        <p class="list-item-submitted" layout="row" layout-align="space-between center">
+            <span><span am-time-ago="ctrl.item.creationDate" aria-label="Submitted Time"></span> by <span aria-label="Topic Creator">{{ctrl.item.creator.username | account}}</span></span>
+            <span title="comments" aria-label="comments">{{ctrl.item.comments.length}} <i class="fa fa-comment" aria-label="View Topic Detail"></i></span>
+        </p>
+    </div>
+</article>

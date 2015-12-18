@@ -4,6 +4,7 @@ import "angular-ui-router";
 import {config} from "./config";
 import core from "../core/module";
 import {LinkService} from "./LinkService";
+import {listItem} from "./list-item";
 
 export default angular
     .module("linkit.link", [
@@ -11,5 +12,6 @@ export default angular
         core.name
     ])
     .service("link", LinkService)
+    .directive("linkitListItem", listItem)
     .config(config)
 ;

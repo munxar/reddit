@@ -45,7 +45,13 @@ a:active, a:hover {
 // Style for Topic Title
 .md-headline {
     text-decoration: none;
-    color: #111;
+    > a {
+        color: #111;
+    }
+}
+
+.comments {
+    padding-left: 4.5rem;
 }
 
 // breadcrumb navigation

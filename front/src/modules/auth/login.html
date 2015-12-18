@@ -4,7 +4,7 @@
         <form name="Login" ng-submit="ctrl.login()">
             <md-input-container>
                 <label>Username</label>
-                <input name="Username" ng-model="ctrl.vm.username" aria-label="Type Username" type="text" minlength="4" md-maxlength="16" required>
+                <input autofocus name="Username" ng-model="ctrl.vm.username" aria-label="Type Username" type="text" minlength="4" md-maxlength="16" required>
                 <div ng-messages="Login.Username.$error" ng-show="Login.Username.$dirty">
                     <div ng-message="required">Username is required!</div>
                     <div ng-message="minlength">min Username length is 4!</div>

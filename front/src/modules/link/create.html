@@ -9,7 +9,7 @@
                 <md-input-container>
                     <label>Descriptive Title</label>
                     <input name="Title" type="text" ng-model="ctrl.vm.title" aria-label="Type Topic Title" required
-                           md-maxlength="100">
+                           md-maxlength="100" autofocus>
                     <div ng-messages="form.Title.$error" ng-show="form.Title.$dirty">
                         <div ng-message="required">Title is required!</div>
                         <div ng-message="md-maxlength">Title is too long!</div>

@@ -6,20 +6,7 @@
     <md-list>
         <md-list-item class="md-3-line" ng-repeat="topic in ctrl.topics" layout="row">
             <linkit-rater votes="topic.votes" is-voted="topic.isVoted" onupdate="ctrl.vote(topic)"></linkit-rater>
-            <article class="list-item" flex>
-                <h3 class="md-headline"><a ui-sref="detail(topic)">{{topic.title}}</a></h3>
-                <div class="md-list-item-text">
-                    <div class="list-item-url">
-                        <a title="{{topic.title}}" aria-label="Topic Title" href="{{topic.content}}" target="_blank">{{topic.content}}</a>
-                    </div>
-                    <p class="list-item-submitted">
-                        <span am-time-ago="topic.creationDate" aria-label="Submitted Time"></span> by <span aria-label="Topic Creator">{{topic.creator.username | account}}</span>
-                    </p>
-                    <div aria-label="Total Comments">
-                        <a ui-sref="detail(topic)"><md-icon class="fa fa-comment" aria-label="View Topic Detail"></md-icon>comments ({{topic.comments.length}})</a>
-                    </div>
-                </div>
-            </article>
+            <linkit-list-item item="topic"></linkit-list-item>
             <md-divider></md-divider>
         </md-list-item>
     </md-list>
