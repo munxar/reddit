@@ -1,19 +1,45 @@
-[![Build Status](https://travis-ci.org/munxar/reddit.svg?branch=master)](https://travis-ci.org/munxar/reddit)
-
 # linkit
 Linkit is a simplified reddit clone build with the MEAN stack.
 
 In addition we use typescript and jspm to make use of es6 modules in the frontend.
 
+## Status
+Link Module
+- add New link
+- delete your link
+
+Comment Module
+- Comment any link
+
+Rating Module
+- Rate link
+- Rate comment
+- Undo link or comment rate
+
+User Module
+- Register new User / Login
+- change your password
+- delete your Account
+
+Security Module
+- User Login
+- User Logout
+- Only Users who are logged in are allowed to create a link, comment and rate
+
+Additional
+- Performance (one Package for JS, HTML and CSS)
+- WCAG (added ng-aria)
+
 ##linkit is built with:
  * [Node.js](http://www.nodejs.org/)
  * [MongoDB](http://www.mongodb.org/)
- * [Mongoose](http://mongoosejs.com/)
- * [Typescript](http://www.typescriptlang.org/)
- * [jspm](http://jspm.io/)
- * [Express](http://expressjs.com/)
- * [AngularJS](http://angularjs.org/)
- * [Angular Material](https://material.angularjs.org)
+ * [Mongoose 4.2](http://mongoosejs.com/)
+ * [Typescript 2.10](http://www.typescriptlang.org/)
+ * [SCSS 2.1](http://sass-lang.com/)
+ * [jspm 0.16](http://jspm.io/)
+ * [Express 4.13](http://expressjs.com/)
+ * [AngularJS 1.4](http://angularjs.org/)
+ * [Angular Material 0.11](https://material.angularjs.org)
 
 
 ## Setup
@@ -63,16 +89,8 @@ $ gulp
 
 ## Device Lab
 ![User Image](images/devicelab.jpg)
-We tested the App on following devices:
-- iPhone 5s
-- iPad mini
-- iPad Pro
-- MacBook Pro
-- MacBook Air
 
 ## Tests
-To Test our Application we wrote unit and integration tests for backend and frontend.
-
 We use following Test Libraries:
 * [Karma](http://karma-runner.github.io/0.13/index.html)
 * [Mocha](http://mochajs.org/)
@@ -81,49 +99,21 @@ We use following Test Libraries:
 ## Usertests
 ### Userin 1
 ![User Image](images/userin1.jpg)
-- login / register, username / password no length validation [x]
-- If user / password is wrong, display a message [x]
-- On Title details, display time and user only [x]
-- If User removes a Topic or Comment, ask if ok to delete  [x]
-- Seperate Change Password and Remove Account on Account Page [x]
-- add Cloak [x]
-- add Breadcrumb for better orientation [x]
+- login / register, username / password no length validation
+- If user / password is wrong, display a message
+- On Title details, display time and user only
+- If User removes a Topic or Comment, ask if ok to delete
+- Seperate Change Password and Remove Account on Account Page
+- add Cloak
+- add Breadcrumb for better orientation
 
 ### Userin 2
 ![User Image](images/userin2.jpg)
 - Detail page is not obvious (I have to click on comments to see details)
 - URL is not shown on detail (better for UX, what do I click here)
 - Title on detail links to home site not to website (url)
-- After password change form is wrong [x]
+- After password change form is wrong
 - After comment a Topic form is wrong
-- Title on Mobile is cutted [x]
-- Newest Topic is at the bottom [x]
-- URLS with https are not working (it writes https//) [x]
-
-# Status
-Link Modul
-- erfassen [x]
-- löschen [x]
-
-Kommentar Modul
-- link kommentieren [x]
-
-
-Rating Modul
-- Links bewerten [x]
-- Kommentare bewerten [x]
-- Rating rückgängig machen [x]
-
-User Modul
-- User erfassen / login [x]
-- User password change [x]
-- optional: Account löschen [x]
-
-Security Modul
-- User Login [x]
-- User Logout [x]
-- authorization nur angemeldete User können Link, Kommentare, Rating verändern [x]
-
-Optional
-- Performance Optimierung [x]
-- WCAG [x]
+- Title on Mobile is cutted
+- Newest Topic is at the bottom
+- URLs with https are not working (it writes https//)
